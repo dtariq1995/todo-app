@@ -4,11 +4,11 @@ body {
     height: 100vh;
     justify-content: space-between;
     margin: 0;
-
+background-color: rgb(200, 200, 200)
 }
 
 header {
-    background-color: rgb(103, 240, 153);
+    background-color: rgb(109, 198, 142);
     margin: 0;
     height: 13vh;
     width: 100vw;
@@ -22,9 +22,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(103, 240, 153);
+    background-color: rgb(109, 198, 142);
     margin: 0;
-    height: 3.5em;
+    height: 4vh;
     gap: 10px;
     width: 100vw;
 }
@@ -32,4 +32,15 @@ footer {
 footer img {
     height: 24px;
     width: 24px;
+}
+
+footer a,
+footer p {
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(255, 225, 134);
 }
