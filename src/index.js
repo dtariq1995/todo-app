@@ -1,1 +1,3 @@
-console.log("Hello");
+import pageLoad from "./Pages/pageLoad";
+
+pageLoad();
