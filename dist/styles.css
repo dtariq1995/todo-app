@@ -67,7 +67,7 @@ footer a:hover {
 }
 
 #sidebar {
-    height: 86vh;
+    height: 85vh;
     width: 235px;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ footer a:hover {
     padding-left: 40px;
     justify-content: flex-start;
     background-color: rgb(233, 240, 242);
-    padding-top: 2vh;
+    padding-top: 3vh;
     border-right: 1px solid rgb(201, 200, 200);
 }
 
@@ -83,14 +83,14 @@ footer a:hover {
     background: none;
     border: none;
     color: rgb(26, 25, 25);
-    font-size: 24px;
+    font-size: 22px;
     padding: 20px;
     font-family: Raleway;
 }
 
 #main-area {
-    height: 86vh;
-    padding-top: 2vh;
+    height: 83.5vh;
+    padding-top: 4.5vh;
 
 }
 
