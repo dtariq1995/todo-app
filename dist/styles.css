@@ -1,29 +1,45 @@
+@font-face {
+    font-family: Raleway;
+    src: url(/src/Assets/Fonts/Raleway-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: Alumni-Sans-Inline-One;
+    src: url(/src/Assets/Fonts/AlumniSansInlineOne-Italic.ttf);
+}
+
 body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
     justify-content: space-between;
     margin: 0;
-background-color: rgb(200, 200, 200)
+    background-color: rgb(255, 255, 255);
+    font-family: Raleway;
 }
 
 header {
-    background-color: rgb(205, 159, 90);
+    background-color: rgb(95, 157, 155);
     margin: 0;
     height: 8vh;
-    width: 100vw;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: flex-start;
     color: white;
+    font-family: Alumni-Sans-Inline-One;
+    font-size: 72px;
+    padding-left: 40px;
+    gap: 10px;
 }
+
+
 
 footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(205, 159, 90);
+    background-color: rgb(95, 157, 155);
     margin: 0;
     height: 4vh;
     gap: 10px;
@@ -37,7 +53,6 @@ footer img {
 
 footer a,
 footer p {
-    font-weight: 500;
     color: white;
     text-decoration: none;
 }
@@ -46,6 +61,36 @@ footer a:hover {
     color: rgb(255, 225, 134);
 }
 
-#sidebar {
-    height: 88vh;
+#content {
+    display: flex;
+    width: 100vw;
 }
+
+#sidebar {
+    height: 86vh;
+    width: 235px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    justify-content: flex-start;
+    background-color: rgb(233, 240, 242);
+    padding-top: 2vh;
+    border-right: 1px solid rgb(201, 200, 200);
+}
+
+#sidebar button {
+    background: none;
+    border: none;
+    color: rgb(26, 25, 25);
+    font-size: 24px;
+    padding: 20px;
+    font-family: Raleway;
+}
+
+#main-area {
+    height: 86vh;
+    padding-top: 2vh;
+
+}
+

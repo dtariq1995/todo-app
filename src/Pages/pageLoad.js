@@ -6,7 +6,11 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
 
     let body = document.querySelector("body");
     let header = document.createElement("header");
-    header.textContent = "To-Do List";
+    let headerImage = document.createElement("img");
+    let headerTitle = document.createElement("div");
+    headerImage.src = "/src/Assets/Images/agenda.png";
+    headerTitle.textContent = "To-Do List";
+    header.append(headerImage, headerTitle);
     body.insertAdjacentElement("afterbegin", header);
 
 
@@ -22,10 +26,15 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
 
     footer.append(footerText, footerImg, footerLink);
 
-
     content.insertAdjacentElement("afterend", footer);
 
     sidebarLoad();
+
+    let main = document.createElement("div");
+    main.id = "main-area";
+    main.textContent = "Main";
+    content.append(main);
+
 
 }
 
