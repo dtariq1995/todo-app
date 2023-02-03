@@ -1,4 +1,4 @@
-
+import sidebarLoad from "./sidebarLoad";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
@@ -6,7 +6,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
 
     let body = document.querySelector("body");
     let header = document.createElement("header");
-    header.textContent = "Header";
+    header.textContent = "To-Do List";
     body.insertAdjacentElement("afterbegin", header);
 
 
@@ -24,6 +24,9 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
 
 
     content.insertAdjacentElement("afterend", footer);
+
+    sidebarLoad();
+
 }
 
 export default pageLoad;
