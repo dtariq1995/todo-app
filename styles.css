@@ -34,7 +34,6 @@ header {
 }
 
 
-
 footer {
     display: flex;
     align-items: center;
@@ -79,6 +78,13 @@ footer a:hover {
     border-right: 1px solid rgb(201, 200, 200);
 }
 
+#sidebar div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 #sidebar button {
     background: none;
     border: none;
@@ -86,6 +92,11 @@ footer a:hover {
     font-size: 22px;
     padding: 20px;
     font-family: Raleway;
+}
+
+#sidebar img {
+    height: 24px;
+    width: 24px;
 }
 
 #main-area {
