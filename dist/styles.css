@@ -66,7 +66,7 @@ footer a:hover {
 }
 
 #sidebar {
-    height: 85vh;
+    height: 100%;
     width: 235px;
     display: flex;
     flex-direction: column;
@@ -94,14 +94,19 @@ footer a:hover {
     font-family: Raleway;
 }
 
+#sidebar button:hover {
+    font-weight: 600;
+    cursor: pointer;
+}
+
 #sidebar img {
     height: 24px;
     width: 24px;
 }
 
 #main-area {
-    height: 83.5vh;
-    padding-top: 4.5vh;
-
+    height: 78vh;
+    padding: 5vh 4.5vw;
+    width: 100%;
 }
 

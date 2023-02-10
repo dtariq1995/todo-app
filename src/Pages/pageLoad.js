@@ -1,3 +1,4 @@
+import homeLoad from "./homeLoad";
 import sidebarLoad from "./sidebarLoad";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
@@ -34,7 +35,6 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
     main.id = "main-area";
     main.textContent = "Main";
     content.append(main);
-
 
 }
 
