@@ -67,7 +67,7 @@ footer a:hover {
 }
 
 #sidebar {
-    height: 85vh;
+    height: 83vh;
     min-width: 235px;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ footer a:hover {
     padding-left: 40px;
     justify-content: flex-start;
     background-color: rgb(233, 240, 242);
-    padding-top: 3vh;
+    padding-top: 5vh;
     border-right: 1px solid rgb(201, 200, 200);
 }
 
@@ -106,8 +106,8 @@ footer a:hover {
 }
 
 #main-area {
-    height: 78vh;
-    padding: 5vh 4.5vw;
+    height: 74vh;
+    padding: 7vh 4.5vw;
     width: 100%;
 }
 

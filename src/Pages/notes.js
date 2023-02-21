@@ -1,13 +1,13 @@
 
-const homeLoad = function() {
+const notesLoad = function() {
 
     let displayArea = document.querySelector("#main-area");
     displayArea.innerHTML = "";
 
     let title = document.createElement("div");
-    title.textContent = "Home";
+    title.textContent = "Notes";
     displayArea.append(title);
 }
 
 
-export default homeLoad;
+export default notesLoad;
