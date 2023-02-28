@@ -86,7 +86,7 @@ footer a:hover {
     justify-content: center;
 }
 
-#sidebar button {
+.side-button {
     background: none;
     border: none;
     color: rgb(26, 25, 25);
@@ -95,7 +95,11 @@ footer a:hover {
     font-family: Raleway;
 }
 
-#sidebar button:hover {
+.side-button.active {
+    font-weight: 600;
+}
+
+.side-button:hover {
     font-weight: 600;
     cursor: pointer;
 }
@@ -109,5 +113,22 @@ footer a:hover {
     height: 74vh;
     padding: 7vh 4.5vw;
     width: 100%;
+}
+
+#notes-area {
+    height: 74vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 17em));
+    grid-template-rows: repeat(4, 250px);
+    gap: 2em;
+
+}
+
+.notecard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
+    height: 12em;
 }
 
