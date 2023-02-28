@@ -10,7 +10,6 @@ const toDo = (function() {
 
     const sampleToDo = toDoFactory("Title", "Project", "High", "Today", "Finish this");
 
-    console.log(sampleToDo);
 
 })();
 

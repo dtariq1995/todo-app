@@ -1,3 +1,4 @@
+import notesDisplay from "./notes";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
@@ -47,6 +48,7 @@ const sidebarLoad = function() {
     let homeImg = document.createElement("img");
     homeImg.src = "/src/Assets/Images/houseicon.png";
     let homeButton = document.createElement("button");
+    homeButton.classList.add("side-button");
     homeButton.textContent = "Home";
     homeArea.append(homeImg, homeButton);
 
@@ -54,6 +56,7 @@ const sidebarLoad = function() {
     let todayImg = document.createElement("img");
     todayImg.src = "/src/Assets/Images/dayicon.png";
     let todayButton = document.createElement("button");
+    todayButton.classList.add("side-button");
     todayButton.textContent = "Today";
     todayArea.append(todayImg, todayButton);
 
@@ -61,6 +64,7 @@ const sidebarLoad = function() {
     let weekImg = document.createElement("img")
     weekImg.src = "/src/Assets/Images/weekicon.png";
     let weekButton = document.createElement("button");
+    weekButton.classList.add("side-button");
     weekButton.textContent = "Week";
     weekArea.append(weekImg, weekButton);
 
@@ -68,6 +72,7 @@ const sidebarLoad = function() {
     let projectsImg = document.createElement("img");
     projectsImg.src = "/src/Assets/Images/projectsicon.png";
     let projectsButton = document.createElement("button");
+    projectsButton.classList.add("side-button");
     projectsButton.textContent = "Projects";
     projectsArea.append(projectsImg, projectsButton);
 
@@ -75,12 +80,31 @@ const sidebarLoad = function() {
     let notesImg = document.createElement("img");
     notesImg.src = "/src/Assets/Images/noteicon.png";
     let notesButton = document.createElement("button");
+    notesButton.classList.add("side-button");
     notesButton.textContent = "Notes";
     notesArea.append(notesImg, notesButton);
+    notesButton.addEventListener("click", (e) => {
+        if (e.target.classList.contains("active")) return;
+        setActiveButton(notesButton);
+        notesDisplay();
+
+    })
 
     sidebar.append(homeArea, todayArea, weekArea, projectsArea, notesArea);
     content.append(sidebar);
 
+}
+
+function setActiveButton(button) {
+    const buttons = document.querySelectorAll(".side-button");
+  
+    buttons.forEach((button) => {
+      if (button !== this) {
+        button.classList.remove("active");
+      }
+    });
+  
+    button.classList.add("active");
 }
 
 export default pageLoad;
