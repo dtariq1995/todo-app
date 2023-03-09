@@ -1,3 +1,7 @@
+:root {
+    --header-footer-color: rgb(60, 60, 60);
+}
+
 
 @font-face {
     font-family: Raleway;
@@ -21,8 +25,7 @@ body {
 }
 
 header {
-    background-color: rgb(95, 157, 155);
-    margin: 0;
+    background-color: var(--header-footer-color);
     height: 8vh;
     display: flex;
     align-items: center;
@@ -39,7 +42,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(95, 157, 155);
+    background-color: var(--header-footer-color);
     margin: 0;
     height: 4vh;
     gap: 10px;
@@ -74,9 +77,9 @@ footer a:hover {
     align-items: flex-start;
     padding-left: 40px;
     justify-content: flex-start;
-    background-color: rgb(233, 240, 242);
+    background-color: rgb(226, 226, 226);
     padding-top: 5vh;
-    border-right: 1px solid rgb(201, 200, 200);
+    border-right: 1px solid rgb(115, 115, 115);
 }
 
 #sidebar div {
@@ -97,6 +100,7 @@ footer a:hover {
 
 .side-button.active {
     font-weight: 600;
+    font-size: 24px;
 }
 
 .side-button:hover {
@@ -110,18 +114,19 @@ footer a:hover {
 }
 
 #main-area {
-    height: 74vh;
-    padding: 7vh 4.5vw;
+    background-color: rgb(255, 255, 255);
+    height: 78vh;
+    padding: 7vh 4.5vw 3vh;
     width: 100%;
+    overflow-y: auto;
 }
 
 #notes-area {
-    height: 74vh;
+    height: 78vh;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 17em));
-    grid-template-rows: repeat(4, 250px);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 17em));
+    grid-template-rows: repeat(auto-fill, 250px);
     gap: 2em;
-
 }
 
 .notecard {
@@ -130,5 +135,39 @@ footer a:hover {
     align-items: center;
     padding: 1.5em;
     height: 12em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.note-title {
+    padding-bottom: 1.5em;
+    font-weight: 500;
+    color: rgb(35, 35, 35);
+}
+
+.note-details {
+    color: rgb(35, 35, 35);
+}
+
+.todo-area {
+    height: 78vh;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(182, 212, 211, 0.404);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(159, 210, 208, 0.587);
+}
