@@ -2,7 +2,7 @@
 const notesArray = [];   // array to store note objects in
 
 const colorPallete = ["#FFF9B1", "#daf7a1", "#FF9D48", "#FFCEE0", "#b1d3f6", "#8ca0ff",   // color pallete for notes
-    "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#ff0000", "#b6d7a8", "#C9DF56", "#ffc000"];
+    "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"];
 
 const notes = (function() {
 
@@ -37,7 +37,7 @@ const notesDisplay = function() {   // controls notes display
 
         let noteCard = document.createElement("div");
         noteCard.classList.add("notecard");
-        noteCard.style.backgroundColor = colorPallete[(Math.floor(Math.random() * 14))];
+        noteCard.style.backgroundColor = colorPallete[(Math.floor(Math.random() * colorPallete.length))];
 
         let noteTitle = document.createElement("div");
         noteTitle.textContent = note.title;

@@ -1,4 +1,5 @@
 import notesDisplay from "./notes";
+import homeDisplay from "./toDo";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
@@ -48,9 +49,14 @@ const sidebarLoad = function() {
     let homeImg = document.createElement("img");
     homeImg.src = "/src/Assets/Images/houseicon.png";
     let homeButton = document.createElement("button");
-    homeButton.classList.add("side-button");
+    homeButton.classList.add("side-button", "active");
     homeButton.textContent = "Home";
     homeArea.append(homeImg, homeButton);
+    homeButton.addEventListener("click", (e) => {
+      if (e.target.classList.contains("active")) return;
+      setActiveButton(homeButton);
+      homeDisplay();
+  })
 
     let todayArea = document.createElement("div");
     let todayImg = document.createElement("img");
@@ -87,7 +93,6 @@ const sidebarLoad = function() {
         if (e.target.classList.contains("active")) return;
         setActiveButton(notesButton);
         notesDisplay();
-
     })
 
     sidebar.append(homeArea, todayArea, weekArea, projectsArea, notesArea);
