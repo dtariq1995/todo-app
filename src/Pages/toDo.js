@@ -42,12 +42,18 @@ const homeDisplay = function() {   // display all to-dos
         else {
             toDoCard.style.borderLeft = "3px solid green";
         }
+        let toDoLabel = document.createElement("label");
+        let toDoCheck = document.createElement("input");
+        toDoCheck.setAttribute("type", "checkbox");
+        let toDoSpan = document.createElement("span");
+        toDoLabel.append(toDoCheck, toDoSpan);
 
         let toDoTitle = document.createElement("div");
         toDoTitle.textContent = toDo.title;
         toDoTitle.classList.add("todo-title");
 
         let toDoLeft = document.createElement("div");
+        toDoLeft.classList.add("todo-right");
         let toDoRight = document.createElement("div");
         toDoRight.classList.add("todo-right");
 
@@ -65,7 +71,7 @@ const homeDisplay = function() {   // display all to-dos
         deleteButton.data = "/src/Assets/Images/trash-can.svg";
         deleteButton.classList.add("todo-icon");
 
-        toDoLeft.append(toDoTitle);
+        toDoLeft.append(toDoLabel, toDoTitle);
         toDoRight.append(toDoDate, editButton, deleteButton);
         toDoCard.append(toDoLeft, toDoRight);
         toDoDisplayArea.append(toDoCard);
