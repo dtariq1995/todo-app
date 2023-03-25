@@ -141,6 +141,13 @@ footer a:hover {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
+.notecard:hover {
+    transform: scale(1.006);
+    transform-origin: 50% 50%;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.28);
+    transition: all .2s ease-out;
+}
+
 .note-title {
     padding-bottom: 1.5em;
     font-weight: 500;
@@ -163,7 +170,14 @@ footer a:hover {
     align-items: center;
     justify-content: space-between;
     padding: 1em;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.9em;
+}
+
+.todo-card:hover {  
+    transform: scale(1.003);
+    transform-origin: 50% 50%;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.268);
+    transition: all .2s ease-out;
 }
 
 .todo-right {
@@ -178,8 +192,13 @@ footer a:hover {
 }
 
 .todo-icon {
-    height: 1em;
+    height: 1.05em;
 }
+
+.todo-icon:hover {
+    filter: invert(32%) sepia(37%) saturate(1072%) hue-rotate(228deg) brightness(86%) contrast(88%);
+}
+
 
 ::-webkit-scrollbar {
     width: 10px;
