@@ -56,7 +56,7 @@ const sidebarLoad = function() {
       if (e.target.classList.contains("active")) return;
       setActiveButton(homeButton);
       homeDisplay();
-  })
+    })
 
     let todayArea = document.createElement("div");
     let todayImg = document.createElement("img");
@@ -65,6 +65,11 @@ const sidebarLoad = function() {
     todayButton.classList.add("side-button");
     todayButton.textContent = "Today";
     todayArea.append(todayImg, todayButton);
+    todayButton.addEventListener("click", (e) => {
+      if (e.target.classList.contains("active")) return;
+      setActiveButton(todayButton);
+      homeDisplay();
+    })
 
     let weekArea = document.createElement("div");
     let weekImg = document.createElement("img")
@@ -73,6 +78,11 @@ const sidebarLoad = function() {
     weekButton.classList.add("side-button");
     weekButton.textContent = "Week";
     weekArea.append(weekImg, weekButton);
+    weekButton.addEventListener("click", (e) => {
+      if (e.target.classList.contains("active")) return;
+      setActiveButton(weekButton);
+      homeDisplay();
+    })
 
     let projectsArea = document.createElement("div");
     let projectsImg = document.createElement("img");
