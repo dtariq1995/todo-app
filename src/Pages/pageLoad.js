@@ -7,11 +7,14 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
     let body = document.querySelector("body");
 
     let header = document.createElement("header");   // header content
+    let logo = document.createElement("div");
+    logo.id = "logo";
     let headerImage = document.createElement("img");
     let headerTitle = document.createElement("div");
     headerImage.src = "/src/Assets/Images/agenda.png";
     headerTitle.textContent = "To-Do List";
-    header.append(headerImage, headerTitle);
+    logo.append(headerImage, headerTitle);
+    header.append(logo);
     body.insertAdjacentElement("afterbegin", header);
 
 
