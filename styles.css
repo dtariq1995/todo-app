@@ -37,6 +37,13 @@ header {
     gap: 10px;
 }
 
+#logo {
+    display: flex;
+    flex-direction: row;
+    animation-name: moveInRight;
+    animation-duration: 1.7s;
+}
+
 
 footer {
     display: flex;
@@ -241,4 +248,16 @@ label > input[type="checkbox"]:checked + *::before {
 }
 label > input[type="checkbox"]:checked + * {
     color: rgb(110, 67, 152);
+}
+
+@keyframes moveInRight {  /* animation for title */
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
