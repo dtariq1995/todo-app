@@ -1,6 +1,8 @@
 import notesDisplay from "./notes";
-import homeDisplay from "./toDo";
+import sectionDisplay from "./toDo";
 import { toDoArray } from "./toDo";
+import { todayToDoArray } from "./toDo";
+import { weekToDoArray } from "./toDo";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
@@ -39,7 +41,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   main.id = "main-area";
   main.textContent = "Main";
   content.append(main);
-  homeDisplay(toDoArray);
+  sectionDisplay(toDoArray);
 
 }
 
@@ -60,7 +62,7 @@ const sidebarLoad = function() {
   homeButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
     setActiveButton(homeButton);
-    homeDisplay(toDoArray);
+    sectionDisplay(toDoArray);
   })
 
   let todayArea = document.createElement("div");
@@ -73,7 +75,7 @@ const sidebarLoad = function() {
   todayButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
     setActiveButton(todayButton);
-    homeDisplay(toDoArray);
+    sectionDisplay(todayToDoArray);
   })
 
   let weekArea = document.createElement("div");
@@ -86,7 +88,7 @@ const sidebarLoad = function() {
   weekButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
     setActiveButton(weekButton);
-    homeDisplay(toDoArray);
+    sectionDisplay(weekToDoArray);
   })
 
   let projectsArea = document.createElement("div");

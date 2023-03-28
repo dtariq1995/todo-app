@@ -1,6 +1,10 @@
 import format from "date-fns/format";
+import isToday from "date-fns/isToday";
+import isThisWeek from "date-fns/isThisWeek";
 
 export const toDoArray = [];
+export let todayToDoArray = [];
+export let weekToDoArray = [];
 
 const toDoFactory = (function() {
 
@@ -10,16 +14,26 @@ const toDoFactory = (function() {
         return {title, project, priority, date, details};
     };
 
-    const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 2, 8), "Finish this");
-    const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 2, 8), "This needs to be done immediately, by any means necessary");
-    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Easy", new Date(2023, 2, 8), "This idiot can be useful so this can wait");
+    const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 2, 20), "Finish this");
+    const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 2, 27), "This needs to be done immediately, by any means necessary");
+    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Easy", new Date(2023, 2, 29), "This idiot can be useful so this can wait");
 
 
     toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
     console.log(toDoArray);
+
+    todayToDoArray = toDoArray.filter(function(toDo) {
+        return isToday(toDo.date);
+    })
+
+    weekToDoArray = toDoArray.filter(function(toDo) {
+        return isThisWeek(toDo.date);
+    })
+
+
 })();
 
-const homeDisplay = function(arrayToDisplay) {   // display all to-dos
+const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
 
     let displayArea = document.querySelector("#main-area");
     displayArea.innerHTML = "";
@@ -84,6 +98,6 @@ const homeDisplay = function(arrayToDisplay) {   // display all to-dos
 
 
 
-export default homeDisplay;
+export default sectionDisplay;
 
 
