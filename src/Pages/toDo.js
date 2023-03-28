@@ -1,8 +1,8 @@
 import format from "date-fns/format";
 
-const toDoArray = [];
+export const toDoArray = [];
 
-const toDo = (function() {
+const toDoFactory = (function() {
 
 
     const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
@@ -19,7 +19,7 @@ const toDo = (function() {
     console.log(toDoArray);
 })();
 
-const homeDisplay = function() {   // display all to-dos
+const homeDisplay = function(arrayToDisplay) {   // display all to-dos
 
     let displayArea = document.querySelector("#main-area");
     displayArea.innerHTML = "";
@@ -28,7 +28,7 @@ const homeDisplay = function() {   // display all to-dos
     toDoDisplayArea.id = "todo-area"; 
 
 
-    toDoArray.forEach(function(toDo) {
+    arrayToDisplay.forEach(function(toDo) {
 
         let toDoCard = document.createElement("div");
         toDoCard.classList.add("todo-card");
