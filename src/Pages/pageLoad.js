@@ -94,8 +94,8 @@ const sidebarLoad = function() {
   let projectsArea = document.createElement("div");
   let projectsImg = document.createElement("img");
   projectsImg.src = "/src/Assets/Images/projectsicon.png";
-  let projectsButton = document.createElement("button");
-  projectsButton.classList.add("side-button");
+  let projectsButton = document.createElement("div");
+  projectsButton.classList.add("projects-title");
   projectsButton.textContent = "Projects";
   projectsArea.append(projectsImg, projectsButton);
 
@@ -112,8 +112,16 @@ const sidebarLoad = function() {
     notesDisplay();
   })
 
+  let addItem = document.createElement("div");
+  addItem.id = "newItem";
+  addItem.textContent = "+";
+
+  let navContainer = document.createElement("div");
+  navContainer.id = "nav";
+
   sidebar.append(homeArea, todayArea, weekArea, projectsArea, notesArea);
-  content.append(sidebar);
+  navContainer.append(sidebar, addItem);
+  content.append(navContainer);
 
 }
 

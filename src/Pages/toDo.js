@@ -22,11 +22,11 @@ const toDoFactory = (function() {
     toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
     console.log(toDoArray);
 
-    todayToDoArray = toDoArray.filter(function(toDo) {
+    todayToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for today's date
         return isToday(toDo.date);
     })
 
-    weekToDoArray = toDoArray.filter(function(toDo) {
+    weekToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for the week
         return isThisWeek(toDo.date);
     })
 
