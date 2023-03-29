@@ -77,17 +77,23 @@ footer a:hover {
     width: 100vw;
 }
 
-#sidebar {
-    height: 83vh;
-    min-width: 235px;
+#nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding-left: 40px;
-    justify-content: flex-start;
+    justify-content: space-between;
+    height: 83vh;
+    padding-left: 48px;
     background-color: rgb(226, 226, 226);
     padding-top: 5vh;
     border-right: 1px solid rgb(115, 115, 115);
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 235px;
 }
 
 #sidebar div {
@@ -106,10 +112,17 @@ footer a:hover {
     font-family: Raleway;
 }
 
+.projects-title {
+    color: rgb(26, 25, 25);
+    font-size: 22px;
+    padding: 20px;
+    font-family: Raleway;
+}
+
 .side-button.active {
     font-weight: 600;
     font-size: 24px;
-    color: rebeccapurple;
+    color: rgb(143, 106, 181);
 }
 
 .side-button:hover {
@@ -122,12 +135,27 @@ footer a:hover {
     width: 24px;
 }
 
+#newItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 200;
+    height: 3.5rem;
+    width: 3.5rem;
+    font-size: 5.5em;
+    background-color: rgb(143, 106, 181);
+    border-radius: 50%;
+    box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.4);
+    margin-bottom: 48px;
+}
+
 #main-area {
     background-color: rgb(255, 255, 255);
-    height: 78vh;
-    padding: 7vh 4.5vw 3vh;
+    height: 80vh;
+    padding: 5vh 4.5vw 3vh;
     width: 100%;
-
+    overflow-y: auto;
 }
 
 #notes-area {
@@ -137,7 +165,7 @@ footer a:hover {
     grid-template-columns: repeat(auto-fill, minmax(250px, 17em));
     grid-template-rows: repeat(auto-fill, 250px);
     gap: 2em;
-    overflow-y: auto;
+
 }
 
 .notecard {
@@ -208,6 +236,9 @@ footer a:hover {
     filter: invert(32%) sepia(37%) saturate(1072%) hue-rotate(228deg) brightness(86%) contrast(88%);
 }
 
+svg:hover {  /* this functionality isn't working */
+    cursor: pointer;
+}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -218,11 +249,11 @@ footer a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(182, 212, 211, 0.404);
+    background: rgba(207, 182, 212, 0.404);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(159, 210, 208, 0.587);
+    background: rgba(188, 159, 210, 0.587);
 }
 
 label > input[type=checkbox] {
