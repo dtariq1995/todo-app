@@ -26,29 +26,29 @@ const notes = (function() {
 
 const notesDisplay = function() {   // controls notes display
 
-    let displayArea = document.querySelector("#main-area");
+    let displayArea = document.querySelector("#main-area");   // clear display area before displaying notes
     displayArea.innerHTML = "";
 
-    let notesDisplayArea = document.createElement("div");
+    let notesDisplayArea = document.createElement("div");   // create notes display area
     notesDisplayArea.id = "notes-area"; 
 
 
-    notesArray.forEach(function(note) {
+    notesArray.forEach(function(note) {   // display all notes from notes array
 
-        let noteCard = document.createElement("div");
+        let noteCard = document.createElement("div");   // create note card
         noteCard.classList.add("notecard");
-        noteCard.style.backgroundColor = colorPallete[(Math.floor(Math.random() * colorPallete.length))];
+        noteCard.style.backgroundColor = colorPallete[(Math.floor(Math.random() * colorPallete.length))];   // choose random color from color pallete for notes
 
-        let noteTitle = document.createElement("div");
+        let noteTitle = document.createElement("div");   // display note title
         noteTitle.textContent = note.title;
         noteTitle.classList.add("note-title");
 
-        let noteDetails = document.createElement("div");
+        let noteDetails = document.createElement("div");   // display note details
         noteDetails.textContent = note.details;
         noteDetails.classList.add("note-details");
 
-        noteCard.append(noteTitle, noteDetails);
-        notesDisplayArea.append(noteCard);
+        noteCard.append(noteTitle, noteDetails);   // add title and details to notecard
+        notesDisplayArea.append(noteCard);   // add notecard to notes display area
 
     });
 

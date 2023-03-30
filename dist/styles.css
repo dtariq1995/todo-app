@@ -69,7 +69,7 @@ footer p {
 }
 
 footer a:hover {
-    color: rgb(255, 225, 134);
+    color: rgb(143, 106, 181);
 }
 
 #content {
@@ -141,13 +141,23 @@ footer a:hover {
     align-items: center;
     color: white;
     font-weight: 200;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 3.7rem;
+    width: 3.7rem;
     font-size: 5.5em;
     background-color: rgb(143, 106, 181);
     border-radius: 50%;
     box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.4);
     margin-bottom: 48px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#newItem:hover {
+    background-color: rgb(150, 121, 179);
+}
+
+#newItem:active {
+    background-color: rgb(143, 106, 181);
 }
 
 #main-area {
@@ -220,12 +230,13 @@ footer a:hover {
 .todo-right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 1.5em;
 }
 
 .todo-date {
     font-size: 0.7em;
-    padding: 0 1em;
+    font-weight: 500;
+    padding: 0.3em;
 }
 
 .todo-icon {
@@ -240,7 +251,7 @@ svg:hover {  /* this functionality isn't working */
     cursor: pointer;
 }
 
-::-webkit-scrollbar {
+::-webkit-scrollbar {   /* override styling for scrollbar */
     width: 10px;
 }
 
@@ -253,10 +264,10 @@ svg:hover {  /* this functionality isn't working */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(188, 159, 210, 0.587);
+    background: rgba(144, 106, 181, 0.521);
 }
 
-label > input[type=checkbox] {
+label > input[type=checkbox] {   /* override styling for checkboxes */
     display: none;
 }
 
