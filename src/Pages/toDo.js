@@ -71,22 +71,32 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoRight = document.createElement("div");   // details, date, icons will be on right
         toDoRight.classList.add("todo-right");
 
+        let toDoDetails = document.createElement("button");   // add details button to todos 
+        toDoDetails.classList.add("todo-details");
+        toDoDetails.textContent = "DETAILS";
+
         let toDoDate = document.createElement("div");   // add date to todo
         toDoDate.classList.add("todo-date");
         toDoDate.textContent = format(toDo.date, 'LLL do');   // format date to look like "Mar 17"
 
+        let editArea = document.createElement("a");  // used to wrap svg so cursor:pointer works
+        editArea.classList.add("todo-icon-wrap");
         let editButton = document.createElement("object");   // add edit button to todos
         editButton.type = "image/svg+xml";
         editButton.data = "/src/Assets/Images/edit-button.svg";
         editButton.classList.add("todo-icon");
+        editArea.append(editButton);
 
+        let deleteArea = document.createElement("a");   // wrap svg so cursor:pointer works
+        deleteArea.classList.add("todo-icon-wrap");
         let deleteButton = document.createElement("object");   // add delete button to todos
         deleteButton.type = "image/svg+xml";
         deleteButton.data = "/src/Assets/Images/trash-can.svg";
         deleteButton.classList.add("todo-icon");
+        deleteArea.append(deleteButton);
 
         toDoLeft.append(toDoLabel, toDoTitle);   // add label and title to left side
-        toDoRight.append(toDoDate, editButton, deleteButton);   // add date, edit, and del to right side
+        toDoRight.append(toDoDetails, toDoDate, editArea, deleteArea);   // add date, edit, and del to right side
         toDoCard.append(toDoLeft, toDoRight);  // combine both sides and add to todo card
         toDoDisplayArea.append(toDoCard);   // display todo in display area in main
 
