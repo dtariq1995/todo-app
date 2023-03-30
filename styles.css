@@ -43,6 +43,7 @@ header {
     flex-direction: row;
     animation-name: moveInRight;
     animation-duration: 1.7s;
+    user-select: none;
 }
 
 
@@ -216,7 +217,7 @@ footer a:hover {
     align-items: center;
     justify-content: space-between;
     padding: 1em;
-    font-size: 18px;
+    font-size: 1em;
     margin-bottom: 0.9em;
 }
 
@@ -233,6 +234,25 @@ footer a:hover {
     gap: 1.5em;
 }
 
+.todo-details {
+    background-color:  rgb(226, 226, 226);
+    border: 3px solid rgba(110, 67, 152, 0.763);
+    color: rgba(110, 67, 152, 0.763);
+    font-size: 0.60em;
+    font-weight: 800;
+    font-family: Raleway;
+    padding: 5px 8px;
+    border-radius: 5%;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.todo-details:hover {
+    color: white;
+    background-color: rgba(110, 67, 152, 0.763);
+    transition-duration: 0.3s;
+}
+
 .todo-date {
     font-size: 0.7em;
     font-weight: 500;
@@ -241,14 +261,21 @@ footer a:hover {
 
 .todo-icon {
     height: 1.05em;
+    user-select: none;
+    transition-duration: 0.15s;
 }
 
-.todo-icon:hover {
+.todo-icon-wrap {
+    cursor: pointer;
+}
+
+.todo-icon-wrap:hover {
+    transition-duration: 0.15s;
     filter: invert(32%) sepia(37%) saturate(1072%) hue-rotate(228deg) brightness(86%) contrast(88%);
 }
 
-svg:hover {  /* this functionality isn't working */
-    cursor: pointer;
+object {
+    pointer-events: none;   /* this line is needed to allow cursor:pointer when hovering over svgs */
 }
 
 ::-webkit-scrollbar {   /* override styling for scrollbar */
@@ -281,6 +308,7 @@ label > input[type="checkbox"] + *::before {
     border-style: solid;
     border-width: 0.1rem;
     border-color: rgba(110, 67, 152, 0.763);
+    transition-duration: 0.3s;
 }
 
 label > input[type="checkbox"]:checked + *::before {
@@ -289,9 +317,11 @@ label > input[type="checkbox"]:checked + *::before {
     text-align: center;
     background: rgb(110, 67, 152);
     border-color: rgb(110, 67, 152);
+    transition-duration: 0.3s;
 }
 label > input[type="checkbox"]:checked + * {
     color: rgb(110, 67, 152);
+    transition-duration: 0.3s;
 }
 
 @keyframes moveInRight {  /* animation for title */
