@@ -1,5 +1,6 @@
 :root {
-    --header-footer-color: rgb(60, 60, 60);
+    --header-footer-color: rgb(117, 94, 141);
+    --sidebar-color: rgb(239, 234, 239);
 }
 
 
@@ -84,9 +85,9 @@ footer a:hover {
     justify-content: space-between;
     height: 83vh;
     padding-left: 48px;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--sidebar-color);
     padding-top: 5vh;
-    border-right: 1px solid rgb(115, 115, 115);
+    border-right: 1px solid rgb(97, 87, 103);
 }
 
 #sidebar {
@@ -213,7 +214,7 @@ footer a:hover {
 
 .todo-card {
     display: flex;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--sidebar-color);
     align-items: center;
     justify-content: space-between;
     padding: 1em;
@@ -235,7 +236,7 @@ footer a:hover {
 }
 
 .todo-details {
-    background-color:  rgb(226, 226, 226);
+    background-color: var(--sidebar-color);
     border: 3px solid rgba(110, 67, 152, 0.763);
     color: rgba(110, 67, 152, 0.763);
     font-size: 0.60em;
@@ -251,6 +252,15 @@ footer a:hover {
     color: white;
     background-color: rgba(110, 67, 152, 0.763);
     transition-duration: 0.3s;
+}
+
+#details-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 330px;
+    width: 475px;
 }
 
 .todo-date {
