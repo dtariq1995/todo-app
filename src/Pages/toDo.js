@@ -74,6 +74,10 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoDetails = document.createElement("button");   // add details button to todos 
         toDoDetails.classList.add("todo-details");
         toDoDetails.textContent = "DETAILS";
+        toDoDetails.addEventListener('click', e => {
+            console.log("details pressed");
+            detailsDisplay(toDo);
+        });
 
         let toDoDate = document.createElement("div");   // add date to todo
         toDoDate.classList.add("todo-date");
@@ -93,6 +97,11 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         deleteButton.type = "image/svg+xml";
         deleteButton.data = "/src/Assets/Images/trash-can.svg";
         deleteButton.classList.add("todo-icon");
+        /*deleteButton.addEventListener('click', event => {   this isn't working yet *******
+            console.log("delete button pressed");
+            event.target.parentNode.remove();
+            toDoArray.splice(toDoArray.indexOf(todo), 1);
+        }); */ 
         deleteArea.append(deleteButton);
 
         toDoLeft.append(toDoLabel, toDoTitle);   // add label and title to left side
@@ -104,6 +113,29 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
 
     displayArea.append(toDoDisplayArea);
 }
+
+const detailsDisplay = function(todo) {
+
+    console.log("details display accessed");
+    let body = document.body;
+
+    
+    let detailsCard = document.createElement("div");
+    detailsCard.id = "details-card";
+    detailsCard.textContent = todo.title;
+    body.append(detailsCard);
+    
+
+
+}
+
+function toggle() {   // this function dims the background when various modals pop up
+    var dim = document.getElementById('dim');
+    dim.classList.toggle('active');
+    var form = document.getElementById('form');
+    form.classList.toggle('active');
+}
+
 
 
 
