@@ -43,11 +43,20 @@ const notesDisplay = function() {   // controls notes display
         noteTitle.textContent = note.title;
         noteTitle.classList.add("note-title");
 
+        let noteDeleteBtn = document.createElement("button");   // add delete button to note
+        noteDeleteBtn.textContent = "×";
+        noteDeleteBtn.id = "note-delete-btn";
+        noteDeleteBtn.addEventListener('click', event => {   // remove note from array and display 
+            event.target.parentNode.style.opacity = "0";
+            setTimeout(() => event.target.parentNode.remove(), 400);
+            notesArray.splice(notesArray.indexOf(note), 1);
+        });
+
         let noteDetails = document.createElement("div");   // display note details
         noteDetails.textContent = note.details;
         noteDetails.classList.add("note-details");
 
-        noteCard.append(noteTitle, noteDetails);   // add title and details to notecard
+        noteCard.append(noteDeleteBtn, noteTitle, noteDetails);   // add delete button, title, and details to notecard
         notesDisplayArea.append(noteCard);   // add notecard to notes display area
 
     });
