@@ -6,21 +6,8 @@ export const toDoArray = [];   // holds all todos
 export let todayToDoArray = [];   // will hold todos for current day
 export let weekToDoArray = [];   // will hold todos for current week
 
-const toDoFactory = (function() {
 
-
-    const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
-
-        return {title, project, priority, date, details};
-    };
-
-    const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 2, 20), "Finish this");
-    const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 2, 27), "This needs to be done immediately, by any means necessary");
-    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Easy", new Date(2023, 2, 29), "This idiot can be useful so this can wait");
-
-
-    toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
-    console.log(toDoArray);
+const filterArrays = function() {   // filter arrays
 
     todayToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for today's date
         return isToday(toDo.date);
@@ -29,9 +16,29 @@ const toDoFactory = (function() {
     weekToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for the week
         return isThisWeek(toDo.date);
     })
+}
 
+
+const toDoFactory = (function() {
+
+    const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
+
+        return {title, project, priority, date, details};
+    };
+
+    const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 5), "Finish this");
+    const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 3, 5), "This needs to be done immediately, by any means necessary");
+    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Easy", new Date(2023, 3, 7), "This idiot can be useful so this can wait");
+
+
+    toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
+    console.log(toDoArray);
+
+    filterArrays();
 
 })();
+
+
 
 const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
 
@@ -97,11 +104,14 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         deleteButton.type = "image/svg+xml";
         deleteButton.data = "/src/Assets/Images/trash-can.svg";
         deleteButton.classList.add("todo-icon");
-        /*deleteButton.addEventListener('click', event => {   this isn't working yet *******
-            console.log("delete button pressed");
-            event.target.parentNode.remove();
-            toDoArray.splice(toDoArray.indexOf(todo), 1);
-        }); */ 
+
+        deleteArea.addEventListener('click', event => {   // remove note from array and display 
+            event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
+            setTimeout(() => event.target.parentNode.parentNode.remove(), 400);
+            toDoArray.splice(toDoArray.indexOf(toDo), 1);   // remove todo from the array
+            filterArrays();   // filter todoArray to get arrays for today and for the week
+        });
+
         deleteArea.append(deleteButton);
 
         toDoLeft.append(toDoLabel, toDoTitle);   // add label and title to left side
