@@ -116,6 +116,10 @@ const sidebarLoad = function() {   // load sidebar content
   let addItem = document.createElement("div");   // floating add new item button
   addItem.id = "newItem";
   addItem.textContent = "+";
+  addItem.addEventListener('click', (e) => {
+    console.log("new item button pressed");
+    toggle();
+  })
 
 
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
@@ -142,8 +146,10 @@ function setActiveButton(button) {   // if button clicked, add active class, if 
 
 
 function toggle() {   // this function dims the background when various modals pop up
-  var dim = document.getElementById('dim');
+  let dim = document.getElementById('dim');
   dim.classList.toggle('active');
+  let newItemForm = document.getElementById('new-item-form');
+  newItemForm.classList.toggle('active');
 }
 
 const newItemDisplay = function() {
