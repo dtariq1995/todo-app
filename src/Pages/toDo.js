@@ -139,16 +139,6 @@ const detailsDisplay = function(todo) {
 
 }
 
-function toggle() {   // this function dims the background when various modals pop up
-    var dim = document.getElementById('dim');
-    dim.classList.toggle('active');
-    var form = document.getElementById('form');
-    form.classList.toggle('active');
-}
-
-
-
-
 
 export default sectionDisplay;
 
