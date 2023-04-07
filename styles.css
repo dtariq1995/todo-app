@@ -317,7 +317,6 @@ object {
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
-    background-color: rgb(180, 180, 180);
     font-family: Raleway;
     padding: 0;
     transition: 1s;
@@ -325,7 +324,7 @@ object {
 }
 
 #dim.active {
-    filter: blur(5px);
+    filter: blur(8px);
     transition: 0.5s;
     pointer-events: none;
     user-select: none;
@@ -336,22 +335,34 @@ object {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 475px;
-    width: 330px;
+    height: 25rem;
+    width: 45rem;
     background-color: rgb(255, 255, 255);
-    border-radius: 1em;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+    border-radius: 1%;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    align-items: center;
-    border-color: rgb(71, 77, 135);
-    max-width: 350px;
-    border-width: 6px;
-    border-style: solid;
     transition: 0.5s;
     opacity: 0;
     visibility: hidden;
+}
+
+#new-item-header {
+    display: flex;
+    font-family: Alumni-Sans-Inline-One;
+    color: white;
+    font-size: 32px;
+    background-color: var(--header-footer-color);
+    padding: 5px 11px;
+
+
+
+}
+
+#new-item-form.active {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
 }
 
 
