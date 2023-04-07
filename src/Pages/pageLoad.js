@@ -7,7 +7,7 @@ import { weekToDoArray } from "./toDo";
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
   let content = document.querySelector("#content");
-  let body = document.querySelector("body");
+  let container = document.getElementById("dim");
 
   let header = document.createElement("header");   // header content
   let logo = document.createElement("div");
@@ -18,7 +18,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   headerTitle.textContent = "To-Do List";
   logo.append(headerImage, headerTitle);
   header.append(logo);
-  body.insertAdjacentElement("afterbegin", header);
+  container.insertAdjacentElement("afterbegin", header);
 
 
   let footer = document.createElement("footer");  // footer content
@@ -42,6 +42,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   main.textContent = "Main";
   content.append(main);
   sectionDisplay(toDoArray);
+  newItemDisplay();
 
 }
 
@@ -116,6 +117,7 @@ const sidebarLoad = function() {   // load sidebar content
   addItem.id = "newItem";
   addItem.textContent = "+";
 
+
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
   navContainer.id = "nav";
 
@@ -135,6 +137,37 @@ function setActiveButton(button) {   // if button clicked, add active class, if 
   });
 
   button.classList.add("active");
+}
+
+
+
+function toggle() {   // this function dims the background when various modals pop up
+  var dim = document.getElementById('dim');
+  dim.classList.toggle('active');
+}
+
+const newItemDisplay = function() {
+
+  let body = document.body;
+  let newItemForm = document.createElement("div");   // body for new item form
+  newItemForm.id = "new-item-form";
+
+  let newItemHeader = document.createElement("div");   // header for new item form
+  newItemHeader.id = "new-item-header";
+  newItemHeader.textContent = "Create new...";
+
+  let newItemBody = document.createElement("div");   // body area which holds sidebar and main content
+  newItemBody.id = "new-item-body";
+
+  let newItemNav = document.createElement("div");   // sidebar for new item form
+  newItemNav.id = "new-item-nav";
+
+  let newItemMain = document.createElement("div");   // main content area for new item form
+  newItemMain.id = "new-item-main";
+
+  newItemBody.append(newItemNav, newItemMain);
+  newItemForm.append(newItemHeader, newItemBody);
+  body.append(newItemForm);
 }
 
 export default pageLoad;

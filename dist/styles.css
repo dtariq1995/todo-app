@@ -71,7 +71,7 @@ footer p {
 }
 
 footer a:hover {
-    color: rgb(143, 106, 181);
+    color: rgb(210, 183, 237);
 }
 
 #content {
@@ -310,6 +310,48 @@ object {
     color: rgb(110, 67, 152);
     font-weight: 900;
     transition-duration: 0.3s;
+}
+
+#dim {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    background-color: rgb(180, 180, 180);
+    font-family: Raleway;
+    padding: 0;
+    transition: 1s;
+    filter: blur(0px);
+}
+
+#dim.active {
+    filter: blur(5px);
+    transition: 0.5s;
+    pointer-events: none;
+    user-select: none;
+}
+
+#new-item-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 475px;
+    width: 330px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1em;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .30);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    border-color: rgb(71, 77, 135);
+    max-width: 350px;
+    border-width: 6px;
+    border-style: solid;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
 }
 
 
