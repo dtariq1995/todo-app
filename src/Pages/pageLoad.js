@@ -62,7 +62,7 @@ const sidebarLoad = function() {   // load sidebar content
   homeArea.append(homeImg, homeButton);
   homeButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(homeButton);
+    setActiveButton(homeButton, ".side-button");
     sectionDisplay(toDoArray);
   })
 
@@ -75,7 +75,7 @@ const sidebarLoad = function() {   // load sidebar content
   todayArea.append(todayImg, todayButton);
   todayButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(todayButton);
+    setActiveButton(todayButton, ".side-button");
     sectionDisplay(todayToDoArray);
   })
 
@@ -88,7 +88,7 @@ const sidebarLoad = function() {   // load sidebar content
   weekArea.append(weekImg, weekButton);
   weekButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(weekButton);
+    setActiveButton(weekButton, ".side-button");
     sectionDisplay(weekToDoArray);
   })
 
@@ -109,7 +109,7 @@ const sidebarLoad = function() {   // load sidebar content
   notesArea.append(notesImg, notesButton);
   notesButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(notesButton);
+    setActiveButton(notesButton, ".side-button");
     notesDisplay();
   })
 
@@ -131,8 +131,8 @@ const sidebarLoad = function() {   // load sidebar content
 
 }
 
-function setActiveButton(button) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
-  const buttons = document.querySelectorAll(".side-button");
+function setActiveButton(button, btnClass) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
+  let buttons = document.querySelectorAll(btnClass);
 
   buttons.forEach((button) => {
     if (button !== this) {
@@ -160,13 +160,48 @@ const newItemDisplay = function() {
 
   let newItemHeader = document.createElement("div");   // header for new item form
   newItemHeader.id = "new-item-header";
-  newItemHeader.textContent = "Create new...";
+  let newItemHeaderText = document.createElement("div");
+  newItemHeaderText.textContent = "Create new...";
+  let newItemExit = document.createElement("button");
+  newItemExit.textContent = "×";
+  newItemExit.id = "new-item-exit-btn";
+  newItemExit.addEventListener('click', event => {   // close form when user clicks on new item form "x"
+      toggle();
+  });
+  newItemHeader.append(newItemHeaderText, newItemExit);
+
 
   let newItemBody = document.createElement("div");   // body area which holds sidebar and main content
   newItemBody.id = "new-item-body";
 
   let newItemNav = document.createElement("div");   // sidebar for new item form
   newItemNav.id = "new-item-nav";
+
+  let newItemNavToDo = document.createElement("button");
+  newItemNavToDo.classList.add("new-item-nav-button", "active");
+  newItemNavToDo.textContent = "To-Do";
+  newItemNavToDo.addEventListener("click", (e) => {
+    if (e.target.classList.contains("active")) return;
+    setActiveButton(newItemNavToDo, ".new-item-nav-button");
+  })
+
+  let newItemNavProject = document.createElement("button");
+  newItemNavProject.classList.add("new-item-nav-button");
+  newItemNavProject.textContent = "Project";
+  newItemNavProject.addEventListener("click", (e) => {
+    if (e.target.classList.contains("active")) return;
+    setActiveButton(newItemNavProject, ".new-item-nav-button");
+  })
+
+  let newItemNavNote = document.createElement("button");
+  newItemNavNote.classList.add("new-item-nav-button");
+  newItemNavNote.textContent = "Note";
+  newItemNavNote.addEventListener("click", (e) => {
+    if (e.target.classList.contains("active")) return;
+    setActiveButton(newItemNavNote, ".new-item-nav-button");
+  })
+
+  newItemNav.append(newItemNavToDo, newItemNavProject, newItemNavNote);
 
   let newItemMain = document.createElement("div");   // main content area for new item form
   newItemMain.id = "new-item-main";
