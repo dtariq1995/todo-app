@@ -1,6 +1,7 @@
 :root {
     --header-footer-color: rgb(117, 94, 141);
     --sidebar-color: rgb(239, 234, 239);
+    --sidebar-border: 1px solid rgb(97, 87, 103);
 }
 
 
@@ -338,7 +339,7 @@ object {
     height: 25rem;
     width: 45rem;
     background-color: rgb(255, 255, 255);
-    border-radius: 1%;
+    border-radius: 2%;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
@@ -349,20 +350,74 @@ object {
 
 #new-item-header {
     display: flex;
+    justify-content: space-between;
     font-family: Alumni-Sans-Inline-One;
     color: white;
     font-size: 32px;
     background-color: var(--header-footer-color);
     padding: 5px 11px;
-
-
-
+    height: 36px;
 }
 
 #new-item-form.active {
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
+}
+
+#new-item-body {
+    display: flex;
+    background-color: white;
+    flex-grow: 1;
+}
+
+#new-item-nav {
+    display: flex;
+    min-height: inherit;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 11em;
+    background-color: var(--sidebar-color);
+    border-right: var(--sidebar-border);
+    padding: 10px;
+}
+
+#new-item-main {
+    width: 100%;
+}
+
+.new-item-nav-button {
+    background: none;
+    border: none;
+    color: rgb(26, 25, 25);
+    font-size: 18px;
+    padding: 10px;
+    font-family: Raleway;
+}
+
+.new-item-nav-button:hover {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.new-item-nav-button.active {
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(143, 106, 181);
+}
+
+#new-item-exit-btn {
+    position: relative;
+    font-family: Raleway;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: 0 none;
+    padding: 0;
+    font-weight: 200;
+    font-size: 1.5em;
+    bottom: 0.25em;
+    cursor: pointer;
 }
 
 
