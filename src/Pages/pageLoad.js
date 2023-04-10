@@ -144,12 +144,11 @@ function setActiveButton(button, btnClass) {   // if button clicked, add active 
 }
 
 
-
 function toggle() {   // this function dims the background when various modals pop up
   let dim = document.getElementById('dim');
   dim.classList.toggle('active');
-  let newItemForm = document.getElementById('new-item-form');
-  newItemForm.classList.toggle('active');
+  let form = document.getElementById('new-item-form');
+  form.classList.toggle('active');
 }
 
 const newItemDisplay = function() {

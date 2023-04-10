@@ -66,15 +66,35 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoLabel = document.createElement("label");   // add checkbox to todos
         let toDoCheck = document.createElement("input");
         toDoCheck.setAttribute("type", "checkbox");
+        toDoCheck.addEventListener('change', e => {
+            if (toDoCheck.checked) {
+                toDoCard.classList.add("checked");
+                toDoLeft.classList.add("checked");
+                toDoDetails.classList.add("checked");
+                toDoDate.classList.add("checked");
+                editArea.classList.add("checked");
+                deleteArea.classList.add("checked");
+            }
+            if (!toDoCheck.checked) {
+                toDoCard.classList.remove("checked");
+                toDoLeft.classList.remove("checked");
+                toDoDetails.classList.remove("checked");
+                toDoDate.classList.remove("checked");
+                editArea.classList.remove("checked");
+                deleteArea.classList.remove("checked");
+            }
+        })
+
         let toDoSpan = document.createElement("span");
         toDoLabel.append(toDoCheck, toDoSpan);
 
+
         let toDoTitle = document.createElement("div");   // display todos title
-        toDoTitle.textContent = toDo.title;
         toDoTitle.classList.add("todo-title");
+        toDoTitle.textContent = toDo.title;
 
         let toDoLeft = document.createElement("div");   // separate checkbox and title for left side of todo
-        toDoLeft.classList.add("todo-right");
+        toDoLeft.classList.add("todo-left");
         let toDoRight = document.createElement("div");   // details, date, icons will be on right
         toDoRight.classList.add("todo-right");
 
@@ -93,17 +113,17 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let editArea = document.createElement("a");  // used to wrap svg so cursor:pointer works
         editArea.classList.add("todo-icon-wrap");
         let editButton = document.createElement("object");   // add edit button to todos
+        editButton.classList.add("todo-icon");
         editButton.type = "image/svg+xml";
         editButton.data = "/src/Assets/Images/edit-button.svg";
-        editButton.classList.add("todo-icon");
         editArea.append(editButton);
 
         let deleteArea = document.createElement("a");   // wrap svg so cursor:pointer works
         deleteArea.classList.add("todo-icon-wrap");
         let deleteButton = document.createElement("object");   // add delete button to todos
+        deleteButton.classList.add("todo-icon");
         deleteButton.type = "image/svg+xml";
         deleteButton.data = "/src/Assets/Images/trash-can.svg";
-        deleteButton.classList.add("todo-icon");
 
         deleteArea.addEventListener('click', event => {   // remove note from array and display 
             event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
