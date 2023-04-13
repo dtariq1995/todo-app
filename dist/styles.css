@@ -2,6 +2,7 @@
     --header-footer-color: rgb(117, 94, 141);
     --sidebar-color: rgb(239, 234, 239);
     --sidebar-border: 1px solid rgb(97, 87, 103);
+    --text-accent-color: rgb(86, 69, 104);
 }
 
 
@@ -85,7 +86,6 @@ footer a:hover {
     flex-direction: column;
     justify-content: space-between;
     height: 83vh;
-    padding-left: 48px;
     background-color: var(--sidebar-color);
     padding-top: 5vh;
     border-right: 1px solid rgb(97, 87, 103);
@@ -95,37 +95,45 @@ footer a:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    padding-left: 3rem;
+    justify-content: center;
     min-width: 235px;
 }
 
-#sidebar div {
+.sidebar-area {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: auto;
+}
+
+.sidebar-area.active {
+    font-weight: 700;
+    color: var(--text-accent-color);
+    background-color: rgba(158, 126, 192, 0.169);
 }
 
 .side-button {
     background: none;
     border: none;
-    color: rgb(26, 25, 25);
+    color: var(--text-accent-color);
     font-size: 22px;
     padding: 20px;
     font-family: Raleway;
 }
 
 .projects-title {
-    color: rgb(26, 25, 25);
+    color: var(--text-accent-color);
     font-size: 22px;
     padding: 20px;
     font-family: Raleway;
 }
 
 .side-button.active {
-    font-weight: 600;
-    font-size: 24px;
-    color: rgb(143, 106, 181);
+    font-weight: 700;
+    color: var(--text-accent-color);
+    background-color: rgba(158, 126, 192, 0.169);
 }
 
 .side-button:hover {
@@ -140,6 +148,8 @@ footer a:hover {
 
 #newItem {
     display: flex;
+    position: relative;
+    left: 2.5rem;
     justify-content: center;
     align-items: center;
     color: white;
@@ -332,7 +342,7 @@ object {
     pointer-events: none;   /* this line is needed to allow cursor:pointer when hovering over svgs */
 }
 
-#note-delete-btn {
+#note-delete-btn, #details-form-exit-button {
     background-color: rgba(255, 255, 255, 0);
     color: rgb(57, 57, 57);
     height: 0.5em;
@@ -347,7 +357,7 @@ object {
     transition-duration: 0.3s;
 }
 
-#note-delete-btn:hover {
+#note-delete-btn:hover, #details-form-exit-button:hover {
     color: rgb(110, 67, 152);
     font-weight: 900;
     transition-duration: 0.3s;
@@ -415,7 +425,7 @@ object {
     display: flex;
     min-height: inherit;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     width: 11em;
     background-color: var(--sidebar-color);
@@ -460,6 +470,65 @@ object {
     cursor: pointer;
 }
 
+#details-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 15rem;
+    width: 40rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2%;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#details-form.active {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#details-form-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0.75rem;
+}
+
+#details-form-exit-button {
+    height: 1em;
+    align-self: flex-end;
+    font-size: 2.2rem;
+    left: 0;
+    bottom: 0;
+}
+
+#details-form-title {
+    color: rgb(86, 69, 104);
+    font-size: 2.75rem;
+    padding: 0 0 1rem 2rem;
+    font-weight: 500;
+}
+
+.details-form-section {
+    display: flex;
+    padding: 0 0 0.1rem 2rem;
+    font-size: 1.1rem;
+    color: var(--text-accent-color);
+}
+
+.details-form-area-name {
+    font-weight: 500;
+}
+
+.details-form-area-heading {
+    width: 6rem;
+    font-weight: 700;
+}
 
 ::-webkit-scrollbar {   /* override styling for scrollbar */
     width: 10px;

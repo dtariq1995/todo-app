@@ -1,6 +1,7 @@
 import format from "date-fns/format";
 import isToday from "date-fns/isToday";
 import isThisWeek from "date-fns/isThisWeek";
+import { toggle } from "./pageLoad";
 
 export const toDoArray = [];   // holds all todos
 export let todayToDoArray = [];   // will hold todos for current day
@@ -28,7 +29,7 @@ const toDoFactory = (function() {
 
     const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 5), "Finish this");
     const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 3, 5), "This needs to be done immediately, by any means necessary");
-    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Easy", new Date(2023, 3, 7), "This idiot can be useful so this can wait");
+    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Low", new Date(2023, 3, 7), "This idiot can be useful so this can wait");
 
 
     toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
@@ -66,7 +67,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoLabel = document.createElement("label");   // add checkbox to todos
         let toDoCheck = document.createElement("input");
         toDoCheck.setAttribute("type", "checkbox");
-        toDoCheck.addEventListener('change', e => {
+        toDoCheck.addEventListener('change', e => {   // checks if todo is checked and style based off of that
             if (toDoCheck.checked) {
                 toDoCard.classList.add("checked");
                 toDoLeft.classList.add("checked");
@@ -144,20 +145,79 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
     displayArea.append(toDoDisplayArea);
 }
 
-const detailsDisplay = function(todo) {
 
-    console.log("details display accessed");
+const detailsDisplay = function(todo) {   // displays details for a specific todo
+
     let body = document.body;
 
-    
-    let detailsCard = document.createElement("div");
-    detailsCard.id = "details-card";
-    detailsCard.textContent = todo.title;
-    body.append(detailsCard);
-    
+    let form = document.createElement("div");   // create card that details will display on
+    form.id = "details-form";
+
+    let header = document.createElement("div");   // details header which contains x button
+    header.id = "details-form-header";
+
+    let exitBtn = document.createElement("button");   // add x button to close form
+    exitBtn.textContent = "×";
+    exitBtn.id = "details-form-exit-button";
+    exitBtn.addEventListener('click', () => {   // close form when user clicks on form "x"
+        toggle('details-form');   // remove form from screen and undim background when x clicked
+        body.removeChild(form);   // remove form from the body rather than just hiding it
+    })
+
+    header.append(exitBtn);
+
+    let title = document.createElement("div");   // display title of details
+    title.id = "details-form-title";
+    title.textContent = todo.title;
+
+    let projectArea = document.createElement("div");   // display project name
+    projectArea.classList.add("details-form-section");
+    let projectHeading = document.createElement("div");
+    projectHeading.classList.add("details-form-area-heading");
+    let projectName = document.createElement("div");
+    projectName.classList.add("details-form-area-name");
+    projectHeading.textContent = "Project: ";
+    projectName.textContent = todo.project;
+    projectArea.append(projectHeading, projectName);
+
+    let priorityArea = document.createElement("div");   // display priority
+    priorityArea.classList.add("details-form-section");
+    let priorityHeading = document.createElement("div");
+    priorityHeading.classList.add("details-form-area-heading");
+    let priorityName = document.createElement("div");
+    priorityName.classList.add("details-form-area-name");
+    priorityHeading.textContent = "Priority: ";
+    priorityName.textContent = todo.priority;
+    priorityArea.append(priorityHeading, priorityName);
+
+    let dateArea = document.createElement("div");   // display due date 
+    dateArea.classList.add("details-form-section");
+    let dateHeading = document.createElement("div");
+    dateHeading.classList.add("details-form-area-heading");
+    let dateName = document.createElement("div");
+    dateName.classList.add("details-form-area-name");
+    dateHeading.textContent = "Due Date: ";
+    dateName.textContent = format(todo.date, 'LLL do, yyyy');
+    dateArea.append(dateHeading, dateName);
+
+    let detailsArea = document.createElement("div");   // display details 
+    detailsArea.classList.add("details-form-section");
+    let detailsHeading = document.createElement("div");
+    detailsHeading.classList.add("details-form-area-heading");
+    let detailsName = document.createElement("div");
+    detailsName.classList.add("details-form-area-name");
+    detailsHeading.textContent = "Details: ";
+    detailsName.textContent = todo.details;
+    detailsArea.append(detailsHeading, detailsName);
 
 
+    form.append(header, title, projectArea, priorityArea, dateArea, detailsArea);   // add all to card
+    body.append(form);   // add card to body
+
+    toggle("details-form");   // dim background and make form visible
+    
 }
+
 
 
 export default sectionDisplay;

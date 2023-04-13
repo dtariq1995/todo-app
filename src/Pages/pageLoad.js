@@ -39,7 +39,6 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
 
   let main = document.createElement("div");   // main content area where todos and notes will appear
   main.id = "main-area";
-  main.textContent = "Main";
   content.append(main);
   sectionDisplay(toDoArray);
   newItemDisplay();
@@ -54,19 +53,22 @@ const sidebarLoad = function() {   // load sidebar content
   sidebar.id = "sidebar";
 
   let homeArea = document.createElement("div");   // home button content
+  homeArea.classList.add("sidebar-area");
   let homeImg = document.createElement("img");
   homeImg.src = "/src/Assets/Images/houseicon.png";
   let homeButton = document.createElement("button");
-  homeButton.classList.add("side-button", "active");
+  homeButton.classList.add("side-button");
   homeButton.textContent = "Home";
   homeArea.append(homeImg, homeButton);
+  homeArea.classList.add("active");
   homeButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(homeButton, ".side-button");
+    setActiveButton(homeArea, ".sidebar-area");
     sectionDisplay(toDoArray);
   })
 
   let todayArea = document.createElement("div");   // today button content
+  todayArea.classList.add("sidebar-area");
   let todayImg = document.createElement("img");
   todayImg.src = "/src/Assets/Images/dayicon.png";
   let todayButton = document.createElement("button");
@@ -75,11 +77,12 @@ const sidebarLoad = function() {   // load sidebar content
   todayArea.append(todayImg, todayButton);
   todayButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(todayButton, ".side-button");
+    setActiveButton(todayArea, ".sidebar-area");
     sectionDisplay(todayToDoArray);
   })
 
   let weekArea = document.createElement("div");   // week button content
+  weekArea.classList.add("sidebar-area");
   let weekImg = document.createElement("img")
   weekImg.src = "/src/Assets/Images/weekicon.png";
   let weekButton = document.createElement("button");
@@ -88,11 +91,12 @@ const sidebarLoad = function() {   // load sidebar content
   weekArea.append(weekImg, weekButton);
   weekButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(weekButton, ".side-button");
+    setActiveButton(weekArea, ".sidebar-area");
     sectionDisplay(weekToDoArray);
   })
 
   let projectsArea = document.createElement("div");   // projects area content
+  projectsArea.classList.add("sidebar-area");
   let projectsImg = document.createElement("img");
   projectsImg.src = "/src/Assets/Images/projectsicon.png";
   let projectsButton = document.createElement("div");
@@ -101,6 +105,7 @@ const sidebarLoad = function() {   // load sidebar content
   projectsArea.append(projectsImg, projectsButton);
 
   let notesArea = document.createElement("div");   // notes button content
+  notesArea.classList.add("sidebar-area");
   let notesImg = document.createElement("img");
   notesImg.src = "/src/Assets/Images/noteicon.png";
   let notesButton = document.createElement("button");
@@ -109,7 +114,7 @@ const sidebarLoad = function() {   // load sidebar content
   notesArea.append(notesImg, notesButton);
   notesButton.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(notesButton, ".side-button");
+    setActiveButton(notesArea, ".sidebar-area");
     notesDisplay();
   })
 
@@ -118,7 +123,7 @@ const sidebarLoad = function() {   // load sidebar content
   addItem.textContent = "+";
   addItem.addEventListener('click', (e) => {
     console.log("new item button pressed");
-    toggle();
+    toggle('new-item-form');
   })
 
 
@@ -144,10 +149,10 @@ function setActiveButton(button, btnClass) {   // if button clicked, add active 
 }
 
 
-function toggle() {   // this function dims the background when various modals pop up
+export function toggle(elementID) {   // this function dims the background when various modals pop up
   let dim = document.getElementById('dim');
   dim.classList.toggle('active');
-  let form = document.getElementById('new-item-form');
+  let form = document.getElementById(elementID);
   form.classList.toggle('active');
 }
 
@@ -164,8 +169,8 @@ const newItemDisplay = function() {
   let newItemExit = document.createElement("button");
   newItemExit.textContent = "×";
   newItemExit.id = "new-item-exit-btn";
-  newItemExit.addEventListener('click', event => {   // close form when user clicks on new item form "x"
-      toggle();
+  newItemExit.addEventListener('click', () => {   // close form when user clicks on new item form "x"
+      toggle('new-item-form');
   });
   newItemHeader.append(newItemHeaderText, newItemExit);
 
