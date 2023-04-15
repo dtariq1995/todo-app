@@ -189,6 +189,19 @@ const newItemDisplay = function() {
     setActiveButton(newItemNavToDo, ".new-item-nav-button");
   })
 
+  let projectsArea = document.createElement("div");   // projects area content
+  projectsArea.classList.add("sidebar-area");
+  let projectsImg = document.createElement("img");
+  projectsImg.src = "/src/Assets/Images/projectsicon.png";
+  let projectsButton = document.createElement("div");
+  projectsButton.classList.add("projects-title");
+  projectsButton.textContent = "Projects";
+  projectsArea.append(projectsImg, projectsButton);
+
+  let newItemNavProjectArea = document.createElement("div");
+  newItemNavProjectArea.classList.add("new-item-nav-area");
+  let newItemProjectsImg = document.createElement("img");
+  newItemProjectsImg.src = "/src/Assets/Images/projectsicon.png";
   let newItemNavProject = document.createElement("button");
   newItemNavProject.classList.add("new-item-nav-button");
   newItemNavProject.textContent = "Project";
