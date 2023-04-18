@@ -3,6 +3,13 @@ import sectionDisplay from "./toDo";
 import { toDoArray } from "./toDo";
 import { todayToDoArray } from "./toDo";
 import { weekToDoArray } from "./toDo";
+import { notesArray } from "./notes";
+import { notesFactory } from "./notes";
+
+
+
+
+
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
@@ -42,8 +49,12 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   content.append(main);
   sectionDisplay(toDoArray);
   newItemDisplay();
-
 }
+
+
+
+
+
 
 const sidebarLoad = function() {   // load sidebar content
 
@@ -106,6 +117,7 @@ const sidebarLoad = function() {   // load sidebar content
 
   let notesArea = document.createElement("div");   // notes button content
   notesArea.classList.add("sidebar-area");
+  notesArea.id = "sidebar-notes-area";
   let notesImg = document.createElement("img");
   notesImg.src = "/src/Assets/Images/noteicon.png";
   let notesButton = document.createElement("button");
@@ -136,6 +148,11 @@ const sidebarLoad = function() {   // load sidebar content
 
 }
 
+
+
+
+
+
 function setActiveButton(button, btnClass) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
   let buttons = document.querySelectorAll(btnClass);
 
@@ -149,12 +166,20 @@ function setActiveButton(button, btnClass) {   // if button clicked, add active 
 }
 
 
+
+
+
+
 export function toggle(elementID) {   // this function dims the background when various modals pop up
   let dim = document.getElementById('dim');
   dim.classList.toggle('active');
   let form = document.getElementById(elementID);
   form.classList.toggle('active');
 }
+
+
+
+
 
 const newItemDisplay = function() {
 
@@ -181,44 +206,50 @@ const newItemDisplay = function() {
   let newItemNav = document.createElement("div");   // sidebar for new item form
   newItemNav.id = "new-item-nav";
 
-  let newItemNavToDo = document.createElement("button");
-  newItemNavToDo.classList.add("new-item-nav-button", "active");
-  newItemNavToDo.textContent = "To-Do";
+
+  let newItemNavToDoArea = document.createElement("div");   // create todo tab for sidebar
+  newItemNavToDoArea.classList.add("new-item-nav-area");
+  let newItemNavToDoImg = document.createElement("img"); 
+  newItemNavToDoImg.src = "/src/Assets/Images/agenda-dark.png";
+  let newItemNavToDo = document.createElement("div");
+  newItemNavToDo.classList.add("new-item-nav-button");
+  newItemNavToDo.textContent = "To-Do";  
+  newItemNavToDoArea.classList.add("active");
   newItemNavToDo.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavToDo, ".new-item-nav-button");
+    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
   })
+  newItemNavToDoArea.append(newItemNavToDoImg, newItemNavToDo);
 
-  let projectsArea = document.createElement("div");   // projects area content
-  projectsArea.classList.add("sidebar-area");
-  let projectsImg = document.createElement("img");
-  projectsImg.src = "/src/Assets/Images/projectsicon.png";
-  let projectsButton = document.createElement("div");
-  projectsButton.classList.add("projects-title");
-  projectsButton.textContent = "Projects";
-  projectsArea.append(projectsImg, projectsButton);
 
-  let newItemNavProjectArea = document.createElement("div");
+  let newItemNavProjectArea = document.createElement("div");   // create project tab for sidebar
   newItemNavProjectArea.classList.add("new-item-nav-area");
   let newItemProjectsImg = document.createElement("img");
   newItemProjectsImg.src = "/src/Assets/Images/projectsicon.png";
-  let newItemNavProject = document.createElement("button");
+  let newItemNavProject = document.createElement("div");
   newItemNavProject.classList.add("new-item-nav-button");
   newItemNavProject.textContent = "Project";
   newItemNavProject.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavProject, ".new-item-nav-button");
+    setActiveButton(newItemNavProjectArea, ".new-item-nav-area");
   })
+  newItemNavProjectArea.append(newItemProjectsImg, newItemNavProject);
 
-  let newItemNavNote = document.createElement("button");
+  let newItemNavNoteArea = document.createElement("div");   // create note tab for sidebar
+  newItemNavNoteArea.classList.add("new-item-nav-area");
+  let newItemNotesImg = document.createElement("img");
+  newItemNotesImg.src = "/src/Assets/Images/noteicon.png";
+  let newItemNavNote = document.createElement("div");
   newItemNavNote.classList.add("new-item-nav-button");
   newItemNavNote.textContent = "Note";
   newItemNavNote.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavNote, ".new-item-nav-button");
+    setActiveButton(newItemNavNoteArea, ".new-item-nav-area");
+    newNoteDisplay();
   })
+  newItemNavNoteArea.append(newItemNotesImg, newItemNavNote);
 
-  newItemNav.append(newItemNavToDo, newItemNavProject, newItemNavNote);
+  newItemNav.append(newItemNavToDoArea, newItemNavProjectArea, newItemNavNoteArea);
 
   let newItemMain = document.createElement("div");   // main content area for new item form
   newItemMain.id = "new-item-main";
@@ -227,5 +258,48 @@ const newItemDisplay = function() {
   newItemForm.append(newItemHeader, newItemBody);
   body.append(newItemForm);
 }
+
+
+
+
+
+const newNoteDisplay = function() {   // display for new note tab
+
+  let notesArea = document.getElementById("sidebar-notes-area");
+  let newItemFormArea = document.getElementById("new-item-main");
+  newItemFormArea.innerHTML = "";   // clear out any content before adding new note display
+  let newNoteForm = document.createElement("div");
+  newNoteForm.id = "new-note-area";
+
+  let noteTitle = document.createElement("textarea");   // add area for user to enter title 
+  noteTitle.id = "new-note-title";
+  noteTitle.contentEditable = "true";
+  noteTitle.placeholder = "Title";
+  noteTitle.maxLength = 20;
+
+  let noteDetails = document.createElement("textarea");   // add area for user to enter details
+  noteDetails.id = "new-note-details";
+  noteDetails.contentEditable = "true";
+  noteDetails.placeholder = "Details";
+  noteDetails.maxLength = 185;
+
+  let noteSubmit = document.createElement("button");
+  noteSubmit.classList.add("new-submit-btn");
+  noteSubmit.textContent = "CREATE NOTE";
+  noteSubmit.addEventListener("click", () => {
+    let newNote = notesFactory(noteTitle.value, noteDetails.value);
+    notesArray.push(newNote);
+    toggle('new-item-form');
+    newNoteDisplay();
+    setActiveButton(notesArea, ".sidebar-area");
+    notesDisplay();
+  });
+
+  newNoteForm.append(noteTitle, noteDetails, noteSubmit);
+
+  newItemFormArea.append(newNoteForm);
+}
+
+
 
 export default pageLoad;

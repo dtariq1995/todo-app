@@ -1,27 +1,27 @@
 
-const notesArray = [];   // array to store note objects in
+export const notesArray = [];   // array to store note objects in
 
 const colorPallete = ["#FFF9B1", "#daf7a1", "#FF9D48", "#FFCEE0", "#b1d3f6", "#8ca0ff",   // color pallete for notes
     "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"];
 
-const notes = (function() {
 
 
-    const notesFactory = (title, details) => {   // Factory Function that creates Notes
 
-        return {title, details};
-    };
+export const notesFactory = (title, details) => {   // Factory Function that creates Notes
+
+    return {title, details};
+};
 
 
-    const sampleNote = notesFactory("Ali's dumb", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
-    const sampleNote2 = notesFactory("title", "lorem ipsum dior");
+const sampleNote = notesFactory("Placeholder Title", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
+const sampleNote2 = notesFactory("title", "lorem ipsum dior");
 
-    notesArray.push(sampleNote);
-    notesArray.push(sampleNote2, sampleNote, sampleNote2, sampleNote, sampleNote2, sampleNote);
+notesArray.push(sampleNote);
+notesArray.push(sampleNote2, sampleNote, sampleNote2, sampleNote, sampleNote2, sampleNote);
 
-    console.log(notesArray);
+console.log(notesArray);
 
-})();
+
 
 
 const notesDisplay = function() {   // controls notes display
