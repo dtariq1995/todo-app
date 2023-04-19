@@ -5,6 +5,7 @@ import { todayToDoArray } from "./toDo";
 import { weekToDoArray } from "./toDo";
 import { notesArray } from "./notes";
 import { notesFactory } from "./notes";
+import { secondsInDay } from "date-fns";
 
 
 
@@ -65,6 +66,7 @@ const sidebarLoad = function() {   // load sidebar content
 
   let homeArea = document.createElement("div");   // home button content
   homeArea.classList.add("sidebar-area");
+  homeArea.id = "sidebar-todo-area";
   let homeImg = document.createElement("img");
   homeImg.src = "/src/Assets/Images/houseicon.png";
   let homeButton = document.createElement("button");
@@ -133,9 +135,10 @@ const sidebarLoad = function() {   // load sidebar content
   let addItem = document.createElement("div");   // floating add new item button
   addItem.id = "newItem";
   addItem.textContent = "+";
-  addItem.addEventListener('click', (e) => {
+  addItem.addEventListener('click', () => {
     console.log("new item button pressed");
     toggle('new-item-form');
+    newToDoDisplay();
   })
 
 
@@ -196,6 +199,8 @@ const newItemDisplay = function() {
   newItemExit.id = "new-item-exit-btn";
   newItemExit.addEventListener('click', () => {   // close form when user clicks on new item form "x"
       toggle('new-item-form');
+      let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
   });
   newItemHeader.append(newItemHeaderText, newItemExit);
 
@@ -214,10 +219,12 @@ const newItemDisplay = function() {
   let newItemNavToDo = document.createElement("div");
   newItemNavToDo.classList.add("new-item-nav-button");
   newItemNavToDo.textContent = "To-Do";  
+  newItemNavToDoArea.id = "new-item-nav-todo-area";
   newItemNavToDoArea.classList.add("active");
   newItemNavToDo.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+    newToDoDisplay();
   })
   newItemNavToDoArea.append(newItemNavToDoImg, newItemNavToDo);
 
@@ -290,7 +297,8 @@ const newNoteDisplay = function() {   // display for new note tab
     let newNote = notesFactory(noteTitle.value, noteDetails.value);
     notesArray.push(newNote);
     toggle('new-item-form');
-    newNoteDisplay();
+    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
     setActiveButton(notesArea, ".sidebar-area");
     notesDisplay();
   });
@@ -298,6 +306,48 @@ const newNoteDisplay = function() {   // display for new note tab
   newNoteForm.append(noteTitle, noteDetails, noteSubmit);
 
   newItemFormArea.append(newNoteForm);
+}
+
+
+
+
+
+
+const newToDoDisplay = function() {   // display for new todo tab
+  
+  let toDoArea = document.getElementById("sidebar-todo-area");
+  let newItemFormArea = document.getElementById("new-item-main");
+  newItemFormArea.innerHTML = "";   // clear out any content before adding new todo display
+  let newToDoForm = document.createElement("div");
+  newToDoForm.id = "new-todo-area";
+
+  let toDoTitle = document.createElement("textarea");
+  toDoTitle.id = "new-todo-title";
+  toDoTitle.contentEditable = true;
+  toDoTitle.placeholder = "Title: Fix Sink";
+  toDoTitle.maxLength = 25;
+
+  let toDoDetails = document.createElement("textarea");
+  toDoDetails.id = "new-todo-details";
+  toDoDetails.contentEditable = "true";
+  toDoDetails.placeholder = "Details: Replace soap dispenser and garbage disposal.";
+  toDoDetails.maxLength = 200;
+
+  let toDoSubmit = document.createElement("button");
+  toDoSubmit.classList.add("new-submit-btn");
+  toDoSubmit.textContent = "CREATE TODO";
+  toDoSubmit.addEventListener("click", () => {
+    console.log("add new todo");
+    toggle('new-item-form');
+    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+    setActiveButton(toDoArea, ".sidebar-area");
+    sectionDisplay(toDoArray);
+  });
+
+  newToDoForm.append(toDoTitle, toDoDetails, toDoSubmit);
+
+  newItemFormArea.append(newToDoForm);
 }
 
 

@@ -502,23 +502,22 @@ object {
 }
 
 
-#new-note-area {
+#new-note-area, #new-todo-area {
     display: flex;
     flex-direction: column;
     padding: 2rem;
 }
 
-#new-note-title {
+#new-note-title, #new-todo-title {
     font-size: 18px;
     color: var(--text-accent-color);
     outline: none;
 }
 
-#new-note-details {
+#new-note-details, #new-todo-details {
     outline: none;
     color: var(--text-accent-color);
     font-size: 14px;
-
 }
 
 .new-submit-btn {
@@ -533,6 +532,7 @@ object {
 }
 
 textarea {
+    font-family: Raleway;
     border: none;
     resize: none;
 }
