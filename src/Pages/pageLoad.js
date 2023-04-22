@@ -193,7 +193,7 @@ const newItemDisplay = function() {
   let newItemHeader = document.createElement("div");   // header for new item form
   newItemHeader.id = "new-item-header";
   let newItemHeaderText = document.createElement("div");
-  newItemHeaderText.textContent = "Create new...";
+  newItemHeaderText.textContent = "Create a new...";
   let newItemExit = document.createElement("button");
   newItemExit.textContent = "×";
   newItemExit.id = "new-item-exit-btn";
@@ -258,7 +258,7 @@ const newItemDisplay = function() {
 
   newItemNav.append(newItemNavToDoArea, newItemNavProjectArea, newItemNavNoteArea);
 
-  let newItemMain = document.createElement("div");   // main content area for new item form
+  let newItemMain = document.createElement("form");   // main content area for new item form
   newItemMain.id = "new-item-main";
 
   newItemBody.append(newItemNav, newItemMain);
@@ -333,9 +333,63 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoDetails.placeholder = "Details: Replace soap dispenser and garbage disposal.";
   toDoDetails.maxLength = 200;
 
+  let toDoDateArea = document.createElement("div");
+  toDoDateArea.id = "new-todo-date-area";
+  let toDoDateHeading = document.createElement("div");
+  toDoDateHeading.classList.add("new-todo-heading");
+  toDoDateHeading.textContent = "Due Date: ";
+  let toDoDateSelect = document.createElement("input");
+  toDoDateSelect.classList.add("new-todo-date");
+  toDoDateSelect.type = "date";
+  toDoDateSelect.required = true;
+  toDoDateArea.append(toDoDateHeading, toDoDateSelect);
+
+  let toDoPriorityArea = document.createElement("div");
+  toDoPriorityArea.id = "new-todo-priority-area";
+  let toDoPriorityHeading = document.createElement("div");
+  toDoPriorityHeading.classList.add("new-todo-heading");
+  toDoPriorityHeading.textContent = "Priority: ";
+
+  let lowPriority = document.createElement("input");
+  lowPriority.classList.add("new-todo-priority-btn");
+  lowPriority.name = "new-priority";
+  lowPriority.type = "radio";
+  lowPriority.value = "Low";
+  lowPriority.id = "new-todo-low";
+  lowPriority.required = true;
+  let lowPriorityLabel = document.createElement("label");
+  lowPriorityLabel.setAttribute("for", "new-todo-low");
+  lowPriorityLabel.textContent = "Low";
+
+  let medPriority = document.createElement("input");
+  medPriority.classList.add("new-todo-priority-btn");
+  medPriority.name = "new-priority";
+  medPriority.type = "radio";
+  medPriority.value = "Medium";
+  medPriority.id = "new-todo-medium";
+  medPriority.required = true;
+  let medPriorityLabel = document.createElement("label");
+  medPriorityLabel.setAttribute("for", "new-todo-medium");
+  medPriorityLabel.textContent = "Medium";
+
+  let highPriority = document.createElement("input");
+  highPriority.classList.add("new-todo-priority-btn");
+  highPriority.name = "new-priority";
+  highPriority.type = "radio";
+  highPriority.value = "High";
+  highPriority.id = "new-todo-high";
+  highPriority.required = true;
+  let highPriorityLabel = document.createElement("label");
+  highPriorityLabel.setAttribute("for", "new-todo-high");
+  highPriorityLabel.textContent = "High";
+
+  toDoPriorityArea.append(toDoPriorityHeading, lowPriority, lowPriorityLabel, medPriority, medPriorityLabel, highPriority, highPriorityLabel);
+  
+
   let toDoSubmit = document.createElement("button");
+  toDoSubmit.type = "submit";
   toDoSubmit.classList.add("new-submit-btn");
-  toDoSubmit.textContent = "CREATE TODO";
+  toDoSubmit.textContent = "CREATE TO-DO";
   toDoSubmit.addEventListener("click", () => {
     console.log("add new todo");
     toggle('new-item-form');
@@ -345,7 +399,7 @@ const newToDoDisplay = function() {   // display for new todo tab
     sectionDisplay(toDoArray);
   });
 
-  newToDoForm.append(toDoTitle, toDoDetails, toDoSubmit);
+  newToDoForm.append(toDoTitle, toDoDetails, toDoDateArea, toDoPriorityArea, toDoSubmit);
 
   newItemFormArea.append(newToDoForm);
 }

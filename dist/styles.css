@@ -307,7 +307,7 @@ footer a:hover {
     font-weight: 800;
     font-family: Raleway;
     padding: 5px 8px;
-    border-radius: 5%;
+    border-radius: 0.3rem;
     transition-duration: 0.3s;
     cursor: pointer;
 }
@@ -505,19 +505,21 @@ object {
 #new-note-area, #new-todo-area {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.8rem;
 }
 
 #new-note-title, #new-todo-title {
     font-size: 18px;
     color: var(--text-accent-color);
     outline: none;
+    font-weight: 600;
 }
 
 #new-note-details, #new-todo-details {
     outline: none;
     color: var(--text-accent-color);
     font-size: 14px;
+    height: 5rem;
 }
 
 .new-submit-btn {
@@ -529,6 +531,73 @@ object {
     padding: 0.35rem 0.75rem;
     font-size: 12px;
     font-weight: 700;
+}
+
+#new-todo-date-area, #new-todo-priority-area {
+    position: absolute;
+    bottom: 4.6rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#new-todo-priority-area {
+    bottom: 2.25rem;
+    gap: 1.5rem;
+}
+
+.new-todo-heading {
+    color: var(--text-accent-color);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.new-todo-date {
+    width: 7rem;
+    text-transform: uppercase;
+    outline: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.2rem 0.60rem;
+    border: 3px solid rgba(110, 67, 152, 0.763);
+    color: rgba(110, 67, 152, 0.763);
+    border-radius: 0.3rem;
+}
+
+.new-todo-priority-btn {
+    background-color: transparent;
+}
+
+#new-todo-priority-area input[type="radio"] {
+    display: none;
+} 
+
+#new-todo-priority-area label {
+    display: inline-block;
+    background-color: transparent;
+    padding: 4px 11px;
+    font-family: Arial;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    border-width: 3px;
+    border-color: #bbb;
+}
+
+#new-todo-priority-area input[type="radio"]:checked+label {
+    background-color: #bbb;
+}
+
+#new-todo-priority-area label input[type='radio']:checked {
+    /*styles inside circle*/
+    border-radius: 0.3rem;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 1px;
+    left: 6px;
+    display: block;
+    background-color: blue;
 }
 
 textarea {
@@ -545,7 +614,7 @@ textarea {
     height: 15rem;
     width: 40rem;
     background-color: rgb(255, 255, 255);
-    border-radius: 2%;
+    border-radius: 0.5rem;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
@@ -616,6 +685,7 @@ textarea {
 label > input[type=checkbox] {   /* override styling for checkboxes */
     display: none;
 }
+
 
 label > input[type="checkbox"] + *::before {
     content: "";
