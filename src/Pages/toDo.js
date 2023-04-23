@@ -3,12 +3,15 @@ import isToday from "date-fns/isToday";
 import isThisWeek from "date-fns/isThisWeek";
 import { toggle } from "./pageLoad";
 
+
 export const toDoArray = [];   // holds all todos
 export let todayToDoArray = [];   // will hold todos for current day
 export let weekToDoArray = [];   // will hold todos for current week
 
 
-const filterArrays = function() {   // filter arrays
+
+
+export const filterArrays = function() {   // filter arrays
 
     todayToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for today's date
         return isToday(toDo.date);
@@ -20,24 +23,23 @@ const filterArrays = function() {   // filter arrays
 }
 
 
-const toDoFactory = (function() {
 
-    const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
+export const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
 
-        return {title, project, priority, date, details};
-    };
+    return {title, project, priority, date, details};
+};
 
-    const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 5), "Finish this");
-    const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 3, 5), "This needs to be done immediately, by any means necessary");
-    const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Low", new Date(2023, 3, 7), "This idiot can be useful so this can wait");
+const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 23), "Finish this");
+const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 3, 23), "This needs to be done immediately, by any means necessary");
+const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Low", new Date(2023, 3, 28), "This idiot can be useful so this can wait");
 
 
-    toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
-    console.log(toDoArray);
+toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
+console.log(toDoArray);
 
-    filterArrays();
+filterArrays();
 
-})();
+
 
 
 
@@ -67,7 +69,8 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoLabel = document.createElement("label");   // add checkbox to todos
         let toDoCheck = document.createElement("input");
         toDoCheck.setAttribute("type", "checkbox");
-        toDoCheck.addEventListener('change', e => {   // checks if todo is checked and style based off of that
+        toDoCheck.addEventListener('change', () => {   // checks if todo is checked and style based off of that
+
             if (toDoCheck.checked) {
                 toDoCard.classList.add("checked");
                 toDoLeft.classList.add("checked");

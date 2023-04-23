@@ -5,7 +5,9 @@ import { todayToDoArray } from "./toDo";
 import { weekToDoArray } from "./toDo";
 import { notesArray } from "./notes";
 import { notesFactory } from "./notes";
-import { secondsInDay } from "date-fns";
+import { toDoFactory } from "./toDo";
+import parseISO from "date-fns/parseISO";
+import { filterArrays } from "./toDo";
 
 
 
@@ -145,7 +147,7 @@ const sidebarLoad = function() {   // load sidebar content
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
   navContainer.id = "nav";
 
-  sidebar.append(homeArea, todayArea, weekArea, projectsArea, notesArea);   // sidebar combined in one div
+  sidebar.append(homeArea, todayArea, weekArea, notesArea, projectsArea);   // sidebar combined in one div
   navContainer.append(sidebar, addItem);   // add sidebar and new item button to container with sidebar
   content.append(navContainer);   // add to main page
 
@@ -259,6 +261,7 @@ const newItemDisplay = function() {
   newItemNav.append(newItemNavToDoArea, newItemNavProjectArea, newItemNavNoteArea);
 
   let newItemMain = document.createElement("form");   // main content area for new item form
+  newItemMain.setAttribute("onsubmit", "return false");   // this stops page from reloading on submit while still keeping form validation
   newItemMain.id = "new-item-main";
 
   newItemBody.append(newItemNav, newItemMain);
@@ -347,6 +350,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   let toDoPriorityArea = document.createElement("div");
   toDoPriorityArea.id = "new-todo-priority-area";
   let toDoPriorityHeading = document.createElement("div");
+  toDoPriorityHeading.id = "new-todo-priority-heading";
   toDoPriorityHeading.classList.add("new-todo-heading");
   toDoPriorityHeading.textContent = "Priority: ";
 
@@ -359,6 +363,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   lowPriority.required = true;
   let lowPriorityLabel = document.createElement("label");
   lowPriorityLabel.setAttribute("for", "new-todo-low");
+  lowPriorityLabel.id = "new-todo-low-label";
   lowPriorityLabel.textContent = "Low";
 
   let medPriority = document.createElement("input");
@@ -366,10 +371,11 @@ const newToDoDisplay = function() {   // display for new todo tab
   medPriority.name = "new-priority";
   medPriority.type = "radio";
   medPriority.value = "Medium";
-  medPriority.id = "new-todo-medium";
+  medPriority.id = "new-todo-med";
   medPriority.required = true;
   let medPriorityLabel = document.createElement("label");
-  medPriorityLabel.setAttribute("for", "new-todo-medium");
+  medPriorityLabel.setAttribute("for", "new-todo-med");
+  medPriorityLabel.id = "new-todo-med-label";
   medPriorityLabel.textContent = "Medium";
 
   let highPriority = document.createElement("input");
@@ -381,6 +387,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   highPriority.required = true;
   let highPriorityLabel = document.createElement("label");
   highPriorityLabel.setAttribute("for", "new-todo-high");
+  highPriorityLabel.id = "new-todo-high-label";
   highPriorityLabel.textContent = "High";
 
   toDoPriorityArea.append(toDoPriorityHeading, lowPriority, lowPriorityLabel, medPriority, medPriorityLabel, highPriority, highPriorityLabel);
@@ -391,7 +398,10 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoSubmit.classList.add("new-submit-btn");
   toDoSubmit.textContent = "CREATE TO-DO";
   toDoSubmit.addEventListener("click", () => {
-    console.log("add new todo");
+    let newToDo = toDoFactory(toDoTitle.value, "None", document.querySelector('input[name="new-priority"]:checked').value, parseISO(toDoDateSelect.value), toDoDetails.value);
+    toDoArray.push(newToDo);
+    filterArrays();
+    console.log(toDoArray);
     toggle('new-item-form');
     let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");

@@ -2,7 +2,8 @@
 export const notesArray = [];   // array to store note objects in
 
 const colorPallete = ["#FFF9B1", "#daf7a1", "#FF9D48", "#FFCEE0", "#b1d3f6", "#8ca0ff",   // color pallete for notes
-    "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"];
+    "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"
+];
 
 
 
@@ -11,6 +12,7 @@ export const notesFactory = (title, details) => {   // Factory Function that cre
 
     return {title, details};
 };
+
 
 
 const sampleNote = notesFactory("Placeholder Title", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
