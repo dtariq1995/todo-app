@@ -286,12 +286,14 @@ const newNoteDisplay = function() {   // display for new note tab
   noteTitle.contentEditable = "true";
   noteTitle.placeholder = "Title";
   noteTitle.maxLength = 20;
+  noteTitle.required = true;
 
   let noteDetails = document.createElement("textarea");   // add area for user to enter details
   noteDetails.id = "new-note-details";
   noteDetails.contentEditable = "true";
   noteDetails.placeholder = "Details";
   noteDetails.maxLength = 185;
+  noteDetails.required = true;
 
   let noteSubmit = document.createElement("button");
   noteSubmit.classList.add("new-submit-btn");
@@ -329,12 +331,14 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoTitle.contentEditable = true;
   toDoTitle.placeholder = "Title: Fix Sink";
   toDoTitle.maxLength = 25;
+  toDoTitle.required = true;
 
   let toDoDetails = document.createElement("textarea");
   toDoDetails.id = "new-todo-details";
   toDoDetails.contentEditable = "true";
   toDoDetails.placeholder = "Details: Replace soap dispenser and garbage disposal.";
   toDoDetails.maxLength = 200;
+  toDoDetails.required = true;
 
   let toDoDateArea = document.createElement("div");
   toDoDateArea.id = "new-todo-date-area";
@@ -360,6 +364,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   lowPriority.type = "radio";
   lowPriority.value = "Low";
   lowPriority.id = "new-todo-low";
+  lowPriority.checked = "checked";
   lowPriority.required = true;
   let lowPriorityLabel = document.createElement("label");
   lowPriorityLabel.setAttribute("for", "new-todo-low");
@@ -398,15 +403,31 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoSubmit.classList.add("new-submit-btn");
   toDoSubmit.textContent = "CREATE TO-DO";
   toDoSubmit.addEventListener("click", () => {
-    let newToDo = toDoFactory(toDoTitle.value, "None", document.querySelector('input[name="new-priority"]:checked').value, parseISO(toDoDateSelect.value), toDoDetails.value);
-    toDoArray.push(newToDo);
-    filterArrays();
-    console.log(toDoArray);
-    toggle('new-item-form');
-    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
-    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
-    setActiveButton(toDoArea, ".sidebar-area");
-    sectionDisplay(toDoArray);
+
+    let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
+    console.log(Object.is(prioritySelected, null));
+
+    if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
+
+      if (Object.is(prioritySelected, null)) {
+        toDoPriorityArea.setCustomValidity("You gotta fill this out, yo");
+      }
+
+      return;
+    }
+    
+    else {
+      let newToDo = toDoFactory(toDoTitle.value, "None", prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
+      toDoArray.push(newToDo);
+      filterArrays();
+      console.log(toDoArray);
+      toggle('new-item-form');
+      let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+      setActiveButton(toDoArea, ".sidebar-area");
+      sectionDisplay(toDoArray);
+    }
+
   });
 
   newToDoForm.append(toDoTitle, toDoDetails, toDoDateArea, toDoPriorityArea, toDoSubmit);
