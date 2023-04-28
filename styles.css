@@ -553,6 +553,7 @@ object {
     color: var(--text-accent-color);
     font-weight: 600;
     font-size: 16px;
+    
 }
 
 .new-todo-date {
@@ -568,7 +569,12 @@ object {
 }
 
 #new-todo-priority-area input[type="radio"] {
-    display: none;
+    display: inline-block !important;
+    height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    z-index: -1 !important;
+    position: absolute !important;
 } 
 
 #new-todo-priority-area label {
