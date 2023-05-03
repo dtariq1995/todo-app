@@ -643,7 +643,7 @@ textarea {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 15rem;
+    height: 16rem;
     width: 40rem;
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
@@ -696,12 +696,17 @@ textarea {
     color: var(--text-accent-color);
 }
 
+.details-overflow {
+    height: 5rem;
+    width: 38rem;
+}
+
 .details-form-area-name {
     font-weight: 500;
 }
 
 .details-form-area-heading {
-    width: 6rem;
+    min-width: 6rem;
     font-weight: 700;
 }
 
