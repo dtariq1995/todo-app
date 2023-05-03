@@ -643,7 +643,7 @@ textarea {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 16rem;
+    height: 15rem;
     width: 40rem;
     background-color: rgb(255, 255, 255);
     border-radius: 0.5rem;
@@ -659,6 +659,20 @@ textarea {
     height: 18rem;
     width: 35rem;
     padding: 0 0.8rem 0 1.5rem;
+}
+
+#edit-form-title {
+    font-size: 22px;
+    color: var(--text-accent-color);
+    outline: none;
+    font-weight: 600;
+    padding: 0;
+}
+
+#edit-form-details {
+    outline: none;
+    color: var(--text-accent-color);
+    font-size: 15px;
 }
 
 #details-form.active, #edit-form.active {
@@ -698,7 +712,7 @@ textarea {
 
 .details-overflow {
     height: 5rem;
-    width: 38rem;
+    overflow: auto;
 }
 
 .details-form-area-name {
@@ -726,7 +740,9 @@ textarea {
     background: rgba(144, 106, 181, 0.521);
 }
 
-
+::selection {
+    background: rgb(210, 183, 237);      /* Change highlight background color to light purple */
+  }
 
 label > input[type=checkbox] {   /* override styling for checkboxes */
     display: none;
