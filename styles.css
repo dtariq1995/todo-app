@@ -352,7 +352,7 @@ object {
     pointer-events: none;   /* this line is needed to allow cursor:pointer when hovering over svgs */
 }
 
-#note-delete-btn, #details-form-exit-button {
+#note-delete-btn, #details-form-exit-button, #edit-form-exit-button {
     background-color: rgba(255, 255, 255, 0);
     color: rgb(57, 57, 57);
     height: 0.5em;
@@ -367,7 +367,14 @@ object {
     transition-duration: 0.1s;
 }
 
-#note-delete-btn:hover, #details-form-exit-button:hover {
+#edit-form-exit-button {
+    height: 2rem;
+    font-size: 2.2rem;
+    left: 0;
+    bottom: 0;
+}
+
+#note-delete-btn:hover, #details-form-exit-button:hover, #edit-form-exit-button:hover {
     color: rgb(110, 67, 152);
     font-weight: 900;
     transition-duration: 0.1s;
@@ -631,7 +638,7 @@ textarea {
     resize: none;
 }
 
-#details-form {
+#details-form, #edit-form {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -648,7 +655,13 @@ textarea {
     visibility: hidden;
 }
 
-#details-form.active {
+#edit-form {
+    height: 18rem;
+    width: 35rem;
+    padding: 0 0.8rem 0 1.5rem;
+}
+
+#details-form.active, #edit-form.active {
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
@@ -667,6 +680,7 @@ textarea {
     left: 0;
     bottom: 0;
 }
+
 
 #details-form-title {
     color: rgb(86, 69, 104);
