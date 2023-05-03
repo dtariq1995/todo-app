@@ -8,6 +8,7 @@ import { notesFactory } from "./notes";
 import { toDoFactory } from "./toDo";
 import parseISO from "date-fns/parseISO";
 import { filterArrays } from "./toDo";
+import { projectsArray } from "./toDo";
 
 
 
@@ -243,6 +244,7 @@ const newItemDisplay = function() {
   newItemNavProject.addEventListener("click", (e) => {
     if (e.target.classList.contains("active")) return;
     setActiveButton(newItemNavProjectArea, ".new-item-nav-area");
+    newProjectDisplay();
   })
   newItemNavProjectArea.append(newItemProjectsImg, newItemNavProject);
 
@@ -438,6 +440,41 @@ const newToDoDisplay = function() {   // display for new todo tab
 
 
 
+
+
+const newProjectDisplay = function() {   // display for new project tab
+
+  console.log("newtododisplay function");
+  let projectArea = document.getElementById("sidebar-todo-area");
+  let newItemFormArea = document.getElementById("new-item-main");
+  newItemFormArea.innerHTML = "";   // clear out any content before adding new todo display
+  let newProjectForm = document.createElement("div");
+  newProjectForm.id = "new-project-area";
+
+  let projectTitle = document.createElement("textarea");   // add area for user to enter title 
+  projectTitle.id = "new-project-title";
+  projectTitle.contentEditable = "true";
+  projectTitle.placeholder = "Project: House Renovations";
+  projectTitle.maxLength = 20;
+  projectTitle.required = true;
+
+  let projectSubmit = document.createElement("button");
+  projectSubmit.classList.add("new-submit-btn");
+  projectSubmit.textContent = "CREATE PROJECT";
+  projectSubmit.addEventListener("click", () => {
+
+    projectsArray.push(projectTitle.value);
+    console.log(projectsArray);
+    toggle('new-item-form');
+    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+    setActiveButton(projectArea, ".sidebar-area");
+  });
+
+  newProjectForm.append(projectTitle, projectSubmit);
+  newItemFormArea.append(newProjectForm);
+
+}
 
 
 export default pageLoad;
