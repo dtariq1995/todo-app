@@ -31,11 +31,11 @@ export const toDoFactory = (title, project, priority, date, details) => {   //Fa
 };
 
 const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 23), "Finish this");
-const sampleToDoTwo = toDoFactory("Kill Ali", "Daily Tasks", "Medium", new Date(2023, 3, 23), "This needs to be done immediately, by any means necessary");
-const sampleToDoThree = toDoFactory("Kill Shams", "Daily Tasks", "Low", new Date(2023, 3, 28), "This idiot can be useful so this can wait");
+const sampleToDoTwo = toDoFactory("Fix Sink", "Daily Tasks", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
+const sampleToDoThree = toDoFactory("Fix Shower", "Daily Tasks", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
 
 
-toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDo, sampleToDoTwo, sampleToDoThree);
+toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
 console.log(toDoArray);
 
 filterArrays();
@@ -211,7 +211,7 @@ const detailsDisplay = function(todo) {   // displays details for a specific tod
     dateArea.append(dateHeading, dateName);
 
     let detailsArea = document.createElement("div");   // display details 
-    detailsArea.classList.add("details-form-section");
+    detailsArea.classList.add("details-form-section", "details-overflow");
     let detailsHeading = document.createElement("div");
     detailsHeading.classList.add("details-form-area-heading");
     let detailsName = document.createElement("div");
