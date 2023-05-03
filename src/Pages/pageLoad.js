@@ -379,6 +379,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   medPriority.type = "radio";
   medPriority.value = "Medium";
   medPriority.id = "new-todo-med";
+  medPriority.checked = "checked";
   medPriority.required = true;
   let medPriorityLabel = document.createElement("label");
   medPriorityLabel.setAttribute("for", "new-todo-med");
@@ -410,10 +411,6 @@ const newToDoDisplay = function() {   // display for new todo tab
     console.log(Object.is(prioritySelected, null));
 
     if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
-
-      if (Object.is(prioritySelected, null)) {
-        toDoPriorityArea.setCustomValidity("You gotta fill this out, yo");
-      }
 
       return;
     }

@@ -249,7 +249,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     })
 
     let toDoTitle = document.createElement("textarea");
-    toDoTitle.id = "new-todo-title";
+    toDoTitle.id = "edit-form-title";
     toDoTitle.contentEditable = true;
     toDoTitle.placeholder = toDo.title;
     toDoTitle.textContent = toDo.title;
@@ -257,7 +257,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoTitle.required = true;
 
     let toDoDetails = document.createElement("textarea");
-    toDoDetails.id = "new-todo-details";
+    toDoDetails.id = "edit-form-details";
     toDoDetails.contentEditable = "true";
     toDoDetails.placeholder = toDo.details;
     toDoDetails.textContent = toDo.details;
