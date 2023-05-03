@@ -509,13 +509,13 @@ object {
 }
 
 
-#new-note-area, #new-todo-area {
+#new-note-area, #new-todo-area, #new-project-area {
     display: flex;
     flex-direction: column;
     padding: 1.8rem;
 }
 
-#new-note-title, #new-todo-title {
+#new-note-title, #new-todo-title, #new-project-title {
     font-size: 18px;
     color: var(--text-accent-color);
     outline: none;
