@@ -203,6 +203,8 @@ const newItemDisplay = function() {
       toggle('new-item-form');
       let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
       setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+      let newItemMain = document.getElementById("new-item-main");
+      newItemMain.innerHTML = "";
   });
   newItemHeader.append(newItemHeaderText, newItemExit);
 
@@ -320,6 +322,7 @@ const newNoteDisplay = function() {   // display for new note tab
 
 const newToDoDisplay = function() {   // display for new todo tab
   
+  console.log("newtododisplay function");
   let toDoArea = document.getElementById("sidebar-todo-area");
   let newItemFormArea = document.getElementById("new-item-main");
   newItemFormArea.innerHTML = "";   // clear out any content before adding new todo display
@@ -422,6 +425,8 @@ const newToDoDisplay = function() {   // display for new todo tab
       filterArrays();
       console.log(toDoArray);
       toggle('new-item-form');
+      let newItemMain = document.getElementById("new-item-main");
+      newItemMain.innerHTML = "";
       let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
       setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
       setActiveButton(toDoArea, ".sidebar-area");
@@ -434,6 +439,8 @@ const newToDoDisplay = function() {   // display for new todo tab
 
   newItemFormArea.append(newToDoForm);
 }
+
+
 
 
 

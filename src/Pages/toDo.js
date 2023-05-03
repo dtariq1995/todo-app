@@ -2,6 +2,7 @@ import format from "date-fns/format";
 import isToday from "date-fns/isToday";
 import isThisWeek from "date-fns/isThisWeek";
 import { toggle } from "./pageLoad";
+import parseISO from "date-fns/parseISO";
 
 
 export const toDoArray = [];   // holds all todos
@@ -120,6 +121,12 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         editButton.classList.add("todo-icon");
         editButton.type = "image/svg+xml";
         editButton.data = "/src/Assets/Images/edit-button.svg";
+
+        editArea.addEventListener('click', () => {
+            console.log("edit clicked");
+            editToDoDisplay(toDo);
+        });
+
         editArea.append(editButton);
 
         let deleteArea = document.createElement("a");   // wrap svg so cursor:pointer works
@@ -221,7 +228,148 @@ const detailsDisplay = function(todo) {   // displays details for a specific tod
     
 }
 
+const editToDoDisplay = function(toDo) {   // brings up display to edit a todo when user clicks edit button
 
+  
+    console.log("edit clicked");
+
+    let body = document.body;
+
+    let card = document.getElementById("edit-form");   // create card that details will display on  
+    card.setAttribute("onsubmit", "return false");   // this stops page from reloading on submit while still keeping form validation
+
+    card.innerHTML = "";
+
+    let exitBtn = document.createElement("button");   // add x button to close form
+    exitBtn.textContent = "×";
+    exitBtn.id = "edit-form-exit-button";
+    exitBtn.addEventListener('click', () => {   // close form when user clicks on form "x"
+        toggle('edit-form');   // remove form from screen and undim background when x clicked
+        card.innerHTML = "";   // remove form from the body rather than just hiding it
+    })
+
+    let toDoTitle = document.createElement("textarea");
+    toDoTitle.id = "new-todo-title";
+    toDoTitle.contentEditable = true;
+    toDoTitle.placeholder = toDo.title;
+    toDoTitle.textContent = toDo.title;
+    toDoTitle.maxLength = 25;
+    toDoTitle.required = true;
+
+    let toDoDetails = document.createElement("textarea");
+    toDoDetails.id = "new-todo-details";
+    toDoDetails.contentEditable = "true";
+    toDoDetails.placeholder = toDo.details;
+    toDoDetails.textContent = toDo.details;
+    toDoDetails.maxLength = 200;
+    toDoDetails.required = true;
+
+    let toDoDateArea = document.createElement("div");
+    toDoDateArea.id = "new-todo-date-area";
+    let toDoDateHeading = document.createElement("div");
+    toDoDateHeading.classList.add("new-todo-heading");
+    toDoDateHeading.textContent = "Due Date: ";
+    let toDoDateSelect = document.createElement("input");
+    toDoDateSelect.classList.add("new-todo-date");
+    toDoDateSelect.type = "date";
+    toDoDateSelect.valueAsDate = toDo.date;
+    toDoDateSelect.required = true;
+    toDoDateArea.append(toDoDateHeading, toDoDateSelect);
+
+    let toDoPriorityArea = document.createElement("div");
+    toDoPriorityArea.id = "new-todo-priority-area";
+    let toDoPriorityHeading = document.createElement("div");
+    toDoPriorityHeading.id = "new-todo-priority-heading";
+    toDoPriorityHeading.classList.add("new-todo-heading");
+    toDoPriorityHeading.textContent = "Priority: ";
+
+    let lowPriority = document.createElement("input");
+    lowPriority.classList.add("new-todo-priority-btn");
+    lowPriority.name = "new-priority";
+    lowPriority.type = "radio";
+    lowPriority.value = "Low";
+    lowPriority.id = "new-todo-low";
+    lowPriority.required = true;
+    let lowPriorityLabel = document.createElement("label");
+    lowPriorityLabel.setAttribute("for", "new-todo-low");
+    lowPriorityLabel.id = "new-todo-low-label";
+    lowPriorityLabel.textContent = "Low";
+
+    let medPriority = document.createElement("input");
+    medPriority.classList.add("new-todo-priority-btn");
+    medPriority.name = "new-priority";
+    medPriority.type = "radio";
+    medPriority.value = "Medium";
+    medPriority.id = "new-todo-med";
+    medPriority.required = true;
+    let medPriorityLabel = document.createElement("label");
+    medPriorityLabel.setAttribute("for", "new-todo-med");
+    medPriorityLabel.id = "new-todo-med-label";
+    medPriorityLabel.textContent = "Medium";
+
+    let highPriority = document.createElement("input");
+    highPriority.classList.add("new-todo-priority-btn");
+    highPriority.name = "new-priority";
+    highPriority.type = "radio";
+    highPriority.value = "High";
+    highPriority.id = "new-todo-high";
+    highPriority.required = true;
+    let highPriorityLabel = document.createElement("label");
+    highPriorityLabel.setAttribute("for", "new-todo-high");
+    highPriorityLabel.id = "new-todo-high-label";
+    highPriorityLabel.textContent = "High";
+
+    if (toDo.priority == "Low") {
+        lowPriority.checked = "checked";
+    }
+    else if (toDo.priority == "Medium") {
+        medPriority.checked = "checked";
+    }
+    else {
+        highPriority.checked = "checked";
+    }
+
+
+    toDoPriorityArea.append(toDoPriorityHeading, lowPriority, lowPriorityLabel, medPriority, medPriorityLabel, highPriority, highPriorityLabel);
+    
+
+    let toDoSubmit = document.createElement("button");
+    toDoSubmit.type = "submit";
+    toDoSubmit.classList.add("new-submit-btn");
+    toDoSubmit.textContent = "SAVE CHANGES";
+    toDoSubmit.addEventListener("click", () => {
+
+        let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
+        console.log(Object.is(prioritySelected, null));
+    
+        toDo.title = toDoTitle.value;
+        toDo.details = toDoDetails.value;
+        toDo.date = parseISO(toDoDateSelect.value)
+        toDo.priority = prioritySelected.value;
+
+        if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
+            
+    
+            return;
+        }
+
+        else {
+
+            filterArrays();
+            console.log(toDoArray);
+            toggle('edit-form');
+            sectionDisplay(toDoArray);
+        }
+
+    });
+    
+    card.append(exitBtn, toDoTitle, toDoDetails, toDoDateArea, toDoPriorityArea, toDoSubmit);
+
+    body.append(card);
+
+    toggle("edit-form");   // dim background and make form visible
+
+}
 
 export default sectionDisplay;
 
