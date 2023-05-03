@@ -341,20 +341,18 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
         let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
         console.log(Object.is(prioritySelected, null));
-    
-        toDo.title = toDoTitle.value;
-        toDo.details = toDoDetails.value;
-        toDo.date = parseISO(toDoDateSelect.value)
-        toDo.priority = prioritySelected.value;
 
-        if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
-            
-    
+        if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {   // This ensures all form fields are filled
+
             return;
         }
 
         else {
 
+            toDo.title = toDoTitle.value;
+            toDo.details = toDoDetails.value;
+            toDo.date = parseISO(toDoDateSelect.value)
+            toDo.priority = prioritySelected.value;
             filterArrays();
             console.log(toDoArray);
             toggle('edit-form');

@@ -367,7 +367,6 @@ const newToDoDisplay = function() {   // display for new todo tab
   lowPriority.type = "radio";
   lowPriority.value = "Low";
   lowPriority.id = "new-todo-low";
-  lowPriority.checked = "checked";
   lowPriority.required = true;
   let lowPriorityLabel = document.createElement("label");
   lowPriorityLabel.setAttribute("for", "new-todo-low");
