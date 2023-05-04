@@ -1,7 +1,10 @@
 import { setActiveButton } from "./pageLoad";
+import sectionDisplay from "./toDo";
+import { toDoArray } from "./toDo";
 
 
 export const projectsArray = [];   // holds projects
+export let filteredProjectToDoArray = [];   // holds project filtered todo array
 
 
 let sampleProject = "Sample Project";
@@ -24,15 +27,21 @@ export const projectListDisplay = function() {
         projectTitle.addEventListener("click", (e) => {
             if (e.target.classList.contains("active")) return;
             setActiveButton(projectTitle, ".sidebar-area");
-            console.log("display tasks for this project");
+            sectionDisplay(filterProjects(projectTitle.textContent));
+
         });
-
         projectListArea.appendChild(projectTitle);
-
     });
-};
-
-export const projectToDosDisplay = function(project) {
+}
 
 
+
+const filterProjects = function(projectName) {   // filter arrays
+
+    filteredProjectToDoArray = toDoArray.filter(function(toDo) {   // filter all todos based off project name
+
+        return projectName == toDo.project;
+    })
+
+    return filteredProjectToDoArray;
 }

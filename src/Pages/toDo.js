@@ -31,9 +31,9 @@ export const toDoFactory = (title, project, priority, date, details) => {   //Fa
     return {title, project, priority, date, details};
 };
 
-const sampleToDo = toDoFactory("Title", "None", "High", new Date(2023, 3, 23), "Finish this");
-const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovation", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
-const sampleToDoThree = toDoFactory("Fix Shower", "House Renovation", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
+const sampleToDo = toDoFactory("Title", "Sample Project", "High", new Date(2023, 3, 23), "Finish this");
+const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovations", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
+const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
 
 
 toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
