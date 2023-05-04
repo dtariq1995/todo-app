@@ -598,7 +598,7 @@ object {
     font-weight: 700;
 }
 
-#new-todo-date-area, #new-todo-priority-area {
+#new-todo-date-area, #new-todo-priority-area, #new-todo-project-area {
     position: absolute;
     bottom: 4.6rem;
     display: flex;
@@ -608,6 +608,27 @@ object {
 
 #new-todo-priority-area {
     bottom: 2rem;
+}
+
+#new-todo-project-heading {
+    padding-right: 1rem;
+}
+
+#new-todo-project-area {
+    bottom: 7.5rem;
+}
+
+#project-select {
+    text-transform: uppercase;
+    font-family: Raleway;
+    background-color: transparent;
+    outline: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0.2rem 0.60rem;
+    border: 2px solid rgba(110, 67, 152, 0.763);
+    color: rgba(110, 67, 152, 0.763);
+    border-radius: 0.3rem;
 }
 
 #new-todo-priority-heading {
