@@ -7,7 +7,7 @@ export const projectsArray = [];   // holds projects
 let sampleProject = "Sample Project";
 let sampleProjectTwo = "House Renovations";
 
-projectsArray.push(sampleProject, sampleProjectTwo, sampleProject, sampleProjectTwo, sampleProject, sampleProjectTwo);
+projectsArray.push(sampleProject, sampleProjectTwo);
 
 
 
@@ -31,3 +31,8 @@ export const projectListDisplay = function() {
 
     });
 };
+
+export const projectToDosDisplay = function(project) {
+
+
+}

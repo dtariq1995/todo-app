@@ -3,6 +3,7 @@ import isToday from "date-fns/isToday";
 import isThisWeek from "date-fns/isThisWeek";
 import { toggle } from "./pageLoad";
 import parseISO from "date-fns/parseISO";
+import { projectsArray } from "./projects";
 
 
 export const toDoArray = [];   // holds all todos
@@ -30,9 +31,9 @@ export const toDoFactory = (title, project, priority, date, details) => {   //Fa
     return {title, project, priority, date, details};
 };
 
-const sampleToDo = toDoFactory("Title", "Project", "High", new Date(2023, 3, 23), "Finish this");
-const sampleToDoTwo = toDoFactory("Fix Sink", "Daily Tasks", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
-const sampleToDoThree = toDoFactory("Fix Shower", "Daily Tasks", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
+const sampleToDo = toDoFactory("Title", "None", "High", new Date(2023, 3, 23), "Finish this");
+const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovation", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
+const sampleToDoThree = toDoFactory("Fix Shower", "House Renovation", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
 
 
 toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
@@ -264,6 +265,28 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoDetails.maxLength = 200;
     toDoDetails.required = true;
 
+    let toDoProjectArea = document.createElement("div");
+    toDoProjectArea.id = "new-todo-project-area";
+    let toDoProjectHeading = document.createElement("div");
+    toDoProjectHeading.id = "new-todo-project-heading";
+    toDoProjectHeading.classList.add("new-todo-heading");
+    toDoProjectHeading.textContent = "Project: ";
+    let toDoProjectSelect = document.createElement("select");
+    toDoProjectSelect.id = "project-select";
+    let noProjectOption = document.createElement("option");
+    noProjectOption.value = "None";
+    noProjectOption.textContent = "None";
+    toDoProjectSelect.append(noProjectOption);
+    projectsArray.forEach(function(project) {
+      let projectOption = document.createElement("option");
+      projectOption.value = project;
+      projectOption.textContent = project;
+      toDoProjectSelect.append(projectOption);
+    });
+    toDoProjectArea.append(toDoProjectHeading, toDoProjectSelect);
+
+
+
     let toDoDateArea = document.createElement("div");
     toDoDateArea.id = "new-todo-date-area";
     let toDoDateHeading = document.createElement("div");
@@ -342,6 +365,8 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
         let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
         console.log(Object.is(prioritySelected, null));
 
+        let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
+
         if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {   // This ensures all form fields are filled
 
             return;
@@ -351,6 +376,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
             toDo.title = toDoTitle.value;
             toDo.details = toDoDetails.value;
+            toDo.project = selectedProject;
             toDo.date = parseISO(toDoDateSelect.value)
             toDo.priority = prioritySelected.value;
             filterArrays();
@@ -358,15 +384,13 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
             toggle('edit-form');
             sectionDisplay(toDoArray);
         }
-
     });
     
-    card.append(exitBtn, toDoTitle, toDoDetails, toDoDateArea, toDoPriorityArea, toDoSubmit);
+    card.append(exitBtn, toDoTitle, toDoDetails, toDoProjectArea, toDoDateArea, toDoPriorityArea, toDoSubmit);
 
     body.append(card);
 
     toggle("edit-form");   // dim background and make form visible
-
 }
 
 export default sectionDisplay;
