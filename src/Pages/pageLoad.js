@@ -8,8 +8,8 @@ import { notesFactory } from "./notes";
 import { toDoFactory } from "./toDo";
 import parseISO from "date-fns/parseISO";
 import { filterArrays } from "./toDo";
-import { projectsArray } from "./toDo";
-
+import { projectsArray } from "./projects";
+import { projectListDisplay } from "./projects";
 
 
 
@@ -113,6 +113,7 @@ const sidebarLoad = function() {   // load sidebar content
 
   let projectsArea = document.createElement("div");   // projects area content
   projectsArea.classList.add("sidebar-area");
+  projectsArea.id = "projects-area";
   let projectsImg = document.createElement("img");
   projectsImg.src = "/src/Assets/Images/projectsicon.png";
   let projectsButton = document.createElement("div");
@@ -135,6 +136,10 @@ const sidebarLoad = function() {   // load sidebar content
     notesDisplay();
   })
 
+  let projectsListArea = document.createElement("div");
+  projectsListArea.id = "projects-list";
+
+
   let addItem = document.createElement("div");   // floating add new item button
   addItem.id = "newItem";
   addItem.textContent = "+";
@@ -148,9 +153,10 @@ const sidebarLoad = function() {   // load sidebar content
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
   navContainer.id = "nav";
 
-  sidebar.append(homeArea, todayArea, weekArea, notesArea, projectsArea);   // sidebar combined in one div
+  sidebar.append(homeArea, todayArea, weekArea, notesArea, projectsArea, projectsListArea);   // sidebar combined in one div
   navContainer.append(sidebar, addItem);   // add sidebar and new item button to container with sidebar
   content.append(navContainer);   // add to main page
+  projectListDisplay();
 
 }
 
@@ -159,7 +165,7 @@ const sidebarLoad = function() {   // load sidebar content
 
 
 
-function setActiveButton(button, btnClass) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
+export function setActiveButton(button, btnClass) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
   let buttons = document.querySelectorAll(btnClass);
 
   buttons.forEach((button) => {
@@ -469,6 +475,7 @@ const newProjectDisplay = function() {   // display for new project tab
     let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
     setActiveButton(projectArea, ".sidebar-area");
+    projectListDisplay();
   });
 
   newProjectForm.append(projectTitle, projectSubmit);

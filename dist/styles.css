@@ -6,6 +6,26 @@
     --sidebar-active-color: rgba(158, 126, 192, 0.169);
 }
 
+::-webkit-scrollbar {   /* override styling for scrollbar */
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(207, 182, 212, 0.404);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(144, 106, 181, 0.521);
+}
+
+::selection {
+    background: rgb(210, 183, 237);      /* Change highlight background color to light purple */
+}
+
 
 @font-face {
     font-family: Raleway;
@@ -97,9 +117,8 @@ footer a:hover {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     justify-content: center;
-    min-width: 235px;
+    width: 15.32rem;
 }
 
 .sidebar-area {
@@ -110,6 +129,7 @@ footer a:hover {
     width: 100%;
 }
 
+
 .sidebar-area.active {
     color: var(--text-accent-color);
     background-color: var(--sidebar-active-color);
@@ -119,16 +139,9 @@ footer a:hover {
     font-weight: 600;
 }
 
-.side-button {
+.side-button, .projects-title {
     background: none;
     border: none;
-    color: var(--text-accent-color);
-    font-size: 22px;
-    padding: 20px;
-    font-family: Raleway;
-}
-
-.projects-title {
     color: var(--text-accent-color);
     font-size: 22px;
     padding: 20px;
@@ -150,6 +163,51 @@ footer a:hover {
     height: 24px;
     width: 24px;
 }
+
+#projects-list {
+    height: 8.2rem;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#projects-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+#projects-list::-webkit-scrollbar-thumb {
+    background: rgba(186, 145, 194, 0.404);
+}
+
+#projects-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(144, 106, 181, 0.521);
+}
+
+.projects-list-titles {
+    display: list-item;
+    font-size: 14px;
+    color: var(--text-accent-color);
+    padding: 0.5rem 0;
+    cursor: pointer;
+    text-align: left;
+    padding-left: 6rem;
+}
+
+.projects-list-titles:before {
+    content: "-  ";
+}
+
+.projects-list-titles.active {
+    font-weight: 600;
+}
+
+.projects-list-titles:hover {
+    font-weight: 600;
+}
+
 
 #newItem {
     display: flex;
@@ -724,25 +782,6 @@ textarea {
     font-weight: 700;
 }
 
-::-webkit-scrollbar {   /* override styling for scrollbar */
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(207, 182, 212, 0.404);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(144, 106, 181, 0.521);
-}
-
-::selection {
-    background: rgb(210, 183, 237);      /* Change highlight background color to light purple */
-  }
 
 label > input[type=checkbox] {   /* override styling for checkboxes */
     display: none;

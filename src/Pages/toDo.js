@@ -6,7 +6,6 @@ import parseISO from "date-fns/parseISO";
 
 
 export const toDoArray = [];   // holds all todos
-export let projectsArray = [];   // holds projects
 export let todayToDoArray = [];   // will hold todos for current day
 export let weekToDoArray = [];   // will hold todos for current week
 
