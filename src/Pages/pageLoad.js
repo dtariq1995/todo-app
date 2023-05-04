@@ -351,6 +351,26 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoDetails.maxLength = 200;
   toDoDetails.required = true;
 
+  let toDoProjectArea = document.createElement("div");
+  toDoProjectArea.id = "new-todo-project-area";
+  let toDoProjectHeading = document.createElement("div");
+  toDoProjectHeading.id = "new-todo-project-heading";
+  toDoProjectHeading.classList.add("new-todo-heading");
+  toDoProjectHeading.textContent = "Project: ";
+  let toDoProjectSelect = document.createElement("select");
+  toDoProjectSelect.id = "project-select";
+  let noProjectOption = document.createElement("option");
+  noProjectOption.value = "None";
+  noProjectOption.textContent = "None";
+  toDoProjectSelect.append(noProjectOption);
+  projectsArray.forEach(function(project) {
+    let projectOption = document.createElement("option");
+    projectOption.value = project;
+    projectOption.textContent = project;
+    toDoProjectSelect.append(projectOption);
+  });
+  toDoProjectArea.append(toDoProjectHeading, toDoProjectSelect);
+
   let toDoDateArea = document.createElement("div");
   toDoDateArea.id = "new-todo-date-area";
   let toDoDateHeading = document.createElement("div");
@@ -418,13 +438,15 @@ const newToDoDisplay = function() {   // display for new todo tab
     let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
     console.log(Object.is(prioritySelected, null));
 
+    let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
+
     if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
 
       return;
     }
     
     else {
-      let newToDo = toDoFactory(toDoTitle.value, "None", prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
+      let newToDo = toDoFactory(toDoTitle.value, selectedProject, prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
       toDoArray.push(newToDo);
       filterArrays();
       console.log(toDoArray);
@@ -439,7 +461,7 @@ const newToDoDisplay = function() {   // display for new todo tab
 
   });
 
-  newToDoForm.append(toDoTitle, toDoDetails, toDoDateArea, toDoPriorityArea, toDoSubmit);
+  newToDoForm.append(toDoTitle, toDoDetails, toDoProjectArea, toDoDateArea, toDoPriorityArea, toDoSubmit);
 
   newItemFormArea.append(newToDoForm);
 }
