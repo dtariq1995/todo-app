@@ -615,7 +615,7 @@ object {
 }
 
 #new-todo-project-area {
-    bottom: 7.5rem;
+    bottom: 7.3rem;
 }
 
 #project-select {
@@ -735,7 +735,7 @@ textarea {
 }
 
 #edit-form {
-    height: 18rem;
+    height: 20rem;
     width: 35rem;
     padding: 0 0.8rem 0 1.5rem;
 }
@@ -752,6 +752,7 @@ textarea {
     outline: none;
     color: var(--text-accent-color);
     font-size: 15px;
+    height: 5rem;
 }
 
 #details-form.active, #edit-form.active {
