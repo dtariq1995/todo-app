@@ -148,6 +148,10 @@ footer a:hover {
     font-family: Raleway;
 }
 
+.projects-title {
+    font-weight: 700;
+}
+
 .side-button.active {
     font-weight: 600;
     color: var(--text-accent-color);
@@ -188,7 +192,7 @@ footer a:hover {
 
 .projects-list-titles {
     display: list-item;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-accent-color);
     padding: 0.5rem 0;
     cursor: pointer;
@@ -197,7 +201,7 @@ footer a:hover {
 }
 
 .projects-list-titles:before {
-    content: "-  ";
+    content: "//  ";
 }
 
 .projects-list-titles.active {
@@ -207,7 +211,6 @@ footer a:hover {
 .projects-list-titles:hover {
     font-weight: 600;
 }
-
 
 #newItem {
     display: flex;
@@ -804,6 +807,29 @@ textarea {
     font-weight: 700;
 }
 
+#empty-project-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#empty-project-heading {
+    font-size: 32px;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+#empty-project-text {
+    font-size: 24px;
+    margin-bottom: 2.5rem;
+}
+
+.empty-project-del-btn {
+    position: static;
+    padding: 0.6rem;
+    font-size: 16px;
+}
+
 
 label > input[type=checkbox] {   /* override styling for checkboxes */
     display: none;
@@ -847,3 +873,4 @@ label > input[type="checkbox"]:checked + * {
         transform: translateX(0);
     }
 }
+
