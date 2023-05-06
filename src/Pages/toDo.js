@@ -145,7 +145,6 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             filterArrays();   // filter todoArray to get arrays for today and for the week
 
             let activeButton = getActiveButton(".sidebar-area");
-            console.log(activeButton);
 
             if (projectsArray.indexOf(activeButton) != -1) {
                 emptyProjectDisplay(filterProjects(activeButton).length, activeButton);
