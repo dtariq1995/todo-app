@@ -4,6 +4,8 @@ import isThisWeek from "date-fns/isThisWeek";
 import { toggle } from "./pageLoad";
 import parseISO from "date-fns/parseISO";
 import { projectsArray } from "./projects";
+import { setActiveButton } from "./pageLoad";
+import { filterProjects } from "./projects";
 
 
 export const toDoArray = [];   // holds all todos
@@ -382,7 +384,20 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
             filterArrays();
             console.log(toDoArray);
             toggle('edit-form');
-            sectionDisplay(toDoArray);
+
+
+            if (selectedProject == "None") {
+
+                let toDoArea = document.getElementById("sidebar-todo-area");
+                setActiveButton(toDoArea, ".sidebar-area");
+                sectionDisplay(toDoArray);
+              }
+              else {
+        
+                let activeProject = document.getElementById(selectedProject);
+                setActiveButton(activeProject, ".sidebar-area");
+                sectionDisplay(filterProjects(selectedProject));
+              }
         }
     });
     
