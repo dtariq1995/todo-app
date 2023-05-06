@@ -144,7 +144,6 @@ const sidebarLoad = function() {   // load sidebar content
   addItem.id = "newItem";
   addItem.textContent = "+";
   addItem.addEventListener('click', () => {
-    console.log("new item button pressed");
     toggle('new-item-form');
     newToDoDisplay();
   })
@@ -449,7 +448,6 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoSubmit.addEventListener("click", () => {
 
     let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
-    console.log(Object.is(prioritySelected, null));
 
     let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
 
@@ -462,7 +460,6 @@ const newToDoDisplay = function() {   // display for new todo tab
       let newToDo = toDoFactory(toDoTitle.value, selectedProject, prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
       toDoArray.push(newToDo);
       filterArrays();
-      console.log(toDoArray);
       toggle('new-item-form');
       let newItemMain = document.getElementById("new-item-main");
       newItemMain.innerHTML = "";
@@ -496,7 +493,6 @@ const newToDoDisplay = function() {   // display for new todo tab
 
 const newProjectDisplay = function() {   // display for new project tab
 
-  console.log("newtododisplay function");
   let projectArea = document.getElementById("sidebar-todo-area");
   let newItemFormArea = document.getElementById("new-item-main");
   newItemFormArea.innerHTML = "";   // clear out any content before adding new todo display
@@ -516,7 +512,6 @@ const newProjectDisplay = function() {   // display for new project tab
   projectSubmit.addEventListener("click", () => {
 
     projectsArray.push(projectTitle.value);
-    console.log(projectsArray);
     toggle('new-item-form');
     let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");

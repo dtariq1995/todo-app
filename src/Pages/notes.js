@@ -21,9 +21,6 @@ const sampleNote2 = notesFactory("title", "lorem ipsum dior");
 notesArray.push(sampleNote);
 notesArray.push(sampleNote2, sampleNote, sampleNote2, sampleNote, sampleNote2, sampleNote);
 
-console.log(notesArray);
-
-
 
 
 const notesDisplay = function() {   // controls notes display

@@ -30,8 +30,7 @@ export const projectListDisplay = function() {
             setActiveButton(projectTitle, ".sidebar-area");
             sectionDisplay(filterProjects(projectTitle.textContent));
             emptyProjectDisplay(filterProjects(projectTitle.textContent).length, projectTitle.textContent);
-            console.log(filteredProjectToDoArray);
-            console.log(projectsArray);
+
         });
         projectListArea.appendChild(projectTitle);
     });
@@ -52,7 +51,6 @@ export const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
 
     if (filteredArrayLength == 0) {
 
-        console.log(projectTitle);
         
         let toDoArea = document.getElementById("main-area");
         toDoArea.innerHTML = "";
