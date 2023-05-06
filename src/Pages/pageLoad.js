@@ -178,6 +178,18 @@ export function setActiveButton(button, btnClass) {   // if button clicked, add 
 }
 
 
+export function getActiveButton(btnClass) {   // checks which button is the currently active button and returns it
+  let buttons = document.querySelectorAll(btnClass);
+
+  buttons.forEach((button) => {
+    if (button.classList.contains("active")) {
+      console.log(button);
+      return button;
+    }
+  })
+}
+
+
 
 
 

@@ -6,6 +6,7 @@ import parseISO from "date-fns/parseISO";
 import { projectsArray } from "./projects";
 import { setActiveButton } from "./pageLoad";
 import { filterProjects } from "./projects";
+import { getActiveButton } from "./pageLoad";
 
 
 export const toDoArray = [];   // holds all todos
@@ -144,6 +145,10 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             setTimeout(() => event.target.parentNode.parentNode.remove(), 400);
             toDoArray.splice(toDoArray.indexOf(toDo), 1);   // remove todo from the array
             filterArrays();   // filter todoArray to get arrays for today and for the week
+
+            console.log(toDoArray.length);
+            console.log(getActiveButton(".sidebar-area"));
+            
         });
 
         deleteArea.append(deleteButton);
