@@ -7,6 +7,7 @@ import { projectsArray } from "./projects";
 import { setActiveButton } from "./pageLoad";
 import { filterProjects } from "./projects";
 import { getActiveButton } from "./pageLoad";
+import { emptyProjectDisplay } from "./projects"; 
 
 
 export const toDoArray = [];   // holds all todos
@@ -40,7 +41,6 @@ const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", ne
 
 
 toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
-console.log(toDoArray);
 
 filterArrays();
 
@@ -110,8 +110,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoDetails = document.createElement("button");   // add details button to todos 
         toDoDetails.classList.add("todo-details");
         toDoDetails.textContent = "DETAILS";
-        toDoDetails.addEventListener('click', e => {
-            console.log("details pressed");
+        toDoDetails.addEventListener('click', () => {
             detailsDisplay(toDo);
         });
 
@@ -127,7 +126,6 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         editButton.data = "/src/Assets/Images/edit-button.svg";
 
         editArea.addEventListener('click', () => {
-            console.log("edit clicked");
             editToDoDisplay(toDo);
         });
 
@@ -146,9 +144,12 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             toDoArray.splice(toDoArray.indexOf(toDo), 1);   // remove todo from the array
             filterArrays();   // filter todoArray to get arrays for today and for the week
 
-            console.log(toDoArray.length);
-            console.log(getActiveButton(".sidebar-area"));
-            
+            let activeButton = getActiveButton(".sidebar-area");
+
+            if (projectsArray.indexOf(activeButton) != -1) {
+                emptyProjectDisplay(filterProjects(activeButton).length, activeButton);
+
+            }
         });
 
         deleteArea.append(deleteButton);
@@ -238,8 +239,6 @@ const detailsDisplay = function(todo) {   // displays details for a specific tod
 
 const editToDoDisplay = function(toDo) {   // brings up display to edit a todo when user clicks edit button
 
-  
-    console.log("edit clicked");
 
     let body = document.body;
 
@@ -370,11 +369,10 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoSubmit.addEventListener("click", () => {
 
         let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
-        console.log(Object.is(prioritySelected, null));
 
         let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
 
-        if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {   // This ensures all form fields are filled
+        if (toDoTitle.value == "" || toDoDetails.value == "" || toDoDateSelect.value == "") {   // This ensures all form fields are filled
 
             return;
         }
@@ -387,7 +385,6 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
             toDo.date = parseISO(toDoDateSelect.value)
             toDo.priority = prioritySelected.value;
             filterArrays();
-            console.log(toDoArray);
             toggle('edit-form');
 
 

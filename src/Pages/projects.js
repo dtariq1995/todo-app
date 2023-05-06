@@ -29,7 +29,7 @@ export const projectListDisplay = function() {
             if (e.target.classList.contains("active")) return;
             setActiveButton(projectTitle, ".sidebar-area");
             sectionDisplay(filterProjects(projectTitle.textContent));
-            emptyProjectDisplay(filterProjects(projectTitle.textContent), projectTitle.textContent);
+            emptyProjectDisplay(filterProjects(projectTitle.textContent).length, projectTitle.textContent);
             console.log(filteredProjectToDoArray);
             console.log(projectsArray);
         });
@@ -44,14 +44,15 @@ export const filterProjects = function(projectName) {   // filter arrays
 
         return projectName == toDo.project;
     })
-
     return filteredProjectToDoArray;
 }
 
 
-const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
+export const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
 
     if (filteredArrayLength == 0) {
+
+        console.log(projectTitle);
         
         let toDoArea = document.getElementById("main-area");
         toDoArea.innerHTML = "";
@@ -72,11 +73,11 @@ const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
         emptyProjectDelete.textContent = "DELETE PROJECT";
         emptyProjectDelete.addEventListener("click", () => {
       
-          projectsArray.splice(projectsArray.indexOf(projectTitle), 1);
-          projectListDisplay();
-          let homeTab = document.getElementById("sidebar-todo-area");
-          setActiveButton(homeTab, ".sidebar-area");
-          sectionDisplay(toDoArray);
+            projectsArray.splice(projectsArray.indexOf(projectTitle), 1);
+            projectListDisplay();
+            let homeTab = document.getElementById("sidebar-todo-area");
+            setActiveButton(homeTab, ".sidebar-area");
+            sectionDisplay(toDoArray);
         });
 
         emptyProjectArea.append(emptyProjectHeading, emptyProjectText, emptyProjectDelete);
