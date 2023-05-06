@@ -11,6 +11,7 @@ import { filterArrays } from "./toDo";
 import { projectsArray } from "./projects";
 import { projectListDisplay } from "./projects";
 import { filterProjects } from "./projects";
+import { emptyToDoDisplay } from "./toDo";
 
 
 
@@ -78,13 +79,15 @@ const sidebarLoad = function() {   // load sidebar content
   homeArea.append(homeImg, homeButton);
   homeArea.classList.add("active");
   homeButton.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
+    if (e.target.parentNode.classList.contains("active")) return;
     setActiveButton(homeArea, ".sidebar-area");
     sectionDisplay(toDoArray);
+    emptyToDoDisplay(toDoArray);
   })
 
   let todayArea = document.createElement("div");   // today button content
   todayArea.classList.add("sidebar-area");
+  todayArea.id = "sidebar-today-area";
   let todayImg = document.createElement("img");
   todayImg.src = "/src/Assets/Images/dayicon.png";
   let todayButton = document.createElement("button");
@@ -92,13 +95,15 @@ const sidebarLoad = function() {   // load sidebar content
   todayButton.textContent = "Today";
   todayArea.append(todayImg, todayButton);
   todayButton.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
+    if (e.target.parentNode.classList.contains("active")) return;
     setActiveButton(todayArea, ".sidebar-area");
     sectionDisplay(todayToDoArray);
+    emptyToDoDisplay(todayToDoArray);
   })
 
   let weekArea = document.createElement("div");   // week button content
   weekArea.classList.add("sidebar-area");
+  weekArea.id = "sidebar-week-area";
   let weekImg = document.createElement("img")
   weekImg.src = "/src/Assets/Images/weekicon.png";
   let weekButton = document.createElement("button");
@@ -106,9 +111,10 @@ const sidebarLoad = function() {   // load sidebar content
   weekButton.textContent = "Week";
   weekArea.append(weekImg, weekButton);
   weekButton.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
+    if (e.target.parentNode.classList.contains("active")) return;
     setActiveButton(weekArea, ".sidebar-area");
     sectionDisplay(weekToDoArray);
+    emptyToDoDisplay(todayToDoArray);
   })
 
   let projectsArea = document.createElement("div");   // projects area content
@@ -131,7 +137,7 @@ const sidebarLoad = function() {   // load sidebar content
   notesButton.textContent = "Notes";
   notesArea.append(notesImg, notesButton);
   notesButton.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
+    if (e.target.parentNode.classList.contains("active")) return;
     setActiveButton(notesArea, ".sidebar-area");
     notesDisplay();
   })

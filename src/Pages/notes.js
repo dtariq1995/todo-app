@@ -1,3 +1,5 @@
+import { getActiveButton } from "./pageLoad";
+
 
 export const notesArray = [];   // array to store note objects in
 
@@ -49,6 +51,8 @@ const notesDisplay = function() {   // controls notes display
             event.target.parentNode.style.opacity = "0";
             setTimeout(() => event.target.parentNode.remove(), 400);
             notesArray.splice(notesArray.indexOf(note), 1);
+
+            emptyNoteDisplay(notesArray.length);
         });
 
         let noteDetails = document.createElement("div");   // display note details
@@ -59,9 +63,38 @@ const notesDisplay = function() {   // controls notes display
         notesDisplayArea.append(noteCard);   // add notecard to notes display area
 
     });
-
     displayArea.append(notesDisplayArea);
+}
 
+
+
+export const emptyNoteDisplay = function(arrayLength) {
+
+    if (arrayLength == 0) {
+
+    
+        let noteArea = document.getElementById("main-area");
+        noteArea.innerHTML = "";
+
+        let emptyNoteArea = document.createElement("div");
+        emptyNoteArea.id = "empty-project-area";
+
+        let emptyNoteHeading = document.createElement("div");
+        emptyNoteHeading.id = "empty-project-heading";
+        emptyNoteHeading.textContent = "There's Nothing Here!";
+
+        let emptyNoteText = document.createElement("div");
+        emptyNoteText.id = "empty-project-text";
+        emptyNoteText.textContent = "Create a new note.";
+
+
+        emptyNoteArea.append(emptyNoteHeading, emptyNoteText);
+        noteArea.append(emptyNoteArea);
+    }
+
+    else {
+        return;
+    }
 
 }
 

@@ -145,10 +145,19 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             filterArrays();   // filter todoArray to get arrays for today and for the week
 
             let activeButton = getActiveButton(".sidebar-area");
+            console.log(activeButton);
 
             if (projectsArray.indexOf(activeButton) != -1) {
                 emptyProjectDisplay(filterProjects(activeButton).length, activeButton);
-
+            }
+            if (activeButton == "sidebar-todo-area") {
+                emptyToDoDisplay(toDoArray.length);
+            }
+            else if (activeButton == "sidebar-today-area") {
+                emptyToDoDisplay(todayToDoArray.length);
+            }
+            else if (activeButton == "sidebar-week-area") {
+                emptyToDoDisplay(weekToDoArray.length);
             }
         });
 
@@ -409,6 +418,42 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
     toggle("edit-form");   // dim background and make form visible
 }
+
+
+
+
+
+
+export const emptyToDoDisplay = function(arrayLength) {
+
+    if (arrayLength == 0) {
+
+    
+        let toDoArea = document.getElementById("main-area");
+        toDoArea.innerHTML = "";
+
+        let emptyToDoArea = document.createElement("div");
+        emptyToDoArea.id = "empty-project-area";
+
+        let emptyToDoHeading = document.createElement("div");
+        emptyToDoHeading.id = "empty-project-heading";
+        emptyToDoHeading.textContent = "There's Nothing Here!";
+
+        let emptyToDoText = document.createElement("div");
+        emptyToDoText.id = "empty-project-text";
+        emptyToDoText.textContent = "Create a new to-do item or project.";
+
+
+        emptyToDoArea.append(emptyToDoHeading, emptyToDoText);
+        toDoArea.append(emptyToDoArea);
+    }
+
+    else {
+        return;
+    }
+
+}
+
 
 export default sectionDisplay;
 
