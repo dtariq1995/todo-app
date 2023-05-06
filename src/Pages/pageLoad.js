@@ -10,7 +10,7 @@ import parseISO from "date-fns/parseISO";
 import { filterArrays } from "./toDo";
 import { projectsArray } from "./projects";
 import { projectListDisplay } from "./projects";
-
+import { filterProjects } from "./projects";
 
 
 
@@ -330,7 +330,7 @@ const newNoteDisplay = function() {   // display for new note tab
 
 const newToDoDisplay = function() {   // display for new todo tab
   
-  console.log("newtododisplay function");
+
   let toDoArea = document.getElementById("sidebar-todo-area");
   let newItemFormArea = document.getElementById("new-item-main");
   newItemFormArea.innerHTML = "";   // clear out any content before adding new todo display
@@ -455,8 +455,19 @@ const newToDoDisplay = function() {   // display for new todo tab
       newItemMain.innerHTML = "";
       let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
       setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
-      setActiveButton(toDoArea, ".sidebar-area");
-      sectionDisplay(toDoArray);
+
+      
+      if (selectedProject == "None") {
+
+        setActiveButton(toDoArea, ".sidebar-area");
+        sectionDisplay(toDoArray);
+      }
+      else {
+
+        let activeProject = document.getElementById(selectedProject);
+        setActiveButton(activeProject, ".sidebar-area");
+        sectionDisplay(filterProjects(selectedProject));
+      }
     }
 
   });
