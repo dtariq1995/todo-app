@@ -169,7 +169,7 @@ footer a:hover {
 }
 
 #projects-list {
-    height: 8.2rem;
+    max-height: 8.2rem;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;

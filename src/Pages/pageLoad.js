@@ -152,7 +152,7 @@ const sidebarLoad = function() {   // load sidebar content
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
   navContainer.id = "nav";
 
-  sidebar.append(homeArea, todayArea, weekArea, notesArea, projectsArea, projectsListArea);   // sidebar combined in one div
+  sidebar.append(homeArea, todayArea, weekArea, projectsArea, projectsListArea, notesArea);   // sidebar combined in one div
   navContainer.append(sidebar, addItem);   // add sidebar and new item button to container with sidebar
   content.append(navContainer);   // add to main page
   projectListDisplay();
