@@ -18,6 +18,29 @@ import { emptyToDoDisplay } from "./toDo";
 
 const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
+  let storedToDos = JSON.parse(localStorage.getItem("todos"));
+
+  let storedNotes = JSON.parse(localStorage.getItem("notes"));
+
+  let storedProjects = JSON.parse(localStorage.getItem("projects"));
+
+  if (storedToDos) {
+
+    storedToDos.forEach(function(toDo) {
+      toDo.date = parseISO(toDo.date);
+    })
+    toDoArray = storedToDos;
+    filterArrays();
+  }
+
+  if (storedNotes) {
+    notesArray = storedNotes;
+  }
+
+  if (storedProjects) {
+    projectsArray = storedProjects;
+  }
+
   let content = document.querySelector("#content");
   let container = document.getElementById("dim");
 
@@ -53,6 +76,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   main.id = "main-area";
   content.append(main);
   sectionDisplay(toDoArray);
+  emptyToDoDisplay(toDoArray.length);
   newItemDisplay();
 }
 
@@ -329,6 +353,7 @@ const newNoteDisplay = function() {   // display for new note tab
   noteSubmit.addEventListener("click", () => {
     let newNote = notesFactory(noteTitle.value, noteDetails.value);
     notesArray.push(newNote);
+    localStorage.setItem("notes", JSON.stringify(notesArray));
     toggle('new-item-form');
     let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
@@ -465,6 +490,9 @@ const newToDoDisplay = function() {   // display for new todo tab
     else {
       let newToDo = toDoFactory(toDoTitle.value, selectedProject, prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
       toDoArray.push(newToDo);
+
+      localStorage.setItem("todos", JSON.stringify(toDoArray));
+
       filterArrays();
       toggle('new-item-form');
       let newItemMain = document.getElementById("new-item-main");

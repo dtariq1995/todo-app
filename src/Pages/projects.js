@@ -3,7 +3,7 @@ import sectionDisplay from "./toDo";
 import { toDoArray } from "./toDo";
 
 
-export const projectsArray = [];   // holds projects
+export let projectsArray = [];   // holds projects
 export let filteredProjectToDoArray = [];   // holds project filtered todo array
 
 
@@ -12,6 +12,11 @@ let sampleProjectTwo = "House Renovations";
 
 projectsArray.push(sampleProject, sampleProjectTwo);
 
+let storedProjects = JSON.parse(localStorage.getItem("projects"));
+
+if (!storedProjects) {
+    localStorage.setItem("projects", JSON.stringify(projectsArray));
+}
 
 
 export const projectListDisplay = function() {
@@ -72,6 +77,7 @@ export const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
         emptyProjectDelete.addEventListener("click", () => {
       
             projectsArray.splice(projectsArray.indexOf(projectTitle), 1);
+            localStorage.setItem("projects", JSON.stringify(projectsArray));
             projectListDisplay();
             let homeTab = document.getElementById("sidebar-todo-area");
             setActiveButton(homeTab, ".sidebar-area");

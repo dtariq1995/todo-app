@@ -10,7 +10,7 @@ import { getActiveButton } from "./pageLoad";
 import { emptyProjectDisplay } from "./projects"; 
 
 
-export const toDoArray = [];   // holds all todos
+export let toDoArray = [];   // holds all todos
 export let todayToDoArray = [];   // will hold todos for current day
 export let weekToDoArray = [];   // will hold todos for current week
 
@@ -41,6 +41,12 @@ const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", ne
 
 
 toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
+
+let storedToDos = JSON.parse(localStorage.getItem("todos"));
+
+if (!storedToDos) {
+    localStorage.setItem("todos", JSON.stringify(toDoArray));
+}
 
 filterArrays();
 
@@ -142,6 +148,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
             setTimeout(() => event.target.parentNode.parentNode.remove(), 400);
             toDoArray.splice(toDoArray.indexOf(toDo), 1);   // remove todo from the array
+            localStorage.setItem("todos", JSON.stringify(toDoArray));
             filterArrays();   // filter todoArray to get arrays for today and for the week
 
             let activeButton = getActiveButton(".sidebar-area");

@@ -1,7 +1,6 @@
-import { getActiveButton } from "./pageLoad";
 
 
-export const notesArray = [];   // array to store note objects in
+export let notesArray = [];   // array to store note objects in
 
 const colorPallete = ["#FFF9B1", "#daf7a1", "#FF9D48", "#FFCEE0", "#b1d3f6", "#8ca0ff",   // color pallete for notes
     "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"
@@ -20,8 +19,14 @@ export const notesFactory = (title, details) => {   // Factory Function that cre
 const sampleNote = notesFactory("Placeholder Title", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
 const sampleNote2 = notesFactory("title", "lorem ipsum dior");
 
-notesArray.push(sampleNote);
-notesArray.push(sampleNote2, sampleNote, sampleNote2, sampleNote, sampleNote2, sampleNote);
+notesArray.push(sampleNote, sampleNote2);
+
+let storedNotes = JSON.parse(localStorage.getItem("notes"));
+
+if (!storedNotes) {
+    localStorage.setItem("notes", JSON.stringify(notesArray));
+}
+
 
 
 
@@ -51,7 +56,7 @@ const notesDisplay = function() {   // controls notes display
             event.target.parentNode.style.opacity = "0";
             setTimeout(() => event.target.parentNode.remove(), 400);
             notesArray.splice(notesArray.indexOf(note), 1);
-
+            localStorage.setItem("notes", JSON.stringify(notesArray));
             emptyNoteDisplay(notesArray.length);
         });
 
