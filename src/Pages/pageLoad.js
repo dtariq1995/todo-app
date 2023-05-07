@@ -546,6 +546,7 @@ const newProjectDisplay = function() {   // display for new project tab
   projectSubmit.addEventListener("click", () => {
 
     projectsArray.push(projectTitle.value);
+    localStorage.setItem("projects", JSON.stringify(projectsArray));
     toggle('new-item-form');
     let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
     setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
