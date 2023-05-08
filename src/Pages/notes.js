@@ -15,8 +15,11 @@ export const notesFactory = (title, details) => {   // Factory Function that cre
 
 const sampleNote = notesFactory("Placeholder Title", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
 const sampleNote2 = notesFactory("title", "lorem ipsum dior");
+const sampleNote3 = notesFactory("Do this thing", "You might want to get this done");
+const sampleNote4 = notesFactory("Reminder", "This isn't urgent, but you might want to do this.");
 
-notesArray.push(sampleNote, sampleNote2);
+
+notesArray.push(sampleNote, sampleNote2, sampleNote3, sampleNote4);
 
 let storedNotes = JSON.parse(localStorage.getItem("notes"));   // load notes in local storage
 
