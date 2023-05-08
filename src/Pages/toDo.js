@@ -29,7 +29,6 @@ export const filterArrays = function() {   // filter arrays
 }
 
 
-
 export const toDoFactory = (title, project, priority, date, details, checkedOrNot) => {   //Factory Function that creates toDos
 
     return {title, project, priority, date, details, checkedOrNot};
@@ -436,7 +435,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
                 setActiveButton(toDoArea, ".sidebar-area");
                 sectionDisplay(toDoArray);
             }
-            
+
 
             else {
         
