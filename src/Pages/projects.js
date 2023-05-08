@@ -9,8 +9,9 @@ export let filteredProjectToDoArray = [];   // holds project filtered todo array
 
 let sampleProject = "Sample Project";
 let sampleProjectTwo = "House Renovations";
+let sampleProjectThree = "To-Do App Fixes";
 
-projectsArray.push(sampleProject, sampleProjectTwo);
+projectsArray.push(sampleProject, sampleProjectTwo, sampleProjectThree);
 
 let storedProjects = JSON.parse(localStorage.getItem("projects"));   // retrieve projects list from local storage
 

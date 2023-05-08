@@ -8,6 +8,7 @@ import { setActiveButton } from "./pageLoad";
 import { filterProjects } from "./projects";
 import { getActiveButton } from "./pageLoad";
 import { emptyProjectDisplay } from "./projects"; 
+import { getDate } from "date-fns";
 
 
 export let toDoArray = [];   // holds all todos
@@ -41,9 +42,14 @@ export const toDoFactory = (title, project, priority, date, details, checkedOrNo
 const sampleToDo = toDoFactory("Title", "Sample Project", "High", new Date(2023, 3, 23), "Finish this", false);
 const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovations", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser", false);
 const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile", false);
+const sampleToDoFour = toDoFactory("Clean up codebase", "To-Do App Fixes", "Medium", new Date(), "The codebase needs to be cleaned up and reorganized", true);
+const sampleToDoFive = toDoFactory("Fix project lists", "To-Do App Fixes", "Medium", new Date(), "Project list doesn't load in correctly", true);
+const sampleToDoSix = toDoFactory("Add logins", "To-Do App Fixes", "Medium", new Date(+new Date() + 86400000), "Add a way for users to sign up and login and load todos/notes/projects", false);
+const sampleToDoSev = toDoFactory("ToDos load weird", "To-Do App Fixes", "Medium", new Date(+new Date() + 86400000), "Fix the weird behavior with todos loading in", false);
+const sampleToDoEig = toDoFactory("Get Roof Fixed", "House Renovations", "Medium", new Date(+new Date() + 86400000), "The roof needs to be replaced", false);
 
 
-toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);   // add sample todos to todoArray
+toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDoFour, sampleToDoFive, sampleToDoSix, sampleToDoSev, sampleToDoEig);   // add sample todos to todoArray
 
 let storedToDos = JSON.parse(localStorage.getItem("todos"));   // update todoArray with any todos in local storage
 
