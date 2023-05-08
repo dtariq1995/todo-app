@@ -425,6 +425,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
             toDo.project = selectedProject;
             toDo.date = parseISO(toDoDateSelect.value)
             toDo.priority = prioritySelected.value;
+            localStorage.setItem("todos", JSON.stringify(toDoArray));
             filterArrays();
             toggle('edit-form');
 
@@ -434,13 +435,15 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
                 let toDoArea = document.getElementById("sidebar-todo-area");
                 setActiveButton(toDoArea, ".sidebar-area");
                 sectionDisplay(toDoArray);
-              }
-              else {
+            }
+            
+
+            else {
         
                 let activeProject = document.getElementById(selectedProject);
                 setActiveButton(activeProject, ".sidebar-area");
                 sectionDisplay(filterProjects(selectedProject));
-              }
+            }
         }
     });
     
