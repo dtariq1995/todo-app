@@ -12,34 +12,41 @@ let sampleProjectTwo = "House Renovations";
 
 projectsArray.push(sampleProject, sampleProjectTwo);
 
-let storedProjects = JSON.parse(localStorage.getItem("projects"));
+let storedProjects = JSON.parse(localStorage.getItem("projects"));   // retrieve projects list from local storage
 
 if (!storedProjects) {
-    localStorage.setItem("projects", JSON.stringify(projectsArray));
+    localStorage.setItem("projects", JSON.stringify(projectsArray));   // if no local storage, create local storage for projects
 }
 
 
-export const projectListDisplay = function() {
+
+
+
+export const projectListDisplay = function() {   // displays project list in the sidebar
 
     let projectListArea = document.getElementById("projects-list");
     projectListArea.innerHTML = "";
 
     projectsArray.forEach(function(project) {
 
-        let projectTitle = document.createElement("div");
+        let projectTitle = document.createElement("div");   // add title to sidebar
         projectTitle.textContent = project;
         projectTitle.id = project;
         projectTitle.classList.add("projects-list-titles", "sidebar-area");
+
         projectTitle.addEventListener("click", (e) => {
             if (e.target.classList.contains("active")) return;
-            setActiveButton(projectTitle, ".sidebar-area");
-            sectionDisplay(filterProjects(projectTitle.textContent));
-            emptyProjectDisplay(filterProjects(projectTitle.textContent).length, projectTitle.textContent);
-
+            setActiveButton(projectTitle, ".sidebar-area");   // highlight current project on sidebar
+            sectionDisplay(filterProjects(projectTitle.textContent));   // display array for selected project
+            emptyProjectDisplay(filterProjects(projectTitle.textContent).length, projectTitle.textContent);   // show different display if no todos for selected project
         });
-        projectListArea.appendChild(projectTitle);
+
+        projectListArea.appendChild(projectTitle);   
     });
 }
+
+
+
 
 
 export const filterProjects = function(projectName) {   // filter arrays
@@ -52,44 +59,46 @@ export const filterProjects = function(projectName) {   // filter arrays
 }
 
 
-export const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {
+
+
+
+export const emptyProjectDisplay = function(filteredArrayLength, projectTitle) {   // shows a different display if project is empty
 
     if (filteredArrayLength == 0) {
 
         
-        let toDoArea = document.getElementById("main-area");
+        let toDoArea = document.getElementById("main-area");   // clear toDoArea before adding anything 
         toDoArea.innerHTML = "";
 
-        let emptyProjectArea = document.createElement("div");
+        let emptyProjectArea = document.createElement("div"); 
         emptyProjectArea.id = "empty-project-area";
 
-        let emptyProjectHeading = document.createElement("div");
+        let emptyProjectHeading = document.createElement("div");   // display "Empty Project" heading
         emptyProjectHeading.id = "empty-project-heading";
         emptyProjectHeading.textContent = "Empty Project!";
 
-        let emptyProjectText = document.createElement("div");
+        let emptyProjectText = document.createElement("div");   // display subtext
         emptyProjectText.id = "empty-project-text";
         emptyProjectText.textContent = "Create a new to-do item or delete project.";
 
-        let emptyProjectDelete = document.createElement("button");
+        let emptyProjectDelete = document.createElement("button");   // display a delete button to delete the project if project is empty
         emptyProjectDelete.classList.add("new-submit-btn", "empty-project-del-btn");
         emptyProjectDelete.textContent = "DELETE PROJECT";
         emptyProjectDelete.addEventListener("click", () => {
       
-            projectsArray.splice(projectsArray.indexOf(projectTitle), 1);
-            localStorage.setItem("projects", JSON.stringify(projectsArray));
-            projectListDisplay();
+            projectsArray.splice(projectsArray.indexOf(projectTitle), 1);   // remove this project from projects list
+            localStorage.setItem("projects", JSON.stringify(projectsArray));   // reflect change in local storage of projects
+            projectListDisplay();   // update projects list in sidebar                              
             let homeTab = document.getElementById("sidebar-todo-area");
-            setActiveButton(homeTab, ".sidebar-area");
-            sectionDisplay(toDoArray);
+            setActiveButton(homeTab, ".sidebar-area");   // set home button as active button
+            sectionDisplay(toDoArray);   // display all todos
         });
 
-        emptyProjectArea.append(emptyProjectHeading, emptyProjectText, emptyProjectDelete);
+        emptyProjectArea.append(emptyProjectHeading, emptyProjectText, emptyProjectDelete);   // append all on to the display area
         toDoArea.append(emptyProjectArea);
     }
 
     else {
-        return;
+        return;   // do nothing if array is not empty
     }
-
 }

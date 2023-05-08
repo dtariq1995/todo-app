@@ -1,12 +1,10 @@
 
-
 export let notesArray = [];   // array to store note objects in
+
 
 const colorPallete = ["#FFF9B1", "#daf7a1", "#FF9D48", "#FFCEE0", "#b1d3f6", "#8ca0ff",   // color pallete for notes
     "#b485bc", "#6ED8FA", "#eca2c4", "#77ccc7", "#FF5768", "#b6d7a8", "#C9DF56", "#ffc000"
 ];
-
-
 
 
 export const notesFactory = (title, details) => {   // Factory Function that creates Notes
@@ -15,17 +13,17 @@ export const notesFactory = (title, details) => {   // Factory Function that cre
 };
 
 
-
 const sampleNote = notesFactory("Placeholder Title", "This is where the details would go for the note. :DLKFJDLS:FJ:LDSKFJ:LKFJDS:L");
 const sampleNote2 = notesFactory("title", "lorem ipsum dior");
 
 notesArray.push(sampleNote, sampleNote2);
 
-let storedNotes = JSON.parse(localStorage.getItem("notes"));
+let storedNotes = JSON.parse(localStorage.getItem("notes"));   // load notes in local storage
 
 if (!storedNotes) {
-    localStorage.setItem("notes", JSON.stringify(notesArray));
+    localStorage.setItem("notes", JSON.stringify(notesArray));   // if no notes, then store notes array in local storage
 }
+
 
 
 
@@ -53,11 +51,11 @@ const notesDisplay = function() {   // controls notes display
         noteDeleteBtn.textContent = "×";
         noteDeleteBtn.id = "note-delete-btn";
         noteDeleteBtn.addEventListener('click', event => {   // remove note from array and display 
-            event.target.parentNode.style.opacity = "0";
+            event.target.parentNode.style.opacity = "0";   // make note fade out on deletion
             setTimeout(() => event.target.parentNode.remove(), 400);
-            notesArray.splice(notesArray.indexOf(note), 1);
-            localStorage.setItem("notes", JSON.stringify(notesArray));
-            emptyNoteDisplay(notesArray.length);
+            notesArray.splice(notesArray.indexOf(note), 1);   // remove note from notes array
+            localStorage.setItem("notes", JSON.stringify(notesArray));    // reflect change in local storage  
+            emptyNoteDisplay(notesArray.length);   // check if notes array is empty and display empty note display if it is
         });
 
         let noteDetails = document.createElement("div");   // display note details
@@ -73,32 +71,33 @@ const notesDisplay = function() {   // controls notes display
 
 
 
-export const emptyNoteDisplay = function(arrayLength) {
+
+
+export const emptyNoteDisplay = function(arrayLength) {   // different display if notes array is empty
 
     if (arrayLength == 0) {
 
-    
-        let noteArea = document.getElementById("main-area");
+        let noteArea = document.getElementById("main-area");   // clear out display area first
         noteArea.innerHTML = "";
 
         let emptyNoteArea = document.createElement("div");
         emptyNoteArea.id = "empty-project-area";
 
-        let emptyNoteHeading = document.createElement("div");
+        let emptyNoteHeading = document.createElement("div");   // show "There's nothing here" heading
         emptyNoteHeading.id = "empty-project-heading";
         emptyNoteHeading.textContent = "There's Nothing Here!";
 
-        let emptyNoteText = document.createElement("div");
+        let emptyNoteText = document.createElement("div");   // show subtext
         emptyNoteText.id = "empty-project-text";
         emptyNoteText.textContent = "Create a new note.";
 
 
-        emptyNoteArea.append(emptyNoteHeading, emptyNoteText);
+        emptyNoteArea.append(emptyNoteHeading, emptyNoteText);   // add on to display area
         noteArea.append(emptyNoteArea);
     }
 
     else {
-        return;
+        return;   // do nothing if array isn't empty
     }
 
 }

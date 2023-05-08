@@ -16,28 +16,29 @@ import { emptyToDoDisplay } from "./toDo";
 
 
 
-const pageLoad = function() {   // add skeleton for header, sidebar, main content, and footer
 
-  let storedToDos = JSON.parse(localStorage.getItem("todos"));
+const pageLoad = function() {   // initial page load, get local storage, display all todos on home tab
 
-  let storedNotes = JSON.parse(localStorage.getItem("notes"));
+  let storedToDos = JSON.parse(localStorage.getItem("todos"));   // get stored todos if any
 
-  let storedProjects = JSON.parse(localStorage.getItem("projects"));
+  let storedNotes = JSON.parse(localStorage.getItem("notes"));   // get stored notes if any
 
-  if (storedToDos) {
+  let storedProjects = JSON.parse(localStorage.getItem("projects"));   // get stored projects if any
+
+  if (storedToDos) {   // if todos stored, retrieve
 
     storedToDos.forEach(function(toDo) {
-      toDo.date = parseISO(toDo.date);
+      toDo.date = parseISO(toDo.date);   // parse date so it's readable by date-fns api for filtering todos by date
     })
-    toDoArray = storedToDos;
-    filterArrays();
+    toDoArray = storedToDos;   // assign stored todos to the toDoArray
+    filterArrays();   // filter todos based off current day and week
   }
 
-  if (storedNotes) {
+  if (storedNotes) {   // if notes found, retrieve
     notesArray = storedNotes;
   }
 
-  if (storedProjects) {
+  if (storedProjects) {   // if projects stored, retrieve 
     projectsArray = storedProjects;
   }
 
@@ -53,7 +54,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   headerTitle.textContent = "To-Do List";
   logo.append(headerImage, headerTitle);
   header.append(logo);
-  container.insertAdjacentElement("afterbegin", header);
+  container.insertAdjacentElement("afterbegin", header);   // end of header content --
 
 
   let footer = document.createElement("footer");  // footer content
@@ -66,7 +67,7 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   footerLink.href = "https://github.com/dtariq1995";
   footerLink.textContent = "Daanyaal Tariq";
 
-  footer.append(footerText, footerImg, footerLink);
+  footer.append(footerText, footerImg, footerLink);   // end of footer content --
 
   content.insertAdjacentElement("afterend", footer);
 
@@ -75,11 +76,10 @@ const pageLoad = function() {   // add skeleton for header, sidebar, main conten
   let main = document.createElement("div");   // main content area where todos and notes will appear
   main.id = "main-area";
   content.append(main);
-  sectionDisplay(toDoArray);
-  emptyToDoDisplay(toDoArray.length);
-  newItemDisplay();
+  sectionDisplay(toDoArray);   // display all todos 
+  emptyToDoDisplay(toDoArray.length);   // check if no todos and show display based off that
+  newItemDisplay();   // add floating add item button
 }
-
 
 
 
@@ -92,7 +92,7 @@ const sidebarLoad = function() {   // load sidebar content
   let sidebar = document.createElement("div");
   sidebar.id = "sidebar";
 
-  let homeArea = document.createElement("div");   // home button content
+  let homeArea = document.createElement("div");   // home button icon and text 
   homeArea.classList.add("sidebar-area");
   homeArea.id = "sidebar-todo-area";
   let homeImg = document.createElement("img");
@@ -103,13 +103,13 @@ const sidebarLoad = function() {   // load sidebar content
   homeArea.append(homeImg, homeButton);
   homeArea.classList.add("active");
   homeButton.addEventListener("click", (e) => {
-    if (e.target.parentNode.classList.contains("active")) return;
-    setActiveButton(homeArea, ".sidebar-area");
-    sectionDisplay(toDoArray);
-    emptyToDoDisplay(toDoArray);
+    if (e.target.parentNode.classList.contains("active")) return;   // don't load if already active
+    setActiveButton(homeArea, ".sidebar-area");   // set home to active button
+    sectionDisplay(toDoArray);   // display all todos
+    emptyToDoDisplay(toDoArray);   // unless empty, then load empty display
   })
 
-  let todayArea = document.createElement("div");   // today button content
+  let todayArea = document.createElement("div");   // today button icon and text
   todayArea.classList.add("sidebar-area");
   todayArea.id = "sidebar-today-area";
   let todayImg = document.createElement("img");
@@ -119,13 +119,13 @@ const sidebarLoad = function() {   // load sidebar content
   todayButton.textContent = "Today";
   todayArea.append(todayImg, todayButton);
   todayButton.addEventListener("click", (e) => {
-    if (e.target.parentNode.classList.contains("active")) return;
-    setActiveButton(todayArea, ".sidebar-area");
-    sectionDisplay(todayToDoArray);
-    emptyToDoDisplay(todayToDoArray);
+    if (e.target.parentNode.classList.contains("active")) return;   // don't load if already active
+    setActiveButton(todayArea, ".sidebar-area");   // set today button to active
+    sectionDisplay(todayToDoArray);   // display todos due current day
+    emptyToDoDisplay(todayToDoArray);  // check if empty
   })
 
-  let weekArea = document.createElement("div");   // week button content
+  let weekArea = document.createElement("div");   // week button icon and text
   weekArea.classList.add("sidebar-area");
   weekArea.id = "sidebar-week-area";
   let weekImg = document.createElement("img")
@@ -134,14 +134,14 @@ const sidebarLoad = function() {   // load sidebar content
   weekButton.classList.add("side-button");
   weekButton.textContent = "Week";
   weekArea.append(weekImg, weekButton);
-  weekButton.addEventListener("click", (e) => {
-    if (e.target.parentNode.classList.contains("active")) return;
-    setActiveButton(weekArea, ".sidebar-area");
-    sectionDisplay(weekToDoArray);
-    emptyToDoDisplay(todayToDoArray);
+  weekButton.addEventListener("click", (e) => {   
+    if (e.target.parentNode.classList.contains("active")) return;   // don't load if already active
+    setActiveButton(weekArea, ".sidebar-area");   // set week button to active
+    sectionDisplay(weekToDoArray);   // display todos due current week
+    emptyToDoDisplay(weekToDoArray);   // show empty display if no todos
   })
 
-  let projectsArea = document.createElement("div");   // projects area content
+  let projectsArea = document.createElement("div");   // projects area icon and text
   projectsArea.classList.add("sidebar-area");
   projectsArea.id = "projects-area";
   let projectsImg = document.createElement("img");
@@ -151,7 +151,7 @@ const sidebarLoad = function() {   // load sidebar content
   projectsButton.textContent = "Projects";
   projectsArea.append(projectsImg, projectsButton);
 
-  let notesArea = document.createElement("div");   // notes button content
+  let notesArea = document.createElement("div");   // notes button icon and text
   notesArea.classList.add("sidebar-area");
   notesArea.id = "sidebar-notes-area";
   let notesImg = document.createElement("img");
@@ -160,10 +160,10 @@ const sidebarLoad = function() {   // load sidebar content
   notesButton.classList.add("side-button");
   notesButton.textContent = "Notes";
   notesArea.append(notesImg, notesButton);
-  notesButton.addEventListener("click", (e) => {
-    if (e.target.parentNode.classList.contains("active")) return;
-    setActiveButton(notesArea, ".sidebar-area");
-    notesDisplay();
+  notesButton.addEventListener("click", (e) => {   
+    if (e.target.parentNode.classList.contains("active")) return;   // don't reload if already selected
+    setActiveButton(notesArea, ".sidebar-area");   // set notes button as active button
+    notesDisplay();   // display the notes
   })
 
   let projectsListArea = document.createElement("div");
@@ -174,10 +174,9 @@ const sidebarLoad = function() {   // load sidebar content
   addItem.id = "newItem";
   addItem.textContent = "+";
   addItem.addEventListener('click', () => {
-    toggle('new-item-form');
-    newToDoDisplay();
+    toggle('new-item-form');   // display new item form on click
+    newToDoDisplay();   // preload the todo form on initial click
   })
-
 
   let navContainer = document.createElement("div");   // container for nav items so all nav items stay at top
   navContainer.id = "nav";
@@ -185,47 +184,50 @@ const sidebarLoad = function() {   // load sidebar content
   sidebar.append(homeArea, todayArea, weekArea, projectsArea, projectsListArea, notesArea);   // sidebar combined in one div
   navContainer.append(sidebar, addItem);   // add sidebar and new item button to container with sidebar
   content.append(navContainer);   // add to main page
-  projectListDisplay();
-
+  projectListDisplay();   // display the list of projects under project button
 }
-
 
 
 
 
 
 export function setActiveButton(button, btnClass) {   // if button clicked, add active class, if different button clicked, remove active class and add to now clicked button
-  let buttons = document.querySelectorAll(btnClass);
+  
+  let buttons = document.querySelectorAll(btnClass);   // get all buttons containing this class
 
   buttons.forEach((button) => {
     if (button !== this) {
-      button.classList.remove("active");
+      button.classList.remove("active");   // remove active class if button isn't equivalent to one selected
     }
   });
 
-  button.classList.add("active");
+  button.classList.add("active");   // add active class to specific button on click
 }
+
+
+
 
 
 export function getActiveButton(btnClass) {   // checks which button is the currently active button and returns it
-  let buttons = document.querySelectorAll(btnClass);
+  
+  let buttons = document.querySelectorAll(btnClass);   // get all buttons containing this class
   let activeButton;
 
   buttons.forEach((button) => {
-    if (button.classList.contains("active")) {
+    if (button.classList.contains("active")) {   // check which button is active from these buttons
       activeButton = button.id;
     }
   })
-  return activeButton;
+  return activeButton;   // retrieve id of active button
 }
-
 
 
 
 
 
 export function toggle(elementID) {   // this function dims the background when various modals pop up
-  let dim = document.getElementById('dim');
+
+  let dim = document.getElementById('dim');   
   dim.classList.toggle('active');
   let form = document.getElementById(elementID);
   form.classList.toggle('active');
@@ -275,9 +277,9 @@ const newItemDisplay = function() {
   newItemNavToDoArea.id = "new-item-nav-todo-area";
   newItemNavToDoArea.classList.add("active");
   newItemNavToDo.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
-    newToDoDisplay();
+    if (e.target.parentNode.classList.contains("active")) return;   // don't reload if already selected
+    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");   // set todo tab to active
+    newToDoDisplay();   // show new todo form
   })
   newItemNavToDoArea.append(newItemNavToDoImg, newItemNavToDo);
 
@@ -290,11 +292,12 @@ const newItemDisplay = function() {
   newItemNavProject.classList.add("new-item-nav-button");
   newItemNavProject.textContent = "Project";
   newItemNavProject.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavProjectArea, ".new-item-nav-area");
-    newProjectDisplay();
+    if (e.target.parentNode.classList.contains("active")) return;   // don't reload if already selected
+    setActiveButton(newItemNavProjectArea, ".new-item-nav-area");   // set new project tab to active
+    newProjectDisplay();   // show new project form
   })
   newItemNavProjectArea.append(newItemProjectsImg, newItemNavProject);
+
 
   let newItemNavNoteArea = document.createElement("div");   // create note tab for sidebar
   newItemNavNoteArea.classList.add("new-item-nav-area");
@@ -304,11 +307,12 @@ const newItemDisplay = function() {
   newItemNavNote.classList.add("new-item-nav-button");
   newItemNavNote.textContent = "Note";
   newItemNavNote.addEventListener("click", (e) => {
-    if (e.target.classList.contains("active")) return;
-    setActiveButton(newItemNavNoteArea, ".new-item-nav-area");
-    newNoteDisplay();
+    if (e.target.parentNode.classList.contains("active")) return;   // don't reload if already selected
+    setActiveButton(newItemNavNoteArea, ".new-item-nav-area");   // set note tab to active
+    newNoteDisplay();   // display new note form
   })
   newItemNavNoteArea.append(newItemNotesImg, newItemNavNote);
+
 
   newItemNav.append(newItemNavToDoArea, newItemNavProjectArea, newItemNavNoteArea);
 
@@ -347,25 +351,31 @@ const newNoteDisplay = function() {   // display for new note tab
   noteDetails.maxLength = 185;
   noteDetails.required = true;
 
-  let noteSubmit = document.createElement("button");
+  let noteSubmit = document.createElement("button");   // add button to submit new note
   noteSubmit.classList.add("new-submit-btn");
   noteSubmit.textContent = "CREATE NOTE";
   noteSubmit.addEventListener("click", () => {
-    let newNote = notesFactory(noteTitle.value, noteDetails.value);
-    notesArray.push(newNote);
-    localStorage.setItem("notes", JSON.stringify(notesArray));
-    toggle('new-item-form');
-    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
-    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
-    setActiveButton(notesArea, ".sidebar-area");
-    notesDisplay();
+
+    if (noteTitle.value == "" || noteDetails.value == "") {   // don't allow user to submit if note doesn't have title or details value
+      return;
+    }
+    
+    else {
+      let newNote = notesFactory(noteTitle.value, noteDetails.value);   // call note factory function to create new note
+      notesArray.push(newNote);   // add new note to notes array
+      localStorage.setItem("notes", JSON.stringify(notesArray));   // reflect change in local storage
+      toggle('new-item-form');   // hide the new item form
+      let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");   // set todo tab as active for when new item form is toggled again
+      setActiveButton(notesArea, ".sidebar-area");   // set notes button on sidebar as active button
+      notesDisplay();   // display notes
+    }
   });
 
   newNoteForm.append(noteTitle, noteDetails, noteSubmit);
 
   newItemFormArea.append(newNoteForm);
 }
-
 
 
 
@@ -380,21 +390,21 @@ const newToDoDisplay = function() {   // display for new todo tab
   let newToDoForm = document.createElement("div");
   newToDoForm.id = "new-todo-area";
 
-  let toDoTitle = document.createElement("textarea");
+  let toDoTitle = document.createElement("textarea");   // add area to enter todo title
   toDoTitle.id = "new-todo-title";
   toDoTitle.contentEditable = true;
   toDoTitle.placeholder = "Title: Fix Sink";
   toDoTitle.maxLength = 25;
   toDoTitle.required = true;
 
-  let toDoDetails = document.createElement("textarea");
+  let toDoDetails = document.createElement("textarea");   // add area to enter todo details
   toDoDetails.id = "new-todo-details";
   toDoDetails.contentEditable = "true";
   toDoDetails.placeholder = "Details: Replace soap dispenser and garbage disposal.";
   toDoDetails.maxLength = 200;
   toDoDetails.required = true;
 
-  let toDoProjectArea = document.createElement("div");
+  let toDoProjectArea = document.createElement("div");   // add area where project is selected from dropdown list
   toDoProjectArea.id = "new-todo-project-area";
   let toDoProjectHeading = document.createElement("div");
   toDoProjectHeading.id = "new-todo-project-heading";
@@ -402,11 +412,11 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoProjectHeading.textContent = "Project: ";
   let toDoProjectSelect = document.createElement("select");
   toDoProjectSelect.id = "project-select";
-  let noProjectOption = document.createElement("option");
-  noProjectOption.value = "None";
+  let noProjectOption = document.createElement("option");   // add "None" as first value in dropdown
+  noProjectOption.value = "None";   
   noProjectOption.textContent = "None";
   toDoProjectSelect.append(noProjectOption);
-  projectsArray.forEach(function(project) {
+  projectsArray.forEach(function(project) {   // add every project from projects array as an option
     let projectOption = document.createElement("option");
     projectOption.value = project;
     projectOption.textContent = project;
@@ -414,7 +424,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   });
   toDoProjectArea.append(toDoProjectHeading, toDoProjectSelect);
 
-  let toDoDateArea = document.createElement("div");
+  let toDoDateArea = document.createElement("div");   // add area to select todo due date
   toDoDateArea.id = "new-todo-date-area";
   let toDoDateHeading = document.createElement("div");
   toDoDateHeading.classList.add("new-todo-heading");
@@ -425,14 +435,14 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoDateSelect.required = true;
   toDoDateArea.append(toDoDateHeading, toDoDateSelect);
 
-  let toDoPriorityArea = document.createElement("div");
+  let toDoPriorityArea = document.createElement("div");   // add area to select todo priority
   toDoPriorityArea.id = "new-todo-priority-area";
   let toDoPriorityHeading = document.createElement("div");
   toDoPriorityHeading.id = "new-todo-priority-heading";
   toDoPriorityHeading.classList.add("new-todo-heading");
   toDoPriorityHeading.textContent = "Priority: ";
 
-  let lowPriority = document.createElement("input");
+  let lowPriority = document.createElement("input");   // add low priority button
   lowPriority.classList.add("new-todo-priority-btn");
   lowPriority.name = "new-priority";
   lowPriority.type = "radio";
@@ -444,7 +454,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   lowPriorityLabel.id = "new-todo-low-label";
   lowPriorityLabel.textContent = "Low";
 
-  let medPriority = document.createElement("input");
+  let medPriority = document.createElement("input");   // add medium priority button
   medPriority.classList.add("new-todo-priority-btn");
   medPriority.name = "new-priority";
   medPriority.type = "radio";
@@ -457,7 +467,7 @@ const newToDoDisplay = function() {   // display for new todo tab
   medPriorityLabel.id = "new-todo-med-label";
   medPriorityLabel.textContent = "Medium";
 
-  let highPriority = document.createElement("input");
+  let highPriority = document.createElement("input");   // add high priority button
   highPriority.classList.add("new-todo-priority-btn");
   highPriority.name = "new-priority";
   highPriority.type = "radio";
@@ -472,48 +482,46 @@ const newToDoDisplay = function() {   // display for new todo tab
   toDoPriorityArea.append(toDoPriorityHeading, lowPriority, lowPriorityLabel, medPriority, medPriorityLabel, highPriority, highPriorityLabel);
   
 
-  let toDoSubmit = document.createElement("button");
+  let toDoSubmit = document.createElement("button");   // add new todo sumbit button
   toDoSubmit.type = "submit";
   toDoSubmit.classList.add("new-submit-btn");
   toDoSubmit.textContent = "CREATE TO-DO";
   toDoSubmit.addEventListener("click", () => {
 
-    let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
+    let prioritySelected = document.querySelector('input[name="new-priority"]:checked');   // get selected priority by checking which button/label is checked
 
-    let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
+    let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;   // get selected project by getting text of chosen option from dropdown
 
-    if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {
+    if (toDoTitle.value == "" || toDoDetails.value == "" || Object.is(prioritySelected, null) || toDoDateSelect.value == "") {   // if anything isn't selected, the form won't submit
 
       return;
     }
     
     else {
-      let newToDo = toDoFactory(toDoTitle.value, selectedProject, prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);
-      toDoArray.push(newToDo);
-
-      localStorage.setItem("todos", JSON.stringify(toDoArray));
-
-      filterArrays();
-      toggle('new-item-form');
+      let newToDo = toDoFactory(toDoTitle.value, selectedProject, prioritySelected.value, parseISO(toDoDateSelect.value), toDoDetails.value);   // create new todo with entered/selected information
+      toDoArray.push(newToDo);   // add new todo to toDoArray
+      localStorage.setItem("todos", JSON.stringify(toDoArray));   // reflect change in local storage
+      filterArrays();   // filter today and week arrays with new todos
+      toggle('new-item-form');   // hide the new item form
       let newItemMain = document.getElementById("new-item-main");
-      newItemMain.innerHTML = "";
+      newItemMain.innerHTML = "";   // clear out the form area
       let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
-      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
+      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");   // set new todo tab as active button for new item form
 
       
-      if (selectedProject == "None") {
+      if (selectedProject == "None") {   // if no project selected
 
-        setActiveButton(toDoArea, ".sidebar-area");
-        sectionDisplay(toDoArray);
+        setActiveButton(toDoArea, ".sidebar-area");   // set home page as active button on sidebar
+        sectionDisplay(toDoArray);   // display all todos
       }
-      else {
 
-        let activeProject = document.getElementById(selectedProject);
-        setActiveButton(activeProject, ".sidebar-area");
-        sectionDisplay(filterProjects(selectedProject));
+      else {   // if project selected
+
+        let activeProject = document.getElementById(selectedProject);   // get selected project
+        setActiveButton(activeProject, ".sidebar-area");   // set button for selected project as active on sidebar
+        sectionDisplay(filterProjects(selectedProject));   // display all todos for the selected project
       }
     }
-
   });
 
   newToDoForm.append(toDoTitle, toDoDetails, toDoProjectArea, toDoDateArea, toDoPriorityArea, toDoSubmit);
@@ -540,18 +548,22 @@ const newProjectDisplay = function() {   // display for new project tab
   projectTitle.maxLength = 20;
   projectTitle.required = true;
 
-  let projectSubmit = document.createElement("button");
+  let projectSubmit = document.createElement("button");   // add button to submit new project
   projectSubmit.classList.add("new-submit-btn");
   projectSubmit.textContent = "CREATE PROJECT";
   projectSubmit.addEventListener("click", () => {
 
-    projectsArray.push(projectTitle.value);
-    localStorage.setItem("projects", JSON.stringify(projectsArray));
-    toggle('new-item-form');
-    let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
-    setActiveButton(newItemNavToDoArea, ".new-item-nav-area");
-    setActiveButton(projectArea, ".sidebar-area");
-    projectListDisplay();
+    if (projectTitle.value == "")  return;   // prevent user from submitting project with no title
+
+    else {
+      projectsArray.push(projectTitle.value);   // add new project to projects array
+      localStorage.setItem("projects", JSON.stringify(projectsArray));   // reflect change in projects array
+      toggle('new-item-form');   // hide the new item form
+      let newItemNavToDoArea = document.getElementById("new-item-nav-todo-area");
+      setActiveButton(newItemNavToDoArea, ".new-item-nav-area");   // set todo tab as active in new item form
+      setActiveButton(projectArea, ".sidebar-area");   // display home button on sidebar as active
+      projectListDisplay();   // reload the projects and redisplay them
+    }
   });
 
   newProjectForm.append(projectTitle, projectSubmit);
