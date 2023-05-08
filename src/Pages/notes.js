@@ -19,7 +19,7 @@ const sampleNote3 = notesFactory("Do this thing", "You might want to get this do
 const sampleNote4 = notesFactory("Reminder", "This isn't urgent, but you might want to do this.");
 
 
-notesArray.push(sampleNote, sampleNote2, sampleNote3, sampleNote4, sampleNote, sampleNote2, sampleNote3, sampleNote4, sampleNote, sampleNote2, sampleNote3, sampleNote4, sampleNote, sampleNote2, sampleNote3, sampleNote4);
+notesArray.push(sampleNote, sampleNote2, sampleNote3, sampleNote4);
 
 let storedNotes = JSON.parse(localStorage.getItem("notes"));   // load notes in local storage
 
