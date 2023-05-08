@@ -41,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    min-height: 100%;
     width: 100vw;
     justify-content: space-between;
     margin: 0;
@@ -62,6 +63,7 @@ header {
     font-size: 72px;
     padding-left: 40px;
     gap: 10px;
+    flex: none;
 }
 
 #logo {
@@ -79,8 +81,8 @@ footer {
     justify-content: center;
     background-color: var(--header-footer-color);
     margin: 0;
-    height: 4rem;
-    flex: 0 0 auto;
+    height: 3.5rem;
+    flex: none;
     gap: 10px;
 }
 
@@ -101,7 +103,8 @@ footer a:hover {
 
 #content {
     display: flex;
-    height: 88vh;
+    flex: auto;
+    overflow: hidden;
 }
 
 #nav {
@@ -214,8 +217,9 @@ footer a:hover {
 
 #newItem {
     display: flex;
-    position: relative;
+    position: absolute;
     left: 2.5rem;
+    bottom: 2.5rem;
     justify-content: center;
     align-items: center;
     color: white;
