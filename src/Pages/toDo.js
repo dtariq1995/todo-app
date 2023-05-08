@@ -30,14 +30,14 @@ export const filterArrays = function() {   // filter arrays
 
 
 
-export const toDoFactory = (title, project, priority, date, details) => {   //Factory Function that creates toDos
+export const toDoFactory = (title, project, priority, date, details, checkedOrNot) => {   //Factory Function that creates toDos
 
-    return {title, project, priority, date, details};
+    return {title, project, priority, date, details, checkedOrNot};
 };
 
-const sampleToDo = toDoFactory("Title", "Sample Project", "High", new Date(2023, 3, 23), "Finish this");
-const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovations", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser");
-const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile");
+const sampleToDo = toDoFactory("Title", "Sample Project", "High", new Date(2023, 3, 23), "Finish this", false);
+const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovations", "Medium", new Date(2023, 3, 23), "Replace garbage disposal and soap dispenser", false);
+const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile", false);
 
 
 toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
@@ -80,9 +80,12 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let toDoLabel = document.createElement("label");   // add checkbox to todos
         let toDoCheck = document.createElement("input");
         toDoCheck.setAttribute("type", "checkbox");
+
         toDoCheck.addEventListener('change', () => {   // checks if todo is checked and style based off of that
 
             if (toDoCheck.checked) {
+                toDo.checkedOrNot = true;
+                localStorage.setItem("todos", JSON.stringify(toDoArray));
                 toDoCard.classList.add("checked");
                 toDoLeft.classList.add("checked");
                 toDoDetails.classList.add("checked");
@@ -91,6 +94,8 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
                 deleteArea.classList.add("checked");
             }
             if (!toDoCheck.checked) {
+                toDo.checkedOrNot = false;
+                localStorage.setItem("todos", JSON.stringify(toDoArray));
                 toDoCard.classList.remove("checked");
                 toDoLeft.classList.remove("checked");
                 toDoDetails.classList.remove("checked");
@@ -98,6 +103,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
                 editArea.classList.remove("checked");
                 deleteArea.classList.remove("checked");
             }
+            
         })
 
         let toDoSpan = document.createElement("span");
@@ -172,6 +178,26 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         toDoLeft.append(toDoLabel, toDoTitle);   // add label and title to left side
         toDoRight.append(toDoDetails, toDoDate, editArea, deleteArea);   // add date, edit, and del to right side
         toDoCard.append(toDoLeft, toDoRight);  // combine both sides and add to todo card
+
+        if (toDo.checkedOrNot == true) {
+            toDoCheck.checked = true;
+            toDoCard.classList.add("checked");
+            toDoLeft.classList.add("checked");
+            toDoDetails.classList.add("checked");
+            toDoDate.classList.add("checked");
+            editArea.classList.add("checked");
+            deleteArea.classList.add("checked");
+        }
+        else if (toDo.checkedOrNot == false) {
+            toDoCheck.checked = false;
+            toDoCard.classList.remove("checked");
+            toDoLeft.classList.remove("checked");
+            toDoDetails.classList.remove("checked");
+            toDoDate.classList.remove("checked");
+            editArea.classList.remove("checked");
+            deleteArea.classList.remove("checked");
+        }
+
         toDoDisplayArea.append(toDoCard);   // display todo in display area in main
 
     });
