@@ -49,7 +49,7 @@ const sampleToDoSev = toDoFactory("ToDos load weird", "To-Do App Fixes", "Medium
 const sampleToDoEig = toDoFactory("Get Roof Fixed", "House Renovations", "Medium", new Date(+new Date() + 86400000), "The roof needs to be replaced", false);
 
 
-toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDoFour, sampleToDoFive, sampleToDoSix, sampleToDoSev, sampleToDoEig, sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDoFour, sampleToDoFive, sampleToDoSix, sampleToDoSev, sampleToDoEig);   // add sample todos to todoArray
+toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree, sampleToDoFour, sampleToDoFive, sampleToDoSix, sampleToDoSev, sampleToDoEig);   // add sample todos to todoArray
 
 let storedToDos = JSON.parse(localStorage.getItem("todos"));   // update todoArray with any todos in local storage
 
