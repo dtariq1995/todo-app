@@ -48,11 +48,12 @@ body {
     font-family: Raleway;
     color: rgb(34, 34, 34);
     background-color: var(--header-footer-color);
+    overflow: hidden;
 }
 
 header {
     background-color: var(--header-footer-color);
-    height: 8vh;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -78,9 +79,9 @@ footer {
     justify-content: center;
     background-color: var(--header-footer-color);
     margin: 0;
-    height: 4vh;
+    height: 4rem;
+    flex: 0 0 auto;
     gap: 10px;
-    width: 100vw;
 }
 
 footer img {
@@ -100,16 +101,15 @@ footer a:hover {
 
 #content {
     display: flex;
-    width: 100vw;
+    height: 88vh;
 }
 
 #nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 83vh;
     background-color: var(--sidebar-color);
-    padding-top: 5vh;
+    padding-top: 5rem;
     border-right: 1px solid rgb(97, 87, 103);
 }
 
@@ -226,7 +226,7 @@ footer a:hover {
     background-color: rgb(143, 106, 181);
     border-radius: 50%;
     box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.4);
-    margin-bottom: 48px;
+    margin-bottom: 3rem;
     cursor: pointer;
     user-select: none;
 }
@@ -242,20 +242,18 @@ footer a:hover {
 
 #main-area {
     background-color: rgb(255, 255, 255);
-    height: 80vh;
-    padding: 5vh 4.5vw 3vh;
-    width: 100%;
-    overflow-y: auto;
+    padding: 5rem 4.5rem 3rem;
+    flex-grow: 1;
+    overflow: auto;
 }
 
 #notes-area {
     padding: 5px 0;
-    height: 78vh;
     display: grid;
     grid-template-columns: minmax(250px, 17em) repeat(auto-fill, minmax(250px, 17em));
     grid-template-rows: repeat(auto-fill, 250px);
     gap: 2em;
-
+    flex-grow: 1;
 }
 
 .notecard {
@@ -291,14 +289,14 @@ footer a:hover {
     word-wrap: break-word;
 }
 
-.todo-area {
-    height: 78vh;
+#todo-area {
     display: flex;
     flex-direction: column;
 }
 
 .todo-card {
     display: flex;
+    height: 1.6rem;
     background-color: var(--sidebar-color);
     align-items: center;
     justify-content: space-between;
