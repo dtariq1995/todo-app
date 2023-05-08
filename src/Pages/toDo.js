@@ -17,6 +17,7 @@ export let weekToDoArray = [];   // will hold todos for current week
 
 
 
+
 export const filterArrays = function() {   // filter arrays
 
     todayToDoArray = toDoArray.filter(function(toDo) {   // filter all todos for today's date
@@ -29,6 +30,9 @@ export const filterArrays = function() {   // filter arrays
 }
 
 
+
+
+
 export const toDoFactory = (title, project, priority, date, details, checkedOrNot) => {   //Factory Function that creates toDos
 
     return {title, project, priority, date, details, checkedOrNot};
@@ -39,15 +43,15 @@ const sampleToDoTwo = toDoFactory("Fix Sink", "House Renovations", "Medium", new
 const sampleToDoThree = toDoFactory("Fix Shower", "House Renovations", "Low", new Date(2023, 3, 28), "Replace shower head and broken tile", false);
 
 
-toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);
+toDoArray.push(sampleToDo, sampleToDoTwo, sampleToDoThree);   // add sample todos to todoArray
 
-let storedToDos = JSON.parse(localStorage.getItem("todos"));
+let storedToDos = JSON.parse(localStorage.getItem("todos"));   // update todoArray with any todos in local storage
 
 if (!storedToDos) {
-    localStorage.setItem("todos", JSON.stringify(toDoArray));
+    localStorage.setItem("todos", JSON.stringify(toDoArray));   // if no local storage, create local storage with sample todos
 }
 
-filterArrays();
+filterArrays();   // filter todos array by day and week
 
 
 
@@ -102,7 +106,6 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
                 editArea.classList.remove("checked");
                 deleteArea.classList.remove("checked");
             }
-            
         })
 
         let toDoSpan = document.createElement("span");
@@ -122,7 +125,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         toDoDetails.classList.add("todo-details");
         toDoDetails.textContent = "DETAILS";
         toDoDetails.addEventListener('click', () => {
-            detailsDisplay(toDo);
+            detailsDisplay(toDo);   // show details for todo
         });
 
         let toDoDate = document.createElement("div");   // add date to todo
@@ -137,7 +140,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         editButton.data = "/src/Assets/Images/edit-button.svg";
 
         editArea.addEventListener('click', () => {
-            editToDoDisplay(toDo);
+            editToDoDisplay(toDo);   // show form to edit todos
         });
 
         editArea.append(editButton);
@@ -153,22 +156,22 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
             event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
             setTimeout(() => event.target.parentNode.parentNode.remove(), 400);
             toDoArray.splice(toDoArray.indexOf(toDo), 1);   // remove todo from the array
-            localStorage.setItem("todos", JSON.stringify(toDoArray));
+            localStorage.setItem("todos", JSON.stringify(toDoArray));   // relect change in local storage
             filterArrays();   // filter todoArray to get arrays for today and for the week
 
-            let activeButton = getActiveButton(".sidebar-area");
+            let activeButton = getActiveButton(".sidebar-area");   // get currently active sidebar button
 
             if (projectsArray.indexOf(activeButton) != -1) {
-                emptyProjectDisplay(filterProjects(activeButton).length, activeButton);
+                emptyProjectDisplay(filterProjects(activeButton).length, activeButton);   // if active button is project, check if empty project when todo is deleted
             }
-            if (activeButton == "sidebar-todo-area") {
-                emptyToDoDisplay(toDoArray.length);
+            if (activeButton == "sidebar-todo-area") {   
+                emptyToDoDisplay(toDoArray.length);   // if active button is home, check if toDoArray is empty on todo deletion
             }
             else if (activeButton == "sidebar-today-area") {
-                emptyToDoDisplay(todayToDoArray.length);
+                emptyToDoDisplay(todayToDoArray.length);   // if active button is today, check if todayToDoArray is empty on todo deletion
             }
             else if (activeButton == "sidebar-week-area") {
-                emptyToDoDisplay(weekToDoArray.length);
+                emptyToDoDisplay(weekToDoArray.length);   // if active button is week, check if weekToDoArray is empty on todo deletion
             }
         });
 
@@ -178,7 +181,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         toDoRight.append(toDoDetails, toDoDate, editArea, deleteArea);   // add date, edit, and del to right side
         toDoCard.append(toDoLeft, toDoRight);  // combine both sides and add to todo card
 
-        if (toDo.checkedOrNot == true) {
+        if (toDo.checkedOrNot == true) {   // check if todo was stored as being checked and display based off of that
             toDoCheck.checked = true;
             toDoCard.classList.add("checked");
             toDoLeft.classList.add("checked");
@@ -203,6 +206,9 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
 
     displayArea.append(toDoDisplayArea);
 }
+
+
+
 
 
 const detailsDisplay = function(todo) {   // displays details for a specific todo
@@ -256,7 +262,7 @@ const detailsDisplay = function(todo) {   // displays details for a specific tod
     let dateName = document.createElement("div");
     dateName.classList.add("details-form-area-name");
     dateHeading.textContent = "Due Date: ";
-    dateName.textContent = format(todo.date, 'LLL do, yyyy');
+    dateName.textContent = format(todo.date, 'LLL do, yyyy');   // format date ex. "May 7th, 2003"
     dateArea.append(dateHeading, dateName);
 
     let detailsArea = document.createElement("div");   // display details 
@@ -295,7 +301,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
         card.innerHTML = "";   // remove form from the body rather than just hiding it
     })
 
-    let toDoTitle = document.createElement("textarea");
+    let toDoTitle = document.createElement("textarea");   // show title edit area
     toDoTitle.id = "edit-form-title";
     toDoTitle.contentEditable = true;
     toDoTitle.placeholder = toDo.title;
@@ -303,7 +309,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoTitle.maxLength = 25;
     toDoTitle.required = true;
 
-    let toDoDetails = document.createElement("textarea");
+    let toDoDetails = document.createElement("textarea");   // show details edit area
     toDoDetails.id = "edit-form-details";
     toDoDetails.contentEditable = "true";
     toDoDetails.placeholder = toDo.details;
@@ -311,7 +317,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoDetails.maxLength = 200;
     toDoDetails.required = true;
 
-    let toDoProjectArea = document.createElement("div");
+    let toDoProjectArea = document.createElement("div");   // show project options
     toDoProjectArea.id = "new-todo-project-area";
     let toDoProjectHeading = document.createElement("div");
     toDoProjectHeading.id = "new-todo-project-heading";
@@ -333,7 +339,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
 
 
-    let toDoDateArea = document.createElement("div");
+    let toDoDateArea = document.createElement("div");   // show date select area
     toDoDateArea.id = "new-todo-date-area";
     let toDoDateHeading = document.createElement("div");
     toDoDateHeading.classList.add("new-todo-heading");
@@ -345,14 +351,14 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoDateSelect.required = true;
     toDoDateArea.append(toDoDateHeading, toDoDateSelect);
 
-    let toDoPriorityArea = document.createElement("div");
+    let toDoPriorityArea = document.createElement("div");   // show priority select area
     toDoPriorityArea.id = "new-todo-priority-area";
     let toDoPriorityHeading = document.createElement("div");
     toDoPriorityHeading.id = "new-todo-priority-heading";
     toDoPriorityHeading.classList.add("new-todo-heading");
     toDoPriorityHeading.textContent = "Priority: ";
 
-    let lowPriority = document.createElement("input");
+    let lowPriority = document.createElement("input");   // show low priority button
     lowPriority.classList.add("new-todo-priority-btn");
     lowPriority.name = "new-priority";
     lowPriority.type = "radio";
@@ -364,7 +370,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     lowPriorityLabel.id = "new-todo-low-label";
     lowPriorityLabel.textContent = "Low";
 
-    let medPriority = document.createElement("input");
+    let medPriority = document.createElement("input");   // show med priority button
     medPriority.classList.add("new-todo-priority-btn");
     medPriority.name = "new-priority";
     medPriority.type = "radio";
@@ -376,7 +382,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     medPriorityLabel.id = "new-todo-med-label";
     medPriorityLabel.textContent = "Medium";
 
-    let highPriority = document.createElement("input");
+    let highPriority = document.createElement("input");   // show high priority button
     highPriority.classList.add("new-todo-priority-btn");
     highPriority.name = "new-priority";
     highPriority.type = "radio";
@@ -388,7 +394,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     highPriorityLabel.id = "new-todo-high-label";
     highPriorityLabel.textContent = "High";
 
-    if (toDo.priority == "Low") {
+    if (toDo.priority == "Low") {   // show initial selected priority based off todos initial value
         lowPriority.checked = "checked";
     }
     else if (toDo.priority == "Medium") {
@@ -402,15 +408,15 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
     toDoPriorityArea.append(toDoPriorityHeading, lowPriority, lowPriorityLabel, medPriority, medPriorityLabel, highPriority, highPriorityLabel);
     
 
-    let toDoSubmit = document.createElement("button");
+    let toDoSubmit = document.createElement("button");   // show submit changes button
     toDoSubmit.type = "submit";
     toDoSubmit.classList.add("new-submit-btn");
     toDoSubmit.textContent = "SAVE CHANGES";
     toDoSubmit.addEventListener("click", () => {
 
-        let prioritySelected = document.querySelector('input[name="new-priority"]:checked');
+        let prioritySelected = document.querySelector('input[name="new-priority"]:checked');   // get value of selected priority
 
-        let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;
+        let selectedProject = toDoProjectSelect.options[toDoProjectSelect.selectedIndex].text;   // get value of selected project
 
         if (toDoTitle.value == "" || toDoDetails.value == "" || toDoDateSelect.value == "") {   // This ensures all form fields are filled
 
@@ -419,17 +425,17 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
         else {
 
-            toDo.title = toDoTitle.value;
+            toDo.title = toDoTitle.value;   // update todos values with edits
             toDo.details = toDoDetails.value;
             toDo.project = selectedProject;
             toDo.date = parseISO(toDoDateSelect.value)
             toDo.priority = prioritySelected.value;
-            localStorage.setItem("todos", JSON.stringify(toDoArray));
-            filterArrays();
-            toggle('edit-form');
+            localStorage.setItem("todos", JSON.stringify(toDoArray));   // reflect changes in local storage
+            filterArrays();   // filter and reassign today and week arrays
+            toggle('edit-form');   // hide edit form popup
 
 
-            if (selectedProject == "None") {
+            if (selectedProject == "None") {   // if no project selected, display home tab and all todos
 
                 let toDoArea = document.getElementById("sidebar-todo-area");
                 setActiveButton(toDoArea, ".sidebar-area");
@@ -439,7 +445,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
             else {
         
-                let activeProject = document.getElementById(selectedProject);
+                let activeProject = document.getElementById(selectedProject);   // show tab for selected project
                 setActiveButton(activeProject, ".sidebar-area");
                 sectionDisplay(filterProjects(selectedProject));
             }
@@ -457,8 +463,7 @@ const editToDoDisplay = function(toDo) {   // brings up display to edit a todo w
 
 
 
-
-export const emptyToDoDisplay = function(arrayLength) {
+export const emptyToDoDisplay = function(arrayLength) {   // make display for empty todos is array is empty 
 
     if (arrayLength == 0) {
 
@@ -469,23 +474,22 @@ export const emptyToDoDisplay = function(arrayLength) {
         let emptyToDoArea = document.createElement("div");
         emptyToDoArea.id = "empty-project-area";
 
-        let emptyToDoHeading = document.createElement("div");
+        let emptyToDoHeading = document.createElement("div");   // show "Theres nothing here" header
         emptyToDoHeading.id = "empty-project-heading";
         emptyToDoHeading.textContent = "There's Nothing Here!";
 
-        let emptyToDoText = document.createElement("div");
+        let emptyToDoText = document.createElement("div");   // show subtext
         emptyToDoText.id = "empty-project-text";
         emptyToDoText.textContent = "Create a new to-do item or project.";
 
 
-        emptyToDoArea.append(emptyToDoHeading, emptyToDoText);
+        emptyToDoArea.append(emptyToDoHeading, emptyToDoText);   // add on to display
         toDoArea.append(emptyToDoArea);
     }
 
     else {
-        return;
+        return;   // if array not empty, do nothing
     }
-
 }
 
 
