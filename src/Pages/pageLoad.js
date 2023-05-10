@@ -12,6 +12,15 @@ import { projectsArray } from "./projects";
 import { projectListDisplay } from "./projects";
 import { filterProjects } from "./projects";
 import { emptyToDoDisplay } from "./toDo";
+import githubIcon from "../Assets/Images/GitHub-Mark-Light-32px.png";
+import logoIcon from "../Assets/Images/agenda.png";
+import homeIcon from "../Assets/Images/houseicon.png";
+import todayIcon from "../Assets/Images/dayicon.png";
+import weekIcon from "../Assets/Images/weekicon.png";
+import projectIcon from "../Assets/Images/projectsicon.png";
+import notesIcon from "../Assets/Images/noteicon.png";
+import darkLogoIcon from "../Assets/Images/agenda-dark.png";
+
 
 
 
@@ -78,9 +87,9 @@ const pageLoad = function() {   // initial page load, get local storage, display
   }
 
 
-  let headerImage = document.createElement("img");
+  let headerImage = new Image();
   let headerTitle = document.createElement("div");
-  headerImage.src = "Assets/Images/agenda.png";
+  headerImage.src = logoIcon;
   headerTitle.textContent = "To-Do List";
   logo.append(headerImage, headerTitle);
   header.append(logo, sidebarMenu);
@@ -90,10 +99,10 @@ const pageLoad = function() {   // initial page load, get local storage, display
   let footer = document.createElement("footer");  // footer content
   let footerText = document.createElement("p");
   let footerLink = document.createElement("a");
-  let footerImg = document.createElement("img");
+  let footerImg = new Image();
 
   footerText.textContent = "Created by:";
-  footerImg.src = "Assets/Images/GitHub-Mark-Light-32px.png";
+  footerImg.src = githubIcon;
   footerLink.href = "https://github.com/dtariq1995";
   footerLink.textContent = "Daanyaal Tariq";
 
@@ -125,8 +134,8 @@ const sidebarLoad = function() {   // load sidebar content
   let homeArea = document.createElement("div");   // home button icon and text 
   homeArea.classList.add("sidebar-area");
   homeArea.id = "sidebar-todo-area";
-  let homeImg = document.createElement("img");
-  homeImg.src = "Assets/Images/houseicon.png";
+  let homeImg = new Image();
+  homeImg.src = homeIcon;
   let homeButton = document.createElement("button");
   homeButton.classList.add("side-button");
   homeButton.textContent = "Home";
@@ -142,8 +151,8 @@ const sidebarLoad = function() {   // load sidebar content
   let todayArea = document.createElement("div");   // today button icon and text
   todayArea.classList.add("sidebar-area");
   todayArea.id = "sidebar-today-area";
-  let todayImg = document.createElement("img");
-  todayImg.src = "Assets/Images/dayicon.png";
+  let todayImg = new Image();
+  todayImg.src = todayIcon;
   let todayButton = document.createElement("button");
   todayButton.classList.add("side-button");
   todayButton.textContent = "Today";
@@ -158,8 +167,8 @@ const sidebarLoad = function() {   // load sidebar content
   let weekArea = document.createElement("div");   // week button icon and text
   weekArea.classList.add("sidebar-area");
   weekArea.id = "sidebar-week-area";
-  let weekImg = document.createElement("img")
-  weekImg.src = "Assets/Images/weekicon.png";
+  let weekImg = new Image();
+  weekImg.src = weekIcon;
   let weekButton = document.createElement("button");
   weekButton.classList.add("side-button");
   weekButton.textContent = "Week";
@@ -174,8 +183,8 @@ const sidebarLoad = function() {   // load sidebar content
   let projectsArea = document.createElement("div");   // projects area icon and text
   projectsArea.classList.add("sidebar-area");
   projectsArea.id = "projects-area";
-  let projectsImg = document.createElement("img");
-  projectsImg.src = "Assets/Images/projectsicon.png";
+  let projectsImg = new Image();
+  projectsImg.src = projectIcon;
   let projectsButton = document.createElement("div");
   projectsButton.classList.add("projects-title");
   projectsButton.textContent = "Projects";
@@ -184,8 +193,8 @@ const sidebarLoad = function() {   // load sidebar content
   let notesArea = document.createElement("div");   // notes button icon and text
   notesArea.classList.add("sidebar-area");
   notesArea.id = "sidebar-notes-area";
-  let notesImg = document.createElement("img");
-  notesImg.src = "Assets/Images/noteicon.png";
+  let notesImg = new Image();
+  notesImg.src = notesIcon;
   let notesButton = document.createElement("button");
   notesButton.classList.add("side-button");
   notesButton.textContent = "Notes";
@@ -299,8 +308,8 @@ const newItemDisplay = function() {
 
   let newItemNavToDoArea = document.createElement("div");   // create todo tab for sidebar
   newItemNavToDoArea.classList.add("new-item-nav-area");
-  let newItemNavToDoImg = document.createElement("img"); 
-  newItemNavToDoImg.src = "Assets/Images/agenda-dark.png";
+  let newItemNavToDoImg = new Image();
+  newItemNavToDoImg.src = darkLogoIcon;
   let newItemNavToDo = document.createElement("div");
   newItemNavToDo.classList.add("new-item-nav-button");
   newItemNavToDo.textContent = "To-Do";  
@@ -316,8 +325,8 @@ const newItemDisplay = function() {
 
   let newItemNavProjectArea = document.createElement("div");   // create project tab for sidebar
   newItemNavProjectArea.classList.add("new-item-nav-area");
-  let newItemProjectsImg = document.createElement("img");
-  newItemProjectsImg.src = "Assets/Images/projectsicon.png";
+  let newItemProjectsImg = new Image();
+  newItemProjectsImg.src = projectIcon;
   let newItemNavProject = document.createElement("div");
   newItemNavProject.classList.add("new-item-nav-button");
   newItemNavProject.textContent = "Project";
@@ -331,8 +340,8 @@ const newItemDisplay = function() {
 
   let newItemNavNoteArea = document.createElement("div");   // create note tab for sidebar
   newItemNavNoteArea.classList.add("new-item-nav-area");
-  let newItemNotesImg = document.createElement("img");
-  newItemNotesImg.src = "Assets/Images/noteicon.png";
+  let newItemNotesImg = new Image();
+  newItemNotesImg.src = notesIcon;
   let newItemNavNote = document.createElement("div");
   newItemNavNote.classList.add("new-item-nav-button");
   newItemNavNote.textContent = "Note";

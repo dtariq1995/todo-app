@@ -29,12 +29,12 @@
 
 @font-face {
     font-family: Raleway;
-    src: url('Assets/Fonts/Raleway-VariableFont_wght.ttf');
+    src: url('./Assets/Fonts/Raleway-VariableFont_wght.ttf');
 }
 
 @font-face {
     font-family: Alumni-Sans-Inline-One;
-    src: url('Assets/Fonts/AlumniSansInlineOne-Italic.ttf');
+    src: url('./Assets/Fonts/AlumniSansInlineOne-Italic.ttf');
 }
 
 

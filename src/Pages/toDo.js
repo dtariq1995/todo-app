@@ -8,6 +8,8 @@ import { setActiveButton } from "./pageLoad";
 import { filterProjects } from "./projects";
 import { getActiveButton } from "./pageLoad";
 import { emptyProjectDisplay } from "./projects"; 
+import editIcon from "../Assets/Images/edit-button.svg";
+import deleteIcon from "../Assets/Images/trash-can.svg";
 
 
 export let toDoArray = [];   // holds all todos
@@ -142,7 +144,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let editButton = document.createElement("object");   // add edit button to todos
         editButton.classList.add("todo-icon");
         editButton.type = "image/svg+xml";
-        editButton.data = "Assets/Images/edit-button.svg";
+        editButton.data = editIcon;
 
         editArea.addEventListener('click', () => {
             editToDoDisplay(toDo);   // show form to edit todos
@@ -155,7 +157,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let deleteButton = document.createElement("object");   // add delete button to todos
         deleteButton.classList.add("todo-icon");
         deleteButton.type = "image/svg+xml";
-        deleteButton.data = "Assets/Images/trash-can.svg";
+        deleteButton.data = deleteIcon;
 
         deleteArea.addEventListener('click', event => {   // remove note from array and display 
             event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
