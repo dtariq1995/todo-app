@@ -80,7 +80,7 @@ const pageLoad = function() {   // initial page load, get local storage, display
 
   let headerImage = document.createElement("img");
   let headerTitle = document.createElement("div");
-  headerImage.src = 'Assets/Images/agenda.png';
+  headerImage.src = "Assets/Images/agenda.png";
   headerTitle.textContent = "To-Do List";
   logo.append(headerImage, headerTitle);
   header.append(logo, sidebarMenu);
@@ -93,7 +93,7 @@ const pageLoad = function() {   // initial page load, get local storage, display
   let footerImg = document.createElement("img");
 
   footerText.textContent = "Created by:";
-  footerImg.src = 'Assets/Images/GitHub-Mark-Light-32px.png';
+  footerImg.src = "Assets/Images/GitHub-Mark-Light-32px.png";
   footerLink.href = "https://github.com/dtariq1995";
   footerLink.textContent = "Daanyaal Tariq";
 
