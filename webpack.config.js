@@ -1,6 +1,14 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'To-Do App',
+      favicon: './src/Assets/Images/agenda.png'
+    })
+  ],
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
