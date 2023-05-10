@@ -142,7 +142,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let editButton = document.createElement("object");   // add edit button to todos
         editButton.classList.add("todo-icon");
         editButton.type = "image/svg+xml";
-        editButton.data = "/dist/Assets/Images/edit-button.svg";
+        editButton.data = "Assets/Images/edit-button.svg";
 
         editArea.addEventListener('click', () => {
             editToDoDisplay(toDo);   // show form to edit todos
@@ -155,7 +155,7 @@ const sectionDisplay = function(arrayToDisplay) {   // display all to-dos
         let deleteButton = document.createElement("object");   // add delete button to todos
         deleteButton.classList.add("todo-icon");
         deleteButton.type = "image/svg+xml";
-        deleteButton.data = "/dist/Assets/Images/trash-can.svg";
+        deleteButton.data = "Assets/Images/trash-can.svg";
 
         deleteArea.addEventListener('click', event => {   // remove note from array and display 
             event.target.parentNode.parentNode.style.opacity = "0";   // transition effect to make todo fade
