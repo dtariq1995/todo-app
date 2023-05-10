@@ -37,6 +37,7 @@
     src: url(/src/Assets/Fonts/AlumniSansInlineOne-Italic.ttf);
 }
 
+
 body {
     display: flex;
     flex-direction: column;
@@ -54,7 +55,7 @@ body {
 
 header {
     background-color: var(--header-footer-color);
-    height: 6rem;
+    height: 7.25rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -233,6 +234,7 @@ footer a:hover {
     margin-bottom: 3rem;
     cursor: pointer;
     user-select: none;
+    z-index: 3;
 }
 
 #newItem:hover {
@@ -252,20 +254,26 @@ footer a:hover {
 }
 
 #notes-area {
-    padding: 5px 0;
     display: grid;
-    grid-template-columns: minmax(250px, 17em) repeat(auto-fill, minmax(250px, 17em));
-    grid-template-rows: repeat(auto-fill, 250px);
-    gap: 2em;
-    flex-grow: 1;
+    justify-content: center;
+    height: 80vh;
+    grid-template-columns: repeat(4, 18rem);
+    grid-template-rows: repeat(auto-fit, 18rem);
+    padding: 1rem 0;
+    gap: 1.5rem;
+}
+.notecard {
+    font-size: 16px;
+}
+.note-details {
+    font-size: 15px;
 }
 
 .notecard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5em;
-    height: 12em;
+    padding: 1.5rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     -webkit-transition: opacity 700ms ease-in-out;
     transition: opacity 700ms ease-in-out;
@@ -283,14 +291,17 @@ footer a:hover {
     padding-bottom: 1.5em;
     font-weight: 500;
     color: rgb(35, 35, 35);
-    max-width: 240px;
+    width: 100%;
+    text-align: center;
 }
 
 .note-details {
     color: rgb(35, 35, 35);
     height: 100%;
-    max-width: 240px;
+    width: 100%;
     word-wrap: break-word;
+    text-align: center;
+    overflow: auto;
 }
 
 #todo-area {
@@ -875,11 +886,406 @@ label > input[type="checkbox"]:checked + * {
     }
 }
 
+@keyframes moveOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    99% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+}
+
 @keyframes fadeInAnimation {   /* animation for loading sections */
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+
+@keyframes fromRight {
+    0% {
+        transform: translateX(10rem);
+        display: none;
+    }
+    1% {
+        display: flex;
+    }
+    100% {
+        transform: translateX(0);
+        display: flex;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    #nav {
+        width: 10rem;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        background-color: var(--sidebar-color);
+        padding-top: 1rem;
+        border-left: var(--sidebar-border);
+        opacity: 0;
+        height: 90%
+
+    }
+    #nav.hide {
+        animation: moveOutRight 0.3s forwards;
+    }
+    #nav.show {
+        animation: fromRight 0.4s forwards;
+        opacity: 1;
+    }
+    #sidebar {
+        width: 90%;
+    }
+    .sidebar-area {
+        padding-left: 1rem;
+    }
+    .side-button, .projects-title {
+        font-size: 18px;
+    }
+    #sidebar img {
+        width: 20px;
+        height: 20px;
+    }
+    .projects-list-titles {
+        font-size: 13px;
+    }
+    #projects-list {
+        width: 10rem;
+    }
+    body {
+        width: 100vw;
+        height: 100vh;
+        font-size: 80%;
+        overflow: hidden;
+        z-index: 0;
+    }
+    #container {
+        overflow: hidden;
+    }
+    #new-item-form {   /* new item form styles ---- */
+        width: 95vw;
+    }
+    .new-item-nav-button {
+        width: 9vw;
+        font-size: 14px;
+    }
+    #new-todo-title, #new-project-title, #new-note-title {
+        font-size: 16px;
+    }
+    #new-todo-details, #new-note-details, #edit-form-details {
+        font-size: 13px;
+    }
+    #edit-form-details {
+        height: 3rem;
+    }
+    .new-todo-heading {
+        font-size: 14px;
+    }
+    .new-item-nav-area img {
+        height: 14px;
+        width: 14px;
+    }
+    #new-todo-project-area {
+        bottom: 9.3rem;
+    }
+    #new-todo-date-area {
+        bottom: 6.6rem;
+    }
+    #new-todo-priority-area {
+        bottom: 4rem;
+    }
+    .new-submit-btn {
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 10px;
+    }
+    #project-select, .new-todo-date, #new-todo-priority-area label {
+        font-size: 11px;
+    }
+    #edit-form {
+        width: 87vw;
+    }
+    #main-area {
+        padding: 1rem;
+    }
+    #newItem {
+        left: 5rem;
+        bottom: 1.5rem;
+    }
+    #details-form {
+        width: 95vw;
+    }
+    #details-form-title {
+        font-size: 32px;
+    }
+    .details-form-area-heading {
+        font-size: 15px;
+        min-width: 5rem;
+    }
+    .details-form-area-name {
+        font-size: 15px;
+        padding-right: 16px;
+    }
+    footer {
+        height: 2.5rem;
+        z-index: 2;
+    }
+    footer img {
+        height: 16px;
+        width: 16px;
+    }
+    #logo {
+        font-size: 80%;
+    }
+    #logo img {
+        height: 64px;
+        width: 64px;
+    }
+    header {
+        padding: 0 1rem;
+        justify-content: space-between;
+    }
+    #sidebar-menu {
+        display: inline-block;
+        cursor: pointer;
+        animation: fadeInAnimation ease-in-out 2s;
+    }
+    .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    transition: 0.4s;
+    }
+    /* Rotate first bar */
+    .change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+    }
+    /* Fade out the second bar */
+    .change .bar2 {opacity: 0;}
+    /* Rotate last bar */
+    .change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+    }
+    #notes-area {
+        display: grid;
+        height: 80vh;
+        grid-template-columns: repeat(2, 45vw);
+        grid-template-rows: repeat(auto-fit, 45vw);
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    .notecard {
+        font-size: 110%;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    #nav {
+        width: 12rem;
+        padding-top: 2rem;
+    }
+    .sidebar-area {
+        padding-left: 2rem;
+    }
+    .side-button, .projects-title {
+        font-size: 20px;
+    }
+    #sidebar img {
+        height: 22px;
+        width: 22px;
+    }
+    .projects-list-titles {
+        font-size: 14px;
+    }
+    #projects-list {
+        padding-left: 1rem;
+    }
+    body {
+        font-size: 87%;
+    }
+    #new-item-form, #details-form {   /* new item form styles ---- */
+        width: 97vw;
+        max-width: 45rem;
+    }
+    #details-form {
+        max-width: 40rem;
+    }
+    .new-submit-btn {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    #main-area {
+        padding: 2rem 1rem;
+    }
+    #newItem {
+        left: 2rem;
+        bottom: 2rem;
+        position: absolute;
+    }
+    #details-form {
+        width: 98vw;
+    }
+    #logo {
+        font-size: 64px;
+    }
+    #logo img {
+        height: 72px;
+        width: 72px;
+    }
+    header {
+        padding-left: 1.75rem;
+        height: 5.5rem;
+    }
+    #notes-area {
+        display: grid;
+        justify-content: center;
+        height: 80vh;
+        grid-template-columns: repeat(2, 32vw);
+        grid-template-rows: repeat(auto-fit, 32vw);
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    .notecard {
+        font-size: 110%;
+    }
+    .note-details {
+        font-size: 14px;
+    }
+}
+
+/* Medium devices (landscape tablets, 1200px and down) */
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+    #nav {
+        width: 13.5rem;
+        padding-top: 2.5rem;
+    }
+    .sidebar-area {
+        padding-left: 2.5rem;
+    }
+    .side-button, .projects-title {
+        font-size: 22px;
+    }
+    .projects-list-titles {
+        font-size: 15px;
+    }
+    #projects-list {
+        padding-left: 1.5rem;
+    }
+    body {
+        font-size: 95%;
+    }
+    #new-item-form, #details-form {   /* new item form styles ---- */
+        max-width: 45rem;
+    }
+    #details-form {
+        width: 98vw;
+        max-width: 40rem;
+    }
+    #main-area {
+        padding: 2.5rem 2.5rem;
+    }
+    #newItem {
+        left: 2.5rem;
+        bottom: 2.5rem;
+        position: absolute;
+    }
+    #logo {
+        font-size: 68px;
+    }
+    #logo img {
+        height: 76px;
+        width: 76px;
+    }
+    header {
+        padding-left: 2.25rem;
+        height: 6.5rem;
+    }
+    #notes-area {
+        display: grid;
+        justify-content: center;
+        height: 80vh;
+        grid-template-columns: repeat(3, 23vw);
+        grid-template-rows: repeat(auto-fit, 23vw);
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    .notecard {
+        font-size: 15px;
+    }
+    .note-details {
+        font-size: 14px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+    #nav {
+        width: 14.5rem;
+        padding-top: 3.5rem;
+    }
+    .sidebar-area {
+        padding-left: 3rem;
+    }
+    .side-button, .projects-title {
+        font-size: 22px;
+    }
+    .projects-list-titles {
+        font-size: 16px;
+    }
+    #projects-list {
+        padding-left: 1.5rem;
+    }
+    body {
+        font-size: 97.5%;
+    }
+    #main-area {
+        padding: 3.5rem 3rem;
+    }
+    #newItem {
+        left: 3rem;
+        bottom: 3rem;
+        position: absolute;
+    }
+    #logo {
+        font-size: 70px;
+    }
+    #logo img {
+        height: 80px;
+        width: 80px;
+    }
+    header {
+        padding-left: 2.75rem;
+        height: 7rem;
+    }
+    #notes-area {
+        display: grid;
+        justify-content: center;
+        height: 80vh;
+        grid-template-columns: repeat(4, 18vw);
+        grid-template-rows: repeat(auto-fit, 18vw);
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    .notecard {
+        font-size: 16px;
+    }
+    .note-details {
+        font-size: 15px;
     }
 }

@@ -48,12 +48,42 @@ const pageLoad = function() {   // initial page load, get local storage, display
   let header = document.createElement("header");   // header content
   let logo = document.createElement("div");
   logo.id = "logo";
+
+  let sidebarMenu = document.createElement("div");   // hamburger menu for sidebar when screen is smaller
+  sidebarMenu.id = "sidebar-menu";
+  let bar1 = document.createElement("div");
+  let bar2 = document.createElement("div");
+  let bar3 = document.createElement("div");
+  bar1.classList.add("bar1");
+  bar2.classList.add("bar2");
+  bar3.classList.add("bar3");
+  sidebarMenu.append(bar1, bar2, bar3);
+  sidebarMenu.onclick = function() {   // onclick function which animates hamburger menu and shows/hides sidebar
+    let sidebar = document.getElementById("nav");
+    sidebarMenu.classList.toggle("change");
+    
+    if (sidebar.classList.length == 0) {
+      sidebar.classList.add("show");
+    }
+
+    else if (sidebar.classList.contains("hide")) {
+
+      sidebar.classList.remove("hide");
+      sidebar.classList.add("show");
+    }
+    else if (sidebar.classList.contains("show")) {
+      sidebar.classList.remove("show");
+      sidebar.classList.add("hide");
+    } 
+  }
+
+
   let headerImage = document.createElement("img");
   let headerTitle = document.createElement("div");
   headerImage.src = "/src/Assets/Images/agenda.png";
   headerTitle.textContent = "To-Do List";
   logo.append(headerImage, headerTitle);
-  header.append(logo);
+  header.append(logo, sidebarMenu);
   container.insertAdjacentElement("afterbegin", header);   // end of header content --
 
 
