@@ -926,8 +926,179 @@ label > input[type="checkbox"]:checked + * {
     }
 }
 
+@media only screen and (max-width: 415px) {
+
+    #nav {
+        width: 10rem;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        background-color: var(--sidebar-color);
+        padding-top: 1rem;
+        border-left: var(--sidebar-border);
+        opacity: 0;
+        height: 100%;
+        flex-grow: 1;
+
+    }
+    #nav.hide {
+        animation: moveOutRight 0.3s forwards;
+    }
+    #nav.show {
+        animation: fromRight 0.4s forwards;
+        opacity: 1;
+    }
+    #sidebar {
+        width: 90%;
+    }
+    .sidebar-area {
+        padding-left: 1rem;
+    }
+    .side-button, .projects-title {
+        font-size: 18px;
+    }
+    #sidebar img {
+        width: 20px;
+        height: 20px;
+    }
+    .projects-list-titles {
+        font-size: 13px;
+    }
+    #projects-list {
+        width: 10rem;
+    }
+    body {
+        width: 100vw;
+        height: 100vh;
+        font-size: 80%;
+        overflow: hidden;
+        z-index: 0;
+    }
+    #container {
+        overflow: hidden;
+    }
+    #new-item-form {   /* new item form styles ---- */
+        width: 95vw;
+    }
+    .new-item-nav-button {
+        width: 9vw;
+        font-size: 14px;
+    }
+    #new-todo-title, #new-project-title, #new-note-title {
+        font-size: 16px;
+    }
+    #new-todo-details, #new-note-details, #edit-form-details {
+        font-size: 13px;
+    }
+    #edit-form-details {
+        height: 3rem;
+    }
+    .new-todo-heading {
+        font-size: 14px;
+    }
+    .new-item-nav-area img {
+        height: 14px;
+        width: 14px;
+    }
+    #new-todo-project-area {
+        bottom: 9.3rem;
+    }
+    #new-todo-date-area {
+        bottom: 6.6rem;
+    }
+    #new-todo-priority-area {
+        bottom: 4rem;
+    }
+    .new-submit-btn {
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 10px;
+    }
+    #project-select, .new-todo-date, #new-todo-priority-area label {
+        font-size: 11px;
+    }
+    #edit-form {
+        width: 87vw;
+    }
+    #main-area {
+        padding: 1rem;
+    }
+    #newItem {
+        position: fixed;
+        left: 5rem;
+        bottom: 10rem;
+    }
+    #details-form {
+        width: 95vw;
+    }
+    #details-form-title {
+        font-size: 32px;
+    }
+    .details-form-area-heading {
+        font-size: 15px;
+        min-width: 5rem;
+    }
+    .details-form-area-name {
+        font-size: 15px;
+        padding-right: 16px;
+    }
+    footer {
+        height: 3rem;
+        z-index: 2;
+    }
+    footer img {
+        height: 16px;
+        width: 16px;
+    }
+    #logo {
+        font-size: 80%;
+    }
+    #logo img {
+        height: 64px;
+        width: 64px;
+    }
+    header {
+        padding: 0 1rem;
+        justify-content: space-between;
+    }
+    #sidebar-menu {
+        display: inline-block;
+        cursor: pointer;
+        animation: fadeInAnimation ease-in-out 2s;
+    }
+    .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    transition: 0.4s;
+    }
+    /* Rotate first bar */
+    .change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+    }
+    /* Fade out the second bar */
+    .change .bar2 {opacity: 0;}
+    /* Rotate last bar */
+    .change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+    }
+    #notes-area {
+        display: flex;
+        align-items: center;
+        height: auto;
+        flex-direction: column;
+        
+    }
+    .notecard {
+        width: 60vw;
+        height: 60vw;
+    }
+}
+
+
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 415px) and (max-width: 600px) {
 
     #nav {
         width: 10rem;
