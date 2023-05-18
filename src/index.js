@@ -1,5 +1,14 @@
 import './styles.css';
 import pageLoad from "./Pages/pageLoad";
+import { initializeApp } from 'firebase/app';
+
+
+
+
+
+
+
+
 
 let body = document.body;   // add some things onto html body which everything else will be attached to
 let container = document.createElement("container");
